@@ -1,0 +1,76 @@
+<div> 
+    <mat-card class="example-card">
+         <div class="container">
+          <mat-card class="group-user" >
+            <a>
+                <span class="textColor">USA-User</span>
+                <br>    
+                <span>
+                    level
+                    <br>
+                    <span  >6,920</span>
+                </span>
+                <span>
+                  <img class="imgHinh" src="https://www.userbenchmark.com/resources/img/guest.png?s=40" >
+              </span>
+            </a>
+          </mat-card>
+          <mat-card>
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+            <img class="img-card" mat-card-image  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+            </mat-card>
+         </div>
+              
+          <!-- <div class="cardcontent ">
+            
+          </div> -->
+
+          <mat-card-actions>
+        
+         <div class="group-button-action">        
+          <button class="tooltip" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon *ngIf="stateLike==false" color="primary" (click)="changeStateLike()">favorite</mat-icon> 
+            <span *ngIf="stateLike==false" class="tooltiptext">Like</span>
+            <mat-icon *ngIf="stateLike==true" (click)="changeStateLike()">favorite</mat-icon>
+           
+            <span *ngIf="stateLike==true" class="tooltiptext">DisLike</span>
+          </button>
+
+          <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" >
+            <mat-icon (click)="changeState();" color="primary">  chat</mat-icon>
+          </button>
+          
+
+        </div>
+          </mat-card-actions>   
+          
+    </mat-card>
+    <div class="edit" *ngIf="isShowForm">
+        <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+        <div class=" location">
+      
+          <button mat-raised-button (click)="isShowForm=!isShowForm" type="submit" value="submit" color="primary">Submit</button>
+
+        </div>
+    </div>
+</div>
+
+
+  <div class="edit1">
+    <h2>Comment:</h2>
+    <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+    <div class=" location">
+   
+      <button mat-raised-button type="submit" value="submit" color="primary">Send Comment</button>
+
+    </div>
+  </div>
+
+  
+<!---->
+

@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexPostComponent } from './index-post/index-post.component';
 import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-content.component';
+import { DetailsPostComponent } from './details-post/details-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-con
     FooterComponent,
     IndexPostComponent,
     PopUpPostContentComponent,
+    DetailsPostComponent,
   ],
   imports: [
     BrowserModule,

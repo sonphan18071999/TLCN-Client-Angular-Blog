@@ -27,7 +27,10 @@
                 <input matInput type="text"  value={{postBody.Title}}>
                 
               </mat-form-field> -->
+              <div class="edit" *ngIf="isShowForm">
+
             <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+                </div>
             <br>
             <input type="file" multiple class="choose" (change)="onselect($event,i)"  >
             <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage(i)" width="150px" color="accent"> Remove all</button>
