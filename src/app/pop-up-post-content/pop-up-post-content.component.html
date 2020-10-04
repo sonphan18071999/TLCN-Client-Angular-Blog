@@ -4,20 +4,45 @@
         <h4>Hello, <u><b>Phan Sơn</b></u></h4>
     </div>
     <br>
-    <div class="post-content-content">
+   <div class="post-content-body" >
+    <!-- <div class="post-content-content">
+        <mat-form-field class="example-form-field">
+            <mat-label>Title for this part</mat-label>
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
         <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic'] }"></ckeditor>
         <br>
         <input type="file" multiple class="choose" (change)="onselect($event)"  >
         <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage()" width="150px" color="accent"> Remove all</button>
         <img *ngFor='let url of urls' [src]="url" height="200px">
-        
-        
+    </div> -->
+    <br>
+    <br>
+    <div *ngFor="let postBody of postBodies;index as i">
+        <div class="post-content-content">
+            <mat-form-field class="example-form-field">
+                <mat-label>Title for this part</mat-label>
+                <input matInput type="text"  value={{postBody.Title}}>
+                
+              </mat-form-field>
+            <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+            <br>
+            <input type="file" multiple class="choose" (change)="onselect($event,i)"  >
+            <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage()" width="150px" color="accent"> Remove all</button>
+            <br>
+            <br>
+            <img *ngFor='let url of postBody.urls' [src]="url" height="200px">
+        </div>
+    </div>
     </div>
     <br>
-    <button color="primary" class="post-content-content-button" mat-raised-button><mat-icon style="font-size: 20px;">playlist_add</mat-icon> Add more part</button>
+    <button color="primary" class="post-content-content-button" mat-raised-button (click)="addMorePostBody()"><mat-icon style="font-size: 20px;">playlist_add</mat-icon> Add more part</button>
 
     <div class="post-content-content-footer">
-     </div>
-     <br>
+    </div>
+    <br>
     <button color="primary" class="post-content-content-button" mat-raised-button>Upload</button>
 </div>
