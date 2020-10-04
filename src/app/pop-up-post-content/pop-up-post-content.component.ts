@@ -10,17 +10,25 @@ import {postContentModel} from './postContentModel';
 })
 export class PopUpPostContentComponent implements OnInit {
   public Editor=ClassicEditor
+  url=[];
   urls=[];
   postBodies:postContentModel[]=[];
   title:String;
   numberTitle:number=0;
   a:any;
+  openPartTwo:boolean;
   constructor() { }
-
+  switchForm:String;
 
   //Init models
   
   ngOnInit(): void {
+    // Đầu tiên tạo model.
+    // Tạo một biến a là kiểu của model đó.
+    // Xong gắn giá trị cho biến đó.
+    // xog đẩy vào array postBodies.
+    this.switchForm="Next";
+    this.openPartTwo=false;
     this.a = new postContentModel();
     this.numberTitle+=1;
     this.title= this.numberTitle+". ";
@@ -31,23 +39,41 @@ export class PopUpPostContentComponent implements OnInit {
   }
 
   onselect(e,index){
-  
     if(e.target.files){
       for(let i = 0; i<File.length;i++){
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[i]);
         reader.onload = (events: any)=>{
-          // this.urls.push(events.target.result);
           this.postBodies[index].urls.push(events.target.result);
-          // console.log("Thằng mày muôn insert hình  nè "+index );
-          // this.a.urls.push(events.target.result);
         }
       }
     }
     }
+  onselectImageShowUp(e){
+    // Chọn ảnh đại diện bài post
+    if(e.target.files){
+      for(let i = 0; i<File.length;i++){
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[i]);
+        reader.onload = (events: any)=>{
+          this.url=events.target.result;
+        }
+      }
+    }
+  }
     // this.postBodies.push(this.a);
-  removeAllImage(){
-    this.urls=[];
+  removeAllImage(index){
+    this.postBodies[index].urls=[];
+  }
+  switchPart2(){
+    if(this.openPartTwo){
+      this.openPartTwo=false;
+      this.switchForm="Next";
+    }
+    else{
+      this.openPartTwo=true;
+      this.switchForm="Previous"
+    }
   }
   addMorePostBody(){
     this.a = new postContentModel();
@@ -56,7 +82,6 @@ export class PopUpPostContentComponent implements OnInit {
     this.postBodies.push(this.a);
     this.a.urls=[];
     this.a.Description="";
-    // console.log("Post bodies la "+JSON.stringify( this.postBodies));
   }
   
 }
