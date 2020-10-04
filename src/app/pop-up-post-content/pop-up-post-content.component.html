@@ -5,13 +5,17 @@
     </div>
     <br>
     <div class="post-content-content">
-        <label><b>Fill in</b></label>
-        <mat-form-field class="example-full-width">
-            <mat-label>Your post title...</mat-label>
-            <input matInput >
-          </mat-form-field>
-        <ckeditor class="post-content-content-textarea" [editor]="Editor" ></ckeditor>
+        <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic'] }"></ckeditor>
+        <br>
+        <input type="file" multiple class="choose" (change)="onselect($event)"  >
+        <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage()" width="150px" color="accent"> Remove all</button>
+        <img *ngFor='let url of urls' [src]="url" height="200px">
+        
+        
     </div>
+    <br>
+    <button color="primary" class="post-content-content-button" mat-raised-button><mat-icon style="font-size: 20px;">playlist_add</mat-icon> Add more part</button>
+
     <div class="post-content-content-footer">
      </div>
      <br>

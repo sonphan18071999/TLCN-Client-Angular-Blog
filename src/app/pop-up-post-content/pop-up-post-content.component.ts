@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-pop-up-post-content',
@@ -7,11 +8,30 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./pop-up-post-content.component.scss']
 })
 export class PopUpPostContentComponent implements OnInit {
-  public Editor = ClassicEditor;
-
   constructor() { }
-
+  public Editor=ClassicEditor
+ 
   ngOnInit(): void {
+    this.Editor.editorConfig = function(config){
+      config.toolbar = [{
+        name:'basicstyles',items:['Bold','Italic','Strike','-','RemoveFormat']
+      }]
+    }
   }
 
+  urls=[];
+  onselect(e){
+    if(e.target.files){
+      for(let i = 0; i<File.length;i++){
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[i]);
+        reader.onload = (events: any)=>{
+          this.urls.push(events.target.result);
+        }
+      }
+    }
+  }
+  removeAllImage(){
+    this.urls=[];
+  }
 }
