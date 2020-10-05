@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index-screen.component.scss']
 })
 export class IndexScreenComponent implements OnInit {
+  side="over";
 
   constructor() { }
 

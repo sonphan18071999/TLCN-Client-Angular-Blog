@@ -1,1 +1,27 @@
-body{width: 100%;}
+
+
+
+.example-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  mat-drawer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+.button-toggle-side-menu{
+    margin-top: 10px;
+    position: absolute;
+    color:white
+}
+.drawer-content-showup{
+    width: 20%;
+    margin: auto;
+}
+ul li {
+    list-style-type: none;
+    height: 40px;
+    
+}

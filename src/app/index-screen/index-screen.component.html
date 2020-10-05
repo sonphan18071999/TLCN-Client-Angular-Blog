@@ -1,3 +1,21 @@
-<app-header></app-header>
-<app-index-post></app-index-post>
-<app-footer></app-footer>
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <!-- Side navigation -->
+    <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
+        <img src="../../assets/images/landscape.jpg" width="100%">
+        <ul>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+        </ul>
+    </mat-drawer>
+    <!-- Content index screen -->
+    <mat-drawer-content>
+      <app-header></app-header>
+      <app-index-post></app-index-post>
+      <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
