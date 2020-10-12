@@ -10,18 +10,19 @@ import {postContentModel} from './postContentModel';
 })
 export class PopUpPostContentComponent implements OnInit {
   public Editor=ClassicEditor
-  url=[];
+  url:[];
   urls=[];
   postBodies:postContentModel[]=[];
   title:String;
   numberTitle:number=0;
   a:any;
   openPartTwo:boolean;
-  constructor() { }
-  switchForm:String;
+  constructor() { 
 
+  }
+  switchForm:String;
   //Init models
-  
+
   ngOnInit(): void {
     // Đầu tiên tạo model.
     // Tạo một biến a là kiểu của model đó.
@@ -36,6 +37,7 @@ export class PopUpPostContentComponent implements OnInit {
     this.a.Description="";
     this.a.urls=[];
     this.postBodies.push(this.a);
+    
   }
 
   onselect(e,index){
@@ -48,7 +50,7 @@ export class PopUpPostContentComponent implements OnInit {
         }
       }
     }
-    }
+  }
   onselectImageShowUp(e){
     // Chọn ảnh đại diện bài post
     if(e.target.files){

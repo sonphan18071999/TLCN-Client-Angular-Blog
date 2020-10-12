@@ -7,7 +7,7 @@ import{ LoginComponent} from './login/login.component'
 import { formatNumber } from '@angular/common';
 const routes: Routes = [{path: '',component:LoginComponent},
 {path:'index',component:IndexScreenComponent},
-{path:'detail-post',component:DetailsPostComponent}];
+{path:'detail-post/:id',component:DetailsPostComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

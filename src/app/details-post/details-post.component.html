@@ -1,76 +1,128 @@
-<div> 
-    <mat-card class="example-card">
-         <div class="container">
-          <mat-card class="group-user" >
-            <a>
-                <span class="textColor">USA-User</span>
-                <br>    
-                <span>
-                    level
-                    <br>
-                    <span  >6,920</span>
+<!-- 
+  <app-header></app-header>
+  <div> 
+      <mat-card class="example-card">
+           <div class="container">
+            <mat-card class="group-user" >
+              <a>
+                  <span class="textColor">USA-User</span>
+                  <br>    
+                  <span>
+                      level
+                      <br>
+                      <span  >6,920</span>
+                  </span>
+                  <span>
+                    <img class="imgHinh" src="https://www.userbenchmark.com/resources/img/guest.png?s=40" >
                 </span>
-                <span>
-                  <img class="imgHinh" src="https://www.userbenchmark.com/resources/img/guest.png?s=40" >
-              </span>
-            </a>
-          </mat-card>
-          <mat-card>
-            <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-            </p>
-            <img class="img-card" mat-card-image  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-
+              </a>
             </mat-card>
-         </div>
-              
-          <!-- <div class="cardcontent ">
-            
-          </div> -->
-
-          <mat-card-actions>
-        
-         <div class="group-button-action">        
-          <button class="tooltip" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-            <mat-icon *ngIf="stateLike==false" color="primary" (click)="changeStateLike()">favorite</mat-icon> 
-            <span *ngIf="stateLike==false" class="tooltiptext">Like</span>
-            <mat-icon *ngIf="stateLike==true" (click)="changeStateLike()">favorite</mat-icon>
-           
-            <span *ngIf="stateLike==true" class="tooltiptext">DisLike</span>
-          </button>
-
-          <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" >
-            <mat-icon (click)="changeState();" color="primary">  chat</mat-icon>
-          </button>
+            <mat-card>
+              <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+              </p>
+              <img class="img-card" mat-card-image  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              </mat-card>
+           </div>
+            <mat-card-actions>
           
-
-        </div>
-          </mat-card-actions>   
-          
-    </mat-card>
-    <div class="edit" *ngIf="isShowForm">
-        <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
-        <div class=" location">
-      
-          <button mat-raised-button (click)="isShowForm=!isShowForm" type="submit" value="submit" color="primary">Submit</button>
-
-        </div>
-    </div>
-</div>
-
-
-  <div class="edit1">
-    <h2>Comment:</h2>
-    <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
-    <div class=" location">
-   
-      <button mat-raised-button type="submit" value="submit" color="primary">Send Comment</button>
-
-    </div>
-  </div>
-
+           <div class="group-button-action">        
+            <button class="tooltip" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+              <mat-icon *ngIf="stateLike==false" color="primary" (click)="changeStateLike()">favorite</mat-icon> 
+              <span *ngIf="stateLike==false" class="tooltiptext">Like</span>
+              <mat-icon *ngIf="stateLike==true" (click)="changeStateLike()">favorite</mat-icon>
+             
+              <span *ngIf="stateLike==true" class="tooltiptext">DisLike</span>
+            </button>
   
-<!---->
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon" >
+              <mat-icon (click)="changeState();" color="primary">  chat</mat-icon>
+            </button>
+            
+  
+          </div>
+            </mat-card-actions>   
+            
+      </mat-card>
+      <div class="edit" *ngIf="isShowForm">
+          <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+          <div class=" location">
+        
+            <button mat-raised-button (click)="isShowForm=!isShowForm" type="submit" value="submit" color="primary">Submit</button>
+  
+          </div>
+      </div>
+  </div>
+  
+  
+    <div class="edit1">
+      <h2>Comment:</h2>
+      <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+      <div class=" location">
+     
+        <button mat-raised-button type="submit" value="submit" color="primary">Send Comment</button>
+  
+      </div>
+    </div> -->
+   
 
+   
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <!-- Side navigation -->
+  <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
+      <img src="../../assets/images/landscape.jpg" width="100%">
+      <ul>
+          <li>Nội dung</li> 
+          <li>Nội dung</li>
+          <li>Nội dung</li>
+          <li>Nội dung</li>
+          <li>Nội dung</li>
+      </ul>
+  </mat-drawer>
+  <!-- Content index screen -->
+  <mat-drawer-content>
+    <div class="app-header"> 
+      <app-header></app-header>
+    </div>
+   
+    <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
+    </button>
+    <div class="container">
+    <div class="detail-content-post">
+      <mat-card>
+        <h1>SPOTLIGHT ON AN AWESOME IMGURIAN: ROXISASEWINGMACHINE</h1>
+        <div>
+          <label>
+            <mat-icon style="font-size: 13px;">access_time</mat-icon> 10-12-2020
+          </label>
+          <p>
+            <img src="../../assets/images/landscape.jpg" width="900px">
+            This month is National Sewing Machine Month, and while Imgur has no shortage of incredible sewers, makers, and creators, we decided to have a chat with the eponymous @roxisasewingmachine and learn more about her incredible array of outfits.
+
+  Joining Imgur back in 2018, Rox has become a staple for creative costuming, featuring iconic cosplays, Starbucks cups, and a healthy dash of original creations – With that in mind we sat down with Rox and learned more about her, her creations, and what inspires her.
+<br>
+But most importantly: It has pockets!
+<br>
+Rox started her passion young but is also keen to encourage first-timers to try their hand at sewing with her handy tips and guides, “My mother had a sewing machine that she rarely used. As a bored 11-year-old, I decided I wanted to learn how to use it so I read the owner’s manual. I practiced by altering my big sister’s clothes.”
+<br>
+“My Imgur posts are a photo-journal of the sewing process, where I can also share tips or mini-tutorials for other people who are just beginning to sew.” She goes on to explain, “My goal is to inspire others to do something creative that brings them enjoyment, rekindle an old hobby, and demystify sewing for those who want to learn.”
+          </p>
+        </div>
+      </mat-card>
+      <br>
+      <mat-card>
+        <div class="edit1">
+          <h2>Comment:</h2>
+          <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+          <div class=" location">         
+            <button mat-raised-button type="submit" value="submit" color="primary">Send Comment</button>
+          </div>
+        </div>
+      </mat-card>
+      <br>
+    </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

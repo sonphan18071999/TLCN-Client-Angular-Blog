@@ -1,14 +1,8 @@
+
 .container{
     display: block;
-    min-width: 1481px;
-}
-.mat-card{
-   margin: auto;
-   width: 55%;
-}
-img{
-    max-width: 100%;
-    height: 150px;
+    margin: auto;
+    width: 100%;
 }
 .post-content-image{
     width: 35%;
@@ -30,15 +24,19 @@ textarea{
 
 .post-content-upload-post-button{
     text-align: center;
-    width: 500px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 130px;
+    width: 80%;
     font-size: 20px;
-    background-color: #2C3A47;
+    background-color: gray;
+    height: 50px;
     color: white;
+
 }
 .post-content-button-container{
     margin: auto;
-    position: relative;
-    width: 500px;
+    width: 100%;
     height: 30px;
 }
 .post-content-upload-post-input{
@@ -61,3 +59,50 @@ textarea{
     margin: 3px 10px 4px;
     background-color:#CAD3C8 ;
 }
+.card-content{
+    position: relative;
+    display: flex;
+    width: 15%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    
+}
+.post-content-button-container button{
+    width: 80%;
+    margin: auto;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+.card-content-image img{
+    width: 30%;
+    height: 200px;
+}
+
+.card-content-image{
+    display: flex;
+}
+.card-content-image p{
+    display: block;/* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 7em;
+    line-height: 1.8em;
+}
+.popular-card-content mat-card{
+    margin-bottom: 10px;
+}
+.popular-card-content-left{
+    margin-left: 10px;
+}
+.popular-card-content-left p{
+    text-overflow: ellipsis;
+}
+
+.popular-card-content-right-2-posts{
+    width: 80%;
+}
+mat-icon {
+    cursor: pointer;
+ }

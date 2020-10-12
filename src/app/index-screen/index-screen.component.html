@@ -13,8 +13,12 @@
     </mat-drawer>
     <!-- Content index screen -->
     <mat-drawer-content>
-      <app-header></app-header>
-      <app-index-post></app-index-post>
+      <div class="app-header"> 
+        <app-header></app-header>
+      </div>
+      <div class="app-index-post">
+        <app-index-post></app-index-post>
+      </div>
       <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
       </button>
     </mat-drawer-content>

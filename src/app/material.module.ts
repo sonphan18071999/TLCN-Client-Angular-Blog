@@ -47,6 +47,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   exports: [
@@ -95,7 +96,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CKEditorModule
+    CKEditorModule,
+    IvyCarouselModule
   ],
   imports: [
     A11yModule,
@@ -144,7 +146,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CKEditorModule
+    CKEditorModule,
+    IvyCarouselModule
   ]
 })
 export class MaterialModule { }

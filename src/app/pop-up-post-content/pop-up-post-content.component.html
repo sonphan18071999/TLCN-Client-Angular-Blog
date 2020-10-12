@@ -3,35 +3,17 @@
         <img class="post-content-header-image" src="../../assets/images/landscape.jpg">
         <h4>Hello, <u><b>Phan Sơn</b></u></h4>
     </div>
-    <br>
-   <div class="post-content-body" *ngIf="openPartTwo==false;" >
-    <!-- <div class="post-content-content">
-        <mat-form-field class="example-form-field">
-            <mat-label>Title for this part</mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic'] }"></ckeditor>
-        <br>
-        <input type="file" multiple class="choose" (change)="onselect($event)"  >
-        <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage()" width="150px" color="accent"> Remove all</button>
-        <img *ngFor='let url of urls' [src]="url" height="200px">
-    </div> -->
-    <br>
-    <div *ngFor="let postBody of postBodies;index as i">
-        <div class="post-content-content">
-            <!-- <mat-form-field class="example-form-field">
-                <mat-label>Title for this part</mat-label>
-                <input matInput type="text"  value={{postBody.Title}}>
-                
-              </mat-form-field> -->
+    <hr>
+    <h2 style="color: gray;" *ngIf="openPartTwo==false;">Write down your content </h2>
 
+    <div class="post-content-body" *ngIf="openPartTwo==false;" >
+    <div *ngFor="let postBody of postBodies;index as i">
+     
+        <div class="post-content-content">
             <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
             <br>
             <input type="file" multiple class="choose" (change)="onselect($event,i)"  >
-            <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage(i)" width="150px" color="accent"> Remove all</button>
+            <button mat-raised-button *ngIf="urls!=null" (click)="removeAllImage(i)" width="170px" color="accent"> <mat-icon style="font-size: 22px;">remove_circle</mat-icon>Remove all</button>
             <br>
             <br>
             <img *ngFor='let url of postBody.urls' [src]="url" height="200px">
@@ -40,7 +22,7 @@
     <button color="primary" class="post-content-content-button" mat-raised-button (click)="addMorePostBody()"><mat-icon style="font-size: 20px;">playlist_add</mat-icon> Add more part</button>
     </div>
     <div class="post-content-body" *ngIf="openPartTwo==true">
-      <label style="font-size: 30px;">Finish step...</label>
+      <label style="font-size: 30px;color: gray;">Finish step...</label>
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label style="color: #2C3A47;">Name for this post...</mat-label>
@@ -56,6 +38,6 @@
     <button color="primary" class="post-content-content-button" mat-raised-button (click)="switchPart2()">{{switchForm}}</button>
     <br>
     <br>
-    <button color="primary" *ngIf="openPartTwo==true;" class="post-content-content-button" mat-raised-button >Upload</button>
+    <button color="primary" *ngIf="openPartTwo==true;" class="post-content-content-button" mat-raised-button>Upload</button>
 
 </div>

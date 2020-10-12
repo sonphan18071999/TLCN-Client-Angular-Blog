@@ -14,6 +14,7 @@ export class DetailsPostComponent implements OnInit {
   htmlContent = '';
   isShowForm=false;
   stateLike=false;
+  side="over";
   constructor() { }
 
   ngOnInit(): void {
