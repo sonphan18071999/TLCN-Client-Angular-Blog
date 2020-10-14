@@ -3,7 +3,6 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-content.component';
 import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
-import {Article} from'./article';
 @Component({
   selector: 'app-index-post',
   templateUrl: './index-post.component.html',
@@ -15,9 +14,11 @@ export class IndexPostComponent implements OnInit {
   selectedFile:any;
   imagePath:any;
   allArticle:any;
+  
   ngOnInit(): void {
     this.indexPostService.getAllArticle().subscribe((data: any[])=>{
-    this.allArticle=data
+    this.allArticle=data;
+    this.allArticle=this.allArticle.Article;
     // this.allArticle.Article.forEach(element => {
     //   console.log("Tittle: "+element.tittle)
     // });

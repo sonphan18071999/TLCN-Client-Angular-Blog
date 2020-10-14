@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import {NgForm} from '@angular/forms';
 import {postContentModel} from './postContentModel';
 
 @Component({
@@ -10,13 +10,14 @@ import {postContentModel} from './postContentModel';
 })
 export class PopUpPostContentComponent implements OnInit {
   public Editor=ClassicEditor
-  url:[];
+  url:String;
   urls=[];
   postBodies:postContentModel[]=[];
   title:String;
   numberTitle:number=0;
   a:any;
   openPartTwo:boolean;
+  ContentPart: String="";
   constructor() { 
 
   }
@@ -37,6 +38,7 @@ export class PopUpPostContentComponent implements OnInit {
     this.a.Description="";
     this.a.urls=[];
     this.postBodies.push(this.a);
+    this.url="../../assets/images/default-image.jpg"
     
   }
 
@@ -50,6 +52,9 @@ export class PopUpPostContentComponent implements OnInit {
         }
       }
     }
+  }
+  onSubmit(f: NgForm){
+    alert(f.value.first)
   }
   onselectImageShowUp(e){
     // Chọn ảnh đại diện bài post
@@ -80,10 +85,17 @@ export class PopUpPostContentComponent implements OnInit {
   addMorePostBody(){
     this.a = new postContentModel();
     this.numberTitle+=1;
-    this.a.Title=this.numberTitle+". "
+    this.a.Title=this.numberTitle+". ";
     this.postBodies.push(this.a);
     this.a.urls=[];
     this.a.Description="";
   }
+  ngAfterViewInit() {
+    
+  }
+  saveContent(){
+    alert("11111");
+  }
+ 
   
 }

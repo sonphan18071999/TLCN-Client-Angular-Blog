@@ -1,6 +1,7 @@
 .container{
-    // width: 500px;
-    max-height: calc(100vh - 210px);
+    width: 820px;
+    max-height: calc(200vh - 820px);
+    
     overflow-y: auto;
 }
 .post-content-header{
@@ -16,9 +17,13 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+
 .post-content-content{
-    min-width: 500px;
-    max-width: 502px;
+    min-width: 800px;
+    max-width: 1002px;
+}
+.ck-editor__editable_inline {
+    min-height: 900px;
 }
 .post-content-content-textarea{
     margin: 0px;
@@ -26,7 +31,8 @@
 }
 
 .post-content-content-button{
-    width: 502px;
+    width: 161px;
+    margin-left: 80%;
 }
 .mat-icon{
     margin-right: 10px;
@@ -53,7 +59,7 @@
 .choose::-webkit-file-upload-button {
     color: white;
     display: inline-block;
-    background: #3f51b5;
+    background: gray;
     border: none;
     padding: 7px 15px;
     font-weight: 700;
@@ -67,3 +73,14 @@
   .example-form-field {
     width: 500px;
   }
+.input-for-title-article{
+    width: 799px;
+    height: 60px;
+    font-size: 30px;
+    border-color: #26cee4;
+    border-radius: 1%;
+    border-style: solid;
+}
+h3{
+    text-align: center;
+}

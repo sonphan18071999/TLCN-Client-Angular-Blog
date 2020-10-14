@@ -1,5 +1,5 @@
 export class postContentModel{
     Title:String;
-    Description:String;
+    Description:[{type:String}];
     urls=[];
 }
