@@ -3,7 +3,7 @@
     display: block;
     margin: auto;
     width: 100%;
-    background-image: url("../../assets/images/background_detail_content.jpg");
+    // background-image: url("../../assets/images/background_detail_content.jpg");
     background-attachment: fixed;
     height: 350px;
 }
@@ -39,7 +39,7 @@ textarea{
 }
 .post-content-button-container{
     margin: auto;
-    width: 98%;
+    width: 40%;
     height: 30px;
 }
 .post-content-upload-post-input{
@@ -133,7 +133,7 @@ mat-icon {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 .title-article{

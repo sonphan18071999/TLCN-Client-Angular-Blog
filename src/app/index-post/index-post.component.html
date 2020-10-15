@@ -3,13 +3,18 @@
     
     <div class="post-content-button-container">
         <!-- <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button> -->
-        <button mat-raised-button ><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button>
-
+    <div style="background-color: rgb(204, 198, 198); height: 40px; border-radius: 5px; margin-top: 20px; "> 
+        <button mat-raised-button style="background-color: #007bff; color: white;">
+            <mat-icon style="font-size: 23px;margin-right: 10px;">add_photo_alternate</mat-icon> Post your article ...
+        </button>
     </div>
-
+    </div>
+   
     <br>
     <div class="card-content">
+        
         <div class="popular-card-content">
+            
             <!-- <mat-card *ngFor="let article of allArticle">
                 <div class="card-content-image">
                     <img src={{article.AvatarPost}}>
@@ -33,8 +38,13 @@
                         <h2 class="title-article">What else you need to be professional in Blog</h2>
                         <p class="desciption" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, corrupti odit? At iure facere, porro repellat officia quas, dolores magnam assumenda soluta odit harum voluptate inventore ipsa maiores fugiat accusamus eos nulla. Iure explicabo officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit, dolorem.
                         </p>
-                        <h4>Author: <b>Son Phan.</b></h4> 
+                        <br>
+                        <br>
+                        <h4>Author: <a href="#">Son Phan.</a></h4> 
                         <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                     
+                        
+
                     </div>
                 </div>
             </mat-card>
@@ -45,8 +55,17 @@
                     <h2 class="title-article">{{article.tittle}}</h2>
                     <p class="desciption" >{{article.description}}
                     </p>
-                    <h4>Author: <b>Son Phan.</b></h4> 
+                    <h4>Author: <a href="#">Son Phan.</a></h4> 
                     <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                    <br>
+                    <br>
+                    <div style="display: flex;">
+                        <div style="margin-top: 8px;">
+                            <mat-icon style="font-size: 14px;">remove_red_eye</mat-icon>
+                        <label>14.000</label>
+                        </div>
+                        <button mat-raised-button style="margin-left: 143px;background-color: #007bff; color: white;" (click)="showDetailPost(1)" >Read more...</button>
+                    </div>
                 </div>
             </mat-card>
            
