@@ -94,7 +94,7 @@ export class PopUpPostContentComponent implements OnInit {
     
   }
   saveContent(){
-    alert("11111");
+    alert("Hello wworld");
   }
  
   

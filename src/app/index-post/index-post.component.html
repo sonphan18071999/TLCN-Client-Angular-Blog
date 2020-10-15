@@ -2,13 +2,15 @@
 <div class="container">
     
     <div class="post-content-button-container">
-        <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button>
+        <!-- <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button> -->
+        <button mat-raised-button ><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button>
+
     </div>
 
     <br>
     <div class="card-content">
         <div class="popular-card-content">
-            <mat-card *ngFor="let article of allArticle">
+            <!-- <mat-card *ngFor="let article of allArticle">
                 <div class="card-content-image">
                     <img src={{article.AvatarPost}}>
                     <div class="popular-card-content-left">
@@ -22,7 +24,33 @@
                         </div>
                     </div>
                 </div>
+            </mat-card> -->
+
+            <mat-card>
+                <div class="popular-article">
+                    <img src="../../assets/images/landscape.jpg" width="30%"> 
+                    <div class="popular-article-right">
+                        <h2 class="title-article">What else you need to be professional in Blog</h2>
+                        <p class="desciption" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, corrupti odit? At iure facere, porro repellat officia quas, dolores magnam assumenda soluta odit harum voluptate inventore ipsa maiores fugiat accusamus eos nulla. Iure explicabo officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit, dolorem.
+                        </p>
+                        <h4>Author: <b>Son Phan.</b></h4> 
+                        <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                    </div>
+                </div>
             </mat-card>
+           <div class="article-below-popular" >
+            <mat-card class="tiny-article" *ngFor="let article of allArticle">
+                <img src={{article.AvatarPost}} width="100%"> 
+                <div class="tiny-article-right">
+                    <h2 class="title-article">{{article.tittle}}</h2>
+                    <p class="desciption" >{{article.description}}
+                    </p>
+                    <h4>Author: <b>Son Phan.</b></h4> 
+                    <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                </div>
+            </mat-card>
+           
+           </div>
         </div>
         </div>
     
