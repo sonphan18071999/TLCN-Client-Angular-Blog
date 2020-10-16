@@ -51,3 +51,51 @@
 .image-content-img{
   border-radius: 4px;
 }
+.tiny-article{
+  width: 50%;
+  margin: 0.9%;
+  max-height: 10%;
+
+}
+.tiny-article img {
+  min-height: 100px;
+  max-height: 450px;
+}
+.input-title-article{
+  width: 75%;
+  height: 40px;
+  font-size: 20px;
+  font-family: Tahoma, Geneva, Verdana;
+  margin-top: 10px;
+}
+.tiny-article-right textarea{
+  width: 99%;
+  min-height: 150px;
+  font-family: Tahoma, Geneva, Verdana;
+  margin-top: 10px;
+}
+.choose-file{
+  position: absolute;
+  margin-left: 139px;
+  margin-top: -163px;
+}
+.choose-file::-webkit-file-upload-button {
+  color: white;
+  display: inline-block;
+  background: gray;
+  border: none;
+  padding: 7px 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+  width: 275px;
+  height: 38px;
+}
+.group-go-next-page{
+  margin-left: 10px;
+}
+.secondFormGroup mat-card{
+  margin: auto;
+}

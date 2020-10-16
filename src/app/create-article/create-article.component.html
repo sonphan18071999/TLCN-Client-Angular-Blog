@@ -27,21 +27,32 @@
             <br>
                 <button mat-raised-button color="primary" (click)="addMoreContent()" style="margin-left: 47%;"><mat-icon>add</mat-icon>Content</button>
 
-            <div>
+            <div class="group-go-next-page">
               <p>Go to next step</p>
               <button mat-button matStepperNext>Next</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out title</ng-template>
-            <mat-form-field>
-              <mat-label>Address</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
-                     required>
-            </mat-form-field>
-            <div>
+        <mat-step [stepControl]="secondFormGroup" errorMessage="Title for article is required">
+          <form [formGroup]="secondFormGroup" class="secondFormGroup">
+            <ng-template matStepLabel>Fill out display content</ng-template>
+            <mat-card class="tiny-article">
+              <img [src]="MainImage" width="100%" > 
+              <br>
+              <div class="tiny-article-right">
+                  <input type="file" class="choose-file" (change)="showPreviewMainImage($event)">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fill out title</mat-label>
+                    <input matInput placeholder="Ex: Parallel road..." (change)="saveTitleArticle($event.target.value)">
+                    <mat-icon matSuffix>title</mat-icon>
+                  </mat-form-field>
+                  <br>
+                  <textarea placeholder="Description for article..." (change)="saveDescriptionArticle($event.target.value)"></textarea>
+                  <br>
+              </div>
+          </mat-card>
+
+            <div class="group-go-next-page">
               <p>Go to a different step to see the error state</p>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
@@ -50,8 +61,9 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
+          <button mat-raised-button (click)="submitArticle()"><mat-icon>check_circle_outline</mat-icon>Submit article</button>
           <p>You are now done.</p>
-          <div>
+          <div class="group-go-next-page">
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
