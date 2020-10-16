@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexPostComponent } from './index-post/index-post.component';
 import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-content.component';
 import { DetailsPostComponent } from './details-post/details-post.component';
+import { CreateArticleComponent } from './create-article/create-article.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { DetailsPostComponent } from './details-post/details-post.component';
     IndexPostComponent,
     PopUpPostContentComponent,
     DetailsPostComponent,
+    CreateArticleComponent,
   ],
   imports: [
     BrowserModule,

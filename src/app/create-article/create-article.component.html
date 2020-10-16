@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="container">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your content</ng-template>
+            <div class="content-article" *ngFor="let content of Article.content; let i=index"  >
+               <div class="Editor-Content">
+                <button class="btn-remove-editor" mat-button color="warn"> <mat-icon>remove_circle_outline</mat-icon></button>
+                <ckeditor type="text"
+                 (change)="saveEditor($event,i)"  
+                  [ngModelOptions]="{standalone: true}"  [editor]="Editor"  
+                  tagName="textarea"
+                  [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
+              </div>
+                <br>
+                <input type="file" class="choose"  (change)="showPreviewImage($event,i)">
+                <br>
+                <div class="Image-Content" *ngIf="content.images">
+                 <button  class="btn-remove-image" mat-button color="warn"> <mat-icon>remove_circle_outline</mat-icon></button>
+                  <img [src]="content.images"  class="image-content-img" width="100%" height="50%">
+                </div>
+                <br>
+            </div>
+            <br>
+            <br>
+                <button mat-raised-button color="primary" (click)="addMoreContent()" style="margin-left: 47%;"><mat-icon>add</mat-icon>Content</button>
+
+            <div>
+              <p>Go to next step</p>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Fill out title</ng-template>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
+                     required>
+            </mat-form-field>
+            <div>
+              <p>Go to a different step to see the error state</p>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+</div>

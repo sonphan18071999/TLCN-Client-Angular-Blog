@@ -31,7 +31,9 @@ export class IndexPostComponent implements OnInit {
   openDialog() {
     this.dialog.open(PopUpPostContentComponent)
   }
-  
+  CreateNewArticle(){
+    this.router.navigate(['create-article']);
+  }
 
   preview(files) {
     if (files.length === 0)
