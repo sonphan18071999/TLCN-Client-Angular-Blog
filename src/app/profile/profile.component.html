@@ -1,0 +1,244 @@
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <!-- Side navigation -->
+    <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
+        <img src="../../assets/images/landscape.jpg" width="100%">
+        <ul>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+        </ul>
+    </mat-drawer>
+    <!-- Content index screen -->
+    <mat-drawer-content>
+        <div class="app-header"> 
+            <app-header></app-header>
+          </div>
+      <div class="container">
+       
+        <div class="card-content">
+          <img class="imageHeader" src="http://cdn.kinhtedothi.vn/505/2020/8/5/P.jpg">
+                <div class="FrameName">
+                    <img class="imageRounded" src="https://specials-images.forbesimg.com/imageserve/5f51764d1e91a64567505ad9/960x0.jpg?fit=scale">
+                    <h3 class="Name">Phan Son</h3>
+                </div>  
+                <div class="Tab" >
+                    <mat-tab-group style="overflow:hidden;">
+                        <mat-tab label="Thông tin cá nhân"> 
+                            <div class="CardImformation">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <mat-card>
+                                            <mat-selection-list  class="sizeCard" #shoes [multiple]="false">
+                                                <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+                                                  {{shoe}}
+                                                </mat-list-option>
+                                              </mat-selection-list>                                                              
+                                        </mat-card>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-card class="sizeCard">
+                                            <mat-list style="margin-left: 40px;" role="list">
+
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>description</mat-icon>
+                                                        <span  class="FontText">
+                                                            Description                                                     
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+                                                </mat-list-item>
+
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>account_circle</mat-icon>
+                                                        <span  class="FontText">
+                                                           Họ Và Tên: Phan Sơn
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+                                                </mat-list-item>
+
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>home</mat-icon>
+                                                        <span class="FontText"> 
+                                                            Địa chỉ: Sống tại Quận 9 !!
+                                                        </span>
+                                                        <div class="matMenu">
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+                                                </mat-list-item>
+
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>alternate_email</mat-icon>
+                                                        <span  class="FontText">
+                                                          Gmail: SonPhan@gmail.com
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+                                                </mat-list-item>
+                        
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>account_box</mat-icon>
+                                                        <span  class="FontText">
+                                                           Tên tài khoan: Son Phan
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+
+                                                </mat-list-item>
+
+                                                
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>note</mat-icon>
+                                                        <span  class="FontText">
+                                                          Mật khẩu: ***********
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+
+                                                </mat-list-item>
+
+                                                <mat-list-item role="listitem" class="Icon">
+                                                    <mat-icon>accessibility</mat-icon>
+                                                        <span  class="FontText">
+                                                          Giới tính: Bê Đê
+                                                        </span>
+                                                        <div class="matMenu"> 
+                                                            <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                            </button>
+                                                            <mat-menu  #menu="matMenu">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>create</mat-icon>
+                                                                <span>Chỉnh sửa thông tin</span>
+                                                                </button>
+                                                                <button mat-menu-item disabled>
+                                                                    <mat-icon>delete_sweep</mat-icon>
+                                                                <span>Xóa</span>
+                                                                </button>                                             
+                                                            </mat-menu>
+                                                        </div>
+
+                                                </mat-list-item>
+
+                                              </mat-list>
+                                        </mat-card>
+                                    
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Các bài viết đã đăng" > 
+                            <div class="card-contentPost">
+                                <div class="popular-card-content">
+                                    <mat-card class="card-content" >
+                                        <!-- *ngFor="let article of allArticle" -->
+                                        <div class="card-content-image">
+                                            <!-- <img src={{article.AvatarPost}}> -->
+                                            <div class="popular-card-content-left">
+                                                <!-- <h2>{{article.tittle}}</h2> -->
+                                                <!-- <p>{{article.description}}</p> -->
+                                                <div class="footer-tool" style="bottom: 15px;position: absolute;width: 100%;">
+                                                    <mat-icon style="font-size: 20px;">favorite</mat-icon>
+                                                    <mat-icon style="font-size: 20px;"> comment</mat-icon>
+                                                    <mat-icon style="font-size: 20px;">share</mat-icon>
+                                                    <!-- <button mat-stroked-button style="margin-left: 45%;" (click)="showDetailPost(article._id)">Read more...</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Third"> Content 3 </mat-tab>
+                      </mat-tab-group>
+                </div>
+            
+      </div>
+
+      </div>
+      <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>

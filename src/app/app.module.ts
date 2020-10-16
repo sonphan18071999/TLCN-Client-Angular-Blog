@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexPostComponent } from './index-post/index-post.component';
 import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-content.component';
 import { DetailsPostComponent } from './details-post/details-post.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,11 +23,14 @@ import { DetailsPostComponent } from './details-post/details-post.component';
     IndexPostComponent,
     PopUpPostContentComponent,
     DetailsPostComponent,
+    ProfileComponent,
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
