@@ -42,29 +42,28 @@
                         <br>
                         <h4>Author: <a href="#">Son Phan.</a></h4> 
                         <label> <i>15,Nov 2020 || 6 mins ago</i></label>
-                     
-                        
-
                     </div>
                 </div>
             </mat-card>
            <div class="article-below-popular" >
             <mat-card class="tiny-article" *ngFor="let article of allArticle">
-                <img src={{article.AvatarPost}} width="100%"> 
+                <img src={{article.AvatarPost}} width="100%" (click)="showDetailPost(article._id)"> 
                 <div class="tiny-article-right">
-                    <h2 class="title-article">{{article.tittle}}</h2>
-                    <p class="desciption" >{{article.description}}
-                    </p>
+                    <h2 class="title-article" (click)="showDetailPost(article._id)">{{article.tittle}}</h2>
+                    <div class="title-article-p">
+                        <p class="desciption" >{{article.description}}
+                        </p>
+                    </div>
                     <h4>Author: <a href="#">Son Phan.</a></h4> 
                     <label> <i>15,Nov 2020 || 6 mins ago</i></label>
                     <br>
                     <br>
-                    <div style="display: flex;">
+                    <div style="display: flex; ">
                         <div style="margin-top: 8px;">
                             <mat-icon style="font-size: 14px;">remove_red_eye</mat-icon>
                         <label>14.000</label>
                         </div>
-                        <button mat-raised-button style="margin-left: 143px;background-color: #007bff; color: white;" (click)="showDetailPost(1)" >Read more...</button>
+                        <!-- <button mat-raised-button style="margin-left: 143px;background-color: #007bff; color: white;" (click)="showDetailPost(1)" >Read more...</button> -->
                     </div>
                 </div>
             </mat-card>
