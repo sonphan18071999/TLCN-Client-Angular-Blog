@@ -9,7 +9,7 @@ import {CreateArticleComponent } from './create-article/create-article.component
 
 const routes: Routes = [{path: '',component:LoginComponent},
 {path:'index',component:IndexScreenComponent},
-{path:'detail-post/:id',component:DetailsPostComponent},
+{path:'detail-post/:title',component:DetailsPostComponent},
 {path:'create-article',component:CreateArticleComponent}];
 
 @NgModule({

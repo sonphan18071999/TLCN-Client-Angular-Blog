@@ -94,39 +94,38 @@
      
     <div class="detail-content-post">
       <mat-card>
-        <h1>SPOTLIGHT ON AN AWESOME IMGURIAN: ROXISASEWINGMACHINE</h1>
+        <h1 >{{mainTitle}}</h1>
         <div style="display: flex;">
           <div style="margin-top: 10px;">
             <label>Published by <a href="#">Sơn Phan</a></label>
           </div>
         </div>
         <div style="display: flex;">
-          <button  mat-stroked-button style="margin-top:5px"><mat-icon>done</mat-icon> Follow author </button>
-           <button mat-button style="margin-left: 600px;"><mat-icon>remove_red_eye</mat-icon> 14.000</button>
+          <button mat-stroked-button style="margin-top:5px">
+            <mat-icon>done</mat-icon> Follow author
+          </button>
+          <button mat-button style="margin-left: 600px;">
+            <mat-icon>remove_red_eye</mat-icon> 14.000
+          </button>
         </div>
         <br>
-        <div>
-          
+        <div *ngFor="let content of ContentInParts">
           <br>
-          <p>
-            <img src="../../assets/images/landscape.jpg" width="100%">
-            This month is National Sewing Machine Month, and while Imgur has no shortage of incredible sewers, makers, and creators, we decided to have a chat with the eponymous @roxisasewingmachine and learn more about her incredible array of outfits.
+          <p [innerHtml]="content.partContent"></p>
 
-  Joining Imgur back in 2018, Rox has become a staple for creative costuming, featuring iconic cosplays, Starbucks cups, and a healthy dash of original creations – With that in mind we sat down with Rox and learned more about her, her creations, and what inspires her.
-<br>
-But most importantly: It has pockets!
-<br>
-Rox started her passion young but is also keen to encourage first-timers to try their hand at sewing with her handy tips and guides, “My mother had a sewing machine that she rarely used. As a bored 11-year-old, I decided I wanted to learn how to use it so I read the owner’s manual. I practiced by altering my big sister’s clothes.”
-<br>
-“My Imgur posts are a photo-journal of the sewing process, where I can also share tips or mini-tutorials for other people who are just beginning to sew.” She goes on to explain, “My goal is to inspire others to do something creative that brings them enjoyment, rekindle an old hobby, and demystify sewing for those who want to learn.”
-          </p>
+            <img src={{content.images}} width="100%">
           <br>
-          <div style="display: flex;">
-            <button mat-button><mat-icon>favorite</mat-icon> Like</button>
-            <button mat-button><mat-icon>share</mat-icon> Share   </button>
-          </div>
+         
         </div>
-      </mat-card>
+        <div style="display: flex;">
+          <button mat-button>
+            <mat-icon>favorite</mat-icon> Like
+          </button>
+          <button mat-button>
+            <mat-icon>share</mat-icon> Share
+          </button>
+        </div>
+        </mat-card>
       <br>
       <mat-card>
         <div class="edit1">

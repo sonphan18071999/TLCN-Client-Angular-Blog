@@ -47,9 +47,9 @@
             </mat-card>
            <div class="article-below-popular" >
             <mat-card class="tiny-article" *ngFor="let article of allArticle">
-                <img src={{article.AvatarPost}} width="100%" (click)="showDetailPost(article._id)"> 
+                <img src={{article.AvatarPost}} width="100%" (click)="showDetailPost(article._id,article.tittle)"> 
                 <div class="tiny-article-right">
-                    <h2 class="title-article" (click)="showDetailPost(article._id)">{{article.tittle}}</h2>
+                    <h2 class="title-article" (click)="showDetailPost(article._id,article.tittle)">{{article.tittle}}</h2>
                     <div class="title-article-p">
                         <p class="desciption" >{{article.description}}
                         </p>

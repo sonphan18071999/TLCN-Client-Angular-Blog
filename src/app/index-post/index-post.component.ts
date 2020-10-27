@@ -3,14 +3,21 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-content.component';
 import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
+import {CookieService} from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-index-post',
   templateUrl: './index-post.component.html',
-  styleUrls: ['./index-post.component.scss']
+  styleUrls: ['./index-post.component.scss'],
+  providers: [CookieService]
+
 })
 export class IndexPostComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private router: Router,public indexPostService:IndexPostService) { }
+  constructor(public dialog: MatDialog,
+    private router: Router,
+    public indexPostService:IndexPostService,
+    private _cookieService:CookieService) { }
   selectedFile:any;
   imagePath:any;
   allArticle:any;
@@ -24,8 +31,11 @@ export class IndexPostComponent implements OnInit {
     // });
   }) 
   }
-  showDetailPost(id){
-    this.router.navigate(['detail-post',id]);
+  showDetailPost(id,title){
+    this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
+
+    this.router.navigate(['/detail-post',title]);
+
     // alert(id);
   }
   openDialog() {

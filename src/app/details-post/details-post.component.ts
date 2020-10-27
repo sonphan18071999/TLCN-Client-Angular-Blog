@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ApiServiceService} from '../APIServices/api-service.service'
+import {ActivatedRoute} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material/icon';
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -15,9 +16,28 @@ export class DetailsPostComponent implements OnInit {
   isShowForm=false;
   stateLike=false;
   side="over";
-  constructor() { }
+  article:any;
+  /**Id of article that we want to see detail. */
+  idArticle:any;
+  mainTitle:String;
+  ContentInParts:any;
+  constructor(private apiService: ApiServiceService,
+    private cookieService: CookieService) {
+
+  }
 
   ngOnInit(): void {
+    /**Get id which set inside cookie of browser */
+    this.idArticle  = this.cookieService.get('idDetailArticle');
+    /**Get article by id */
+    this.apiService.getArticleById(this.idArticle).subscribe((res) => {
+      
+      this.article = res;
+      console.log(JSON.stringify(res));
+      this.article=this.article.Aricle
+      this.mainTitle=this.article.tittle;
+      this.ContentInParts = this.article.content;
+    })
   }
 
 
