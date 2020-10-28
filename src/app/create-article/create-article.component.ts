@@ -22,6 +22,7 @@ export class CreateArticleComponent implements OnInit {
   public Editor=ClassicEditor;
   localUrl: any[];
   MainImage:string;
+  isLoaded:boolean=true;
   constructor(private _formBuilder: FormBuilder,private createArticleService:CreateArticleService) { }
 
   ngOnInit(): void {
@@ -42,6 +43,8 @@ export class CreateArticleComponent implements OnInit {
     /**Khoi tao image default */
     this.MainImage="../../assets/images/default-image.jpg"
     /**Khoi tao image default */
+
+ 
   }
   addMoreContent(){
     this.Article.content.push({partContent:null,images:null})
@@ -91,12 +94,20 @@ export class CreateArticleComponent implements OnInit {
     this.Article.description=description;
   }
   submitArticle(){
+    this.isLoaded=false;
     this.createArticleService.submitArticle(this.Article).subscribe(res=>{
       console.log(res);
+      alert("Create artcle successfully");
+      if(res){
+        this.isLoaded=true;
+      }
     }
 
     );
     console.log(this.Article);
+  }
+  resetForm(){
+    
   }
 
 }

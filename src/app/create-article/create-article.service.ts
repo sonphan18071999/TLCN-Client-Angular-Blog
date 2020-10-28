@@ -9,7 +9,7 @@ export class CreateArticleService {
   constructor(private httpClient: HttpClient) {
     
    }
-   public submitArticle(article){
-    return this.httpClient.post<any>(`http://localhost:4000/api/post-article`,article);
-   }
+  public submitArticle(article){
+  return this.httpClient.post<any>(`http://localhost:4000/api/post-article`,article);
+  }
 }
