@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
+  userName:String;
+  showProfile:boolean;
+  constructor(private cookieService:CookieService) { }
+  
   ngOnInit(): void {
+    this.showProfile=false;
+    //Kiểm tra xem người dùng đã đăng nhập chưa.
+    if(this.cookieService.get('userIdLogged')){
+      this.showProfile=true;
+      this.userName=this.cookieService.get('userName');
+    }
   }
 
 }

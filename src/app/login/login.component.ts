@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.typeAccount="normal"
     /**Using Facebook API to login */
+    this._cookieService.set( 'userIdLogged', "" );
+    this._cookieService.set( 'userName', "" );
     this.fbLibrary();
   }
   fbLibrary() {
@@ -58,10 +60,13 @@ export class LoginComponent implements OnInit {
 
             //Lưu email người dùng xuống cookie.
             this._cookieService.set( 'userIdLogged', userInfo.email );
+            this._cookieService.set( 'userName', userInfo.first_name );
+
             this.email=userInfo.email;
             this.userName=userInfo.first_name+userInfo.last_name;
             this.typeAccount="facebook";
-            this.ngZone.run(()=>this.submit())
+            this.ngZone.run(()=>this.submit());
+
           });
         } else {
           console.log('User login failed');
