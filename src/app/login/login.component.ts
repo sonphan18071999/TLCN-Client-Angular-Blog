@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import {LoginService} from'./login.service';
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   typeAccount:String;
   userName:String;
   constructor(private loginService:LoginService,private router: Router,
-    private _cookieService:CookieService) { }
+    private _cookieService:CookieService, private ngZone:NgZone) { }
 
   ngOnInit(): void {
     this.typeAccount="normal"
@@ -46,11 +46,9 @@ export class LoginComponent implements OnInit {
   
   }
   login() {
- 
     window['FB'].login((response) => {
         console.log('login response',response);
         if (response.authResponse) {
- 
           window['FB'].api('/me', {
             fields: 'last_name, first_name, email'
           }, (userInfo) => {
@@ -63,16 +61,15 @@ export class LoginComponent implements OnInit {
             this.email=userInfo.email;
             this.userName=userInfo.first_name+userInfo.last_name;
             this.typeAccount="facebook";
-            this.submit()
+            this.ngZone.run(()=>this.submit())
           });
-           
         } else {
           console.log('User login failed');
         }
       }, {scope: 'email'});
   }
-  submit(){
-    this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
+  submit():void{
+   this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
       res=>{
         alert("Đăng nhập thành công!");
         this.router.navigate(['index']);
