@@ -13,23 +13,27 @@ import {CookieService} from 'ngx-cookie-service';
 
 })
 export class IndexPostComponent implements OnInit {
-
+  selectedFile:any;
+  imagePath:any;
+  allArticle:any;
+  popularArticle:any;
+  page:any;
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
     private _cookieService:CookieService) { }
-  selectedFile:any;
-  imagePath:any;
-  allArticle:any;
-  
+ 
   ngOnInit(): void {
-    this.indexPostService.getAllArticle().subscribe((data: any[])=>{
-    this.allArticle=data;
-    this.allArticle=this.allArticle.Article;
-    // this.allArticle.Article.forEach(element => {
-    //   console.log("Tittle: "+element.tittle)
-    // });
-  }) 
+    this.page=0;
+    this.getDataPaging();
+  }
+  getDataPaging(){
+    this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
+      this.allArticle=data;
+      this.popularArticle = this.allArticle.PopularArticle;
+      this.allArticle=this.allArticle.Article;
+      console.log(this.allArticle)
+    }) 
   }
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
@@ -82,6 +86,20 @@ export class IndexPostComponent implements OnInit {
     }
     // console.log(JSON.stringify(a))
   }
-
+  nextPage(){
+    this.page+=1;
+    this.allArticle=null;
+    this.getDataPaging();
+  }
+  previousPage(){
+    if(this.page-1==-1){
+      this.page=0;
+    }
+    else{
+      this.allArticle=null;
+      this.page-=1;
+      this.getDataPaging();
+    }
+  }
 }
 

@@ -10,8 +10,11 @@ export class IndexPostService {
   public postImageToServer(image) {
     return this.httpClient.post<any>("http://localhost:4000/api/post-image",image );
   }
-  public getAllArticle(){
-    return this.httpClient.get<any>("http://localhost:4000/api/get-all-article");
+  public getAllArticle(order){
+    var obj = {
+      "order":order
+    }
+    return this.httpClient.post<any>("http://localhost:4000/api/get-all-article",obj);
   }
   public getArticleById(id){
     return this.httpClient.get<any>("http://localhost:4000/api/get-all-article",id)

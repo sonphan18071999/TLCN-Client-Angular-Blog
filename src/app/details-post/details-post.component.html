@@ -94,28 +94,39 @@
      
     <div class="detail-content-post">
       <mat-card>
+        <!-- Phan header article -->
         <h1><b>{{mainTitle}}</b></h1>
         <div style="display: flex;">
-          <div style="margin-top: 10px;">
-            <label>Published by <a href="#">Sơn Phan</a></label>
-          </div>
-        </div>
+          <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
         <div style="display: flex;">
-          <button mat-stroked-button style="margin-top:5px">
+          <div style="margin-left:10px">
+            <p><b>Phan Sơn</b></p>
+            <label><i>1,200 RP</i></label>
+          </div>
+          <button mat-stroked-button style="margin-top:5px; margin-left: 20px;height: 40px;">
             <mat-icon>done</mat-icon> Follow author
           </button>
-          <button mat-button style="margin-left: 600px;">
+        </div>
+          <button mat-button style="margin-left: 400px;">
+            <mat-icon>bookmark</mat-icon>
+            <mat-icon>bookmark_border</mat-icon>
+          </button>
+          <button mat-button >
             <mat-icon>remove_red_eye</mat-icon> 14.000
           </button>
         </div>
-        <br>
+        <!-- Phan header article -->
+        
+        <!-- Phan noi dung trong article -->
         <div *ngFor="let content of ContentInParts">
           <br>
           <p [innerHtml]="content.partContent"></p>
-            <img src={{content.images}} width="100%">
+            <img src={{content.images}} style="border-radius: 10px;" width="100%">
           <br>
          
         </div>
+        <!-- Phan noi dung trong article -->
+
         <div style="display: flex;">
           <button mat-button>
             <mat-icon>favorite</mat-icon> Like
@@ -129,10 +140,92 @@
       <mat-card>
         <div class="edit1">
           <h2>Comment:</h2>
-          <ckeditor [editor]="Editor" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"></ckeditor>
-          <div class=" location">         
-            <button mat-raised-button type="submit" value="submit" color="primary">Send Comment</button>
+      <div *ngIf="allComment.Comment.length!=0">
+        <div *ngFor="let comment of allComment.Comment; let i = index">
+          <div style="display:block;">
+            <!-- Avatar va phan comment cha -->
+            <div style="display:flex;" >
+              <div>
+                <img src="../../assets/images/obama.jpg" width="40px" height="40px" style="border-radius: 50%;">
+              </div>
+              <mat-card style="width: 100%;">
+                <div style="display: flex;">
+                  <p style="font-size: 20px; color: #3f51b5;"><b>Obama</b></p>
+                  <p style="margin-left:15px ;"><i>Dai bang chua</i></p>
+                </div>
+                <p [innerHtml]="comment.content"></p>
+                <hr>
+                <button mat-button (click)="changeStateLike(i)">
+                  <mat-icon color="primary"style="font-size: 13px;" >favorite</mat-icon>
+                  <span class="tooltiptext"style="font-size: 10px;">Like</span>
+                  <!-- <mat-icon *ngIf="stateLike!=i" color="warn"style="font-size: 13px;">favorite</mat-icon>
+                  <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
+                </button>
+                <button mat-button (click)="showAnswer(comment._id)">
+                  <mat-icon *ngIf="stateAnswer==true" color="primary" style="font-size: 13px;" >comment</mat-icon>
+                  <span *ngIf="stateAnswer==true" class="tooltiptext" style="font-size: 10px;">Answer</span>
+                </button>
+                <div>
+                </div>
+              </mat-card>
+            </div>
+            <!-- Avatar va phan comment cha -->
+            <!-- Phan comment child -->
+            <br>
+            <div *ngFor="let childComment of comment.childComment">
+              <div style="width: 837px;margin-left: 40px;display: flex; padding: 10px;">
+                <img src="../../assets/images/obama.jpg" width="40px" height="40px" style="border-radius: 50%;">
+                <mat-card style="width: 100%;">
+                  <div>
+                    <div style="display: flex;">
+                      <p style="font-size: 15px; color: #3f51b5;"><b>Obama the second</b></p>
+                      <p style="margin-left:15px ;"><i>Dai bang con</i></p>
+                    </div>
+                    <p [innerHtml]="childComment.contentChild"></p>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+            <!-- Phan comment child -->
           </div>
+      </div>
+      <!-- Phan submit comment khi da ton tai comment truoc do  -->
+      <div>
+        <br>
+        <ckeditor id="ckeditor" [editor]="Editor"
+          [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"
+          (change)="saveEditor($event)"></ckeditor>
+      </div>
+      <br>
+      <div style="display: flex;" *ngIf="idParentComment"> 
+        <p style="padding: 10px;" >You're replying comment </p>
+        <button (click)="cancelComment()" mat-mini-fab  color="accent" class="cancel-button-comment"  >
+          <mat-icon style="font-size: 23px;">cancel_presentation</mat-icon></button>
+        <div class="cancel-comment-hide" >Cancel reply</div>
+      </div>
+      <button mat-raised-button color="primary" (click)="sendComment()">Send Comment</button>
+      <!-- Phan submit comment khi da ton tai comment truoc do  -->
+    </div>
+    <!-- Phan comment hien thi neu khong co comment nao khac  -->
+    <div *ngIf="allComment.Comment.length==0">
+      <!-- Vi du ve cach hien thi comment  -->
+      <div style="display: flex; margin-bottom: 10px;">
+        <img src="../../assets/images/avatar_example_comment.png" width="40px" height="40px" style="border-radius: 50%;border-width: 1px;border-style: solid;border-color: black;">
+        <mat-card style="width: 100%;">
+            <div style="display: flex;">
+              <p style="font-size: 15px; color: gray;"><b>Obama</b></p>
+              <p style="margin-left:15px;color: gray; ;"><i>Dai bang con</i></p>
+            </div>
+            <p style="color: gray;">Be the first member comment on this.</p>
+        </mat-card>
+      </div>
+      <!-- Vi du ve cach hien thi comment  -->
+      <ckeditor [editor]="Editor"
+      [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"
+      (change)="saveEditor($event)"></ckeditor>
+      <button mat-raised-button color="primary" (click)="sendFirstComment()">Send Comment</button>
+    </div>
+    <!-- Phan comment hien thi neu khong co comment nao khac  -->  
         </div>
       </mat-card>
       <br>

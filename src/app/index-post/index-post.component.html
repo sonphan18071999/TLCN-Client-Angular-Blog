@@ -14,38 +14,26 @@
     <div class="card-content">
         
         <div class="popular-card-content">
-            
-            <!-- <mat-card *ngFor="let article of allArticle">
-                <div class="card-content-image">
-                    <img src={{article.AvatarPost}}>
-                    <div class="popular-card-content-left">
-                        <h2>{{article.tittle}}</h2>
-                        <p>{{article.description}}</p>
-                        <div class="footer-tool" style="bottom: 15px;position: absolute;width: 100%;">
-                            <mat-icon style="font-size: 20px;">favorite</mat-icon>
-                            <mat-icon style="font-size: 20px;"> comment</mat-icon>
-                            <mat-icon style="font-size: 20px;">share</mat-icon>
-                            <button mat-stroked-button style="margin-left: 45%;" (click)="showDetailPost(article._id)">Read more...</button>
-                        </div>
-                    </div>
-                </div>
-            </mat-card> -->
-
             <mat-card>
+                <mat-card-subtitle><b>Bài viết hay nhất trong ngày</b></mat-card-subtitle>
                 <div class="popular-article">
-                    <img src="http://res.cloudinary.com/dsnt8hyn6/image/upload/v1603941282/a4n6mltijgg6nd5gff36.jpg" width="30%"> 
+                    <img src={{popularArticle.AvatarPost}} (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px"> 
                     <div class="popular-article-right">
-                        <h2 class="title-article">What else you need to be professional in Blog</h2>
-                        <p class="desciption" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, corrupti odit? At iure facere, porro repellat officia quas, dolores magnam assumenda soluta odit harum voluptate inventore ipsa maiores fugiat accusamus eos nulla. Iure explicabo officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit, dolorem.
+                        <h2 class="title-article" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" >{{popularArticle.tittle}}</h2>
+                        <p class="desciption" >{{popularArticle.description}}
                         </p>
                         <br>
                         <br>
                         <h4>Author: <a href="#">Son Phan.</a></h4> 
-                        <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                        <label><i>15,Nov 2020 || 6 mins ago</i></label>
                     </div>
                 </div>
             </mat-card>
-           <div class="article-below-popular" >
+
+            <mat-card style="text-align: center;">
+                <mat-card-subtitle><b>Những bài viết nổi bật trong ngày</b></mat-card-subtitle>
+            </mat-card>
+        <div class="article-below-popular">
             <mat-card class="tiny-article" *ngFor="let article of allArticle">
                 <img src={{article.AvatarPost}} width="100%" height="217px" (click)="showDetailPost(article._id,article.tittle)"> 
                 <div class="tiny-article-right">
@@ -55,7 +43,7 @@
                         </p>
                     </div>
                     <h4>Author: <a href="#">Son Phan.</a></h4> 
-                    <label> <i>15,Nov 2020 || 6 mins ago</i></label>
+                    <label> <i>{{article.postedOn}} || 6 mins ago</i></label>
                     <br>
                     <br>
                     <div style="display: flex; ">
@@ -67,10 +55,16 @@
                     </div>
                 </div>
             </mat-card>
-           
-           </div>
+            <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
+
+        </div>
+        <div class="group-button-paging">
+            <button mat-button (click)="previousPage()">Previous</button>
+            <button mat-button>{{page}}</button>
+            <button mat-button (click)="nextPage()">Next</button>
         </div>
         </div>
-    
+        
+    </div>   
 </div>
  

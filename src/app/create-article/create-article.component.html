@@ -61,6 +61,23 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
+          <!-- Hashtag -->
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(fruit)">
+                {{fruit.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Hashtag for this article..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+          
+          <!-- Hashtag -->
           <button mat-raised-button (click)="submitArticle()"><mat-icon>check_circle_outline</mat-icon>Submit article</button>
           <div class="group-go-next-page">
             <button mat-button matStepperPrevious>Back</button>

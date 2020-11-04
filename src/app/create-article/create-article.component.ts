@@ -6,6 +6,9 @@ import{Article} from './article';
 import { CdkNestedTreeNode } from '@angular/cdk/tree';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {CreateArticleService }from './create-article.service'
+import {CookieService} from 'ngx-cookie-service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 @Component({
   selector: 'app-create-article',
@@ -23,7 +26,9 @@ export class CreateArticleComponent implements OnInit {
   localUrl: any[];
   MainImage:string;
   isLoaded:boolean=true;
-  constructor(private _formBuilder: FormBuilder,private createArticleService:CreateArticleService) { }
+  constructor(private _formBuilder: FormBuilder,
+    private createArticleService:CreateArticleService,
+    private cookieService:CookieService) { }
 
   ngOnInit(): void {
     /**Khai bao part cua mat-stepper */
@@ -44,7 +49,8 @@ export class CreateArticleComponent implements OnInit {
     this.MainImage="../../assets/images/default-image.jpg"
     /**Khoi tao image default */
 
- 
+    //**Thêm dữ liệu của người post bài */
+    this.Article.idUser=this.cookieService.get("userIdLogged");
   }
   addMoreContent(){
     this.Article.content.push({partContent:null,images:null})
@@ -109,5 +115,41 @@ export class CreateArticleComponent implements OnInit {
   resetForm(){
     
   }
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruits: Fruit[] = [
+    {name: 'Lemon'},
+    {name: 'Lime'},
+    {name: 'Apple'},
+  ];
 
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push({name: value.trim()});
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: Fruit): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+}
+export interface Fruit {
+  name: string;
 }

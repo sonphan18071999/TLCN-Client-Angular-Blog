@@ -255,3 +255,10 @@ mat-drawer-content .container{
   font-family:  Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
 }
+.cancel-comment-hide{
+  display: none;
+}
+.cancel-button-comment:hover +.cancel-comment-hide{
+  display: flex;
+  color: red;
+}
