@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import {io} from 'socket.io-client';
 
 @Injectable({
@@ -6,21 +7,20 @@ import {io} from 'socket.io-client';
 })
 export class SocketioService {
 
-  socket;
-  constructor() {   }
-  setupSocketConnection() {
-    this.socket = io(environment.SOCKET_ENDPOINT);
+  readonly uri:string = "http://localhost:4000";
+  socket:any;
+  constructor() {  
+    this.socket = io(this.uri)
+   }
+  
+  listen(eventName: string){
+    return new Observable((subscriber)=>{
+      this.socket.on(eventName,(data)=>{
+        subscriber.next(data)
+      })
+    })
   }
-  sendComment(data){
-    this.socket.emit('my message', data);
-  }
-  someoneTypingEvent(){
-    this.socket.on('broadcast',(data) => {
-      this.socket.emit('my message', "Co thang nao do dang comment ne");
-    });
+  emit(eventName:string, data:any){
+    this.socket.emit(eventName,data);
   }
 }
-export const environment = {
-  production: false,
-  SOCKET_ENDPOINT: 'http://localhost:4000'
-};

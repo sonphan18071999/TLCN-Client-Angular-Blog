@@ -50,8 +50,7 @@ export class DetailsPostComponent implements OnInit {
     })
     this.getAllComment();
     
-    /**Configure socket io */
-    this.socketService.setupSocketConnection();
+   
   }
   
   getAllComment(){
@@ -79,7 +78,6 @@ export class DetailsPostComponent implements OnInit {
   saveEditor({ editor }: ChangeEvent){
     const data = editor.getData();
     this.commentContent=data   
-    this.socketService.someoneTypingEvent(); 
   }
   sendComment(){
     if(this.idParentComment==null) //Khong reply comment
@@ -105,7 +103,19 @@ export class DetailsPostComponent implements OnInit {
         this.getAllComment(); 
       })
     }
+
+     /**Configure socket io */
+     this.autoReloadCommentRealTime();
+   }
+   autoReloadCommentRealTime(){
+    this.socketService.emit('broadcast','typing user');
     
+    this.socketService.listen('update state comment').subscribe((data)=>{
+      console.log(data);
+      if(data){
+        this.getAllComment();
+      }
+    })
    }
    showAnswer(idComment){
      this.idParentComment = idComment;
@@ -122,7 +132,7 @@ export class DetailsPostComponent implements OnInit {
     this.apiService.postCommentParent(comment).subscribe((data)=>{  
       this.getAllComment();
     })
-    
+    this.autoReloadCommentRealTime();
    }
 }
 
