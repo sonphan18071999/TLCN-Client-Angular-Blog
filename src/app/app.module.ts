@@ -12,6 +12,7 @@ import { IndexPostComponent } from './index-post/index-post.component';
 import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-content.component';
 import { DetailsPostComponent } from './details-post/details-post.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { SocketioService } from './details-post/socketio.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { CreateArticleComponent } from './create-article/create-article.componen
     AppRoutingModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [SocketioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

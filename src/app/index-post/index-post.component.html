@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="popularArticle!=null">
     
     <div class="post-content-button-container">
         <!-- <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button> -->
@@ -17,7 +17,7 @@
             <mat-card>
                 <mat-card-subtitle><b>Bài viết hay nhất trong ngày</b></mat-card-subtitle>
                 <div class="popular-article">
-                    <img src={{popularArticle.AvatarPost}} (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px"> 
+                    <img src="{{popularArticle.AvatarPost}}" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
                     <div class="popular-article-right">
                         <h2 class="title-article" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" >{{popularArticle.tittle}}</h2>
                         <p class="desciption" >{{popularArticle.description}}

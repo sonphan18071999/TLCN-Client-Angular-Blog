@@ -4,7 +4,7 @@ import { ApiServiceService} from '../APIServices/api-service.service'
 import {ActivatedRoute} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
-
+import {SocketioService } from'./socketio.service'
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -32,7 +32,7 @@ export class DetailsPostComponent implements OnInit {
     editorData: '<p>Hello, world!</p>'
   };
   constructor(private apiService: ApiServiceService,
-    private cookieService: CookieService) {
+    private cookieService: CookieService, private socketService: SocketioService) {
 
   }
 
@@ -49,13 +49,14 @@ export class DetailsPostComponent implements OnInit {
       this.ContentInParts = this.article.content;
     })
     this.getAllComment();
-    /**Configure editor*/
     
+    /**Configure socket io */
+    this.socketService.setupSocketConnection();
   }
   
-  async getAllComment(){
+  getAllComment(){
     /**Get article by comment */
-   await this.apiService.getAllComment(this.idArticle).subscribe((allComment)=>{
+  this.apiService.getAllComment(this.idArticle).subscribe((allComment)=>{
       this.allComment = allComment;
       console.log(this.allComment.Comment);
     })
@@ -77,31 +78,34 @@ export class DetailsPostComponent implements OnInit {
   }
   saveEditor({ editor }: ChangeEvent){
     const data = editor.getData();
-    this.commentContent=data    
+    this.commentContent=data   
+    this.socketService.someoneTypingEvent(); 
   }
   sendComment(){
     if(this.idParentComment==null) //Khong reply comment
     {
-      let comment = {
-        content:this.commentContent,
-        idUser:this.cookieService.get("userIdLogged"),
-        idArticle:this.idArticle
+      let commentParent = {
+        "content":this.commentContent,
+        "idUser":this.cookieService.get("userIdLogged"),
+        "idArticle":this.idArticle
       }
-      this.apiService.postCommentParent(comment).subscribe((data)=>{  
+      this.apiService.postCommentParent(commentParent).subscribe((data)=>{  
+        this.getAllComment();
       })
     }
     else{
-      let comment = {
+      let commentChild = {
         "idParent":this.idParentComment,
         "childComment":{
           "contentChild":this.commentContent,
           "idUserChild":this.cookieService.get("userIdLogged")
         }
       }
-      this.apiService.postCommentChild(comment).subscribe((data)=>{  
+      this.apiService.postCommentChild(commentChild).subscribe((data)=>{ 
+        this.getAllComment(); 
       })
     }
-    this.getAllComment();
+    
    }
    showAnswer(idComment){
      this.idParentComment = idComment;
@@ -116,7 +120,16 @@ export class DetailsPostComponent implements OnInit {
       idArticle:this.idArticle
     }
     this.apiService.postCommentParent(comment).subscribe((data)=>{  
+      this.getAllComment();
     })
-    this.getAllComment();
+    
    }
 }
+
+
+
+
+
+
+
+

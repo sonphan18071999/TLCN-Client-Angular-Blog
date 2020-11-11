@@ -21,19 +21,20 @@ export class IndexPostComponent implements OnInit {
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
-    private _cookieService:CookieService) { }
+    private _cookieService:CookieService) { 
+      this.getDataPaging()
+    }
  
   ngOnInit(): void {
     this.page=0;
-    this.getDataPaging();
   }
   getDataPaging(){
-    this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
+    return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
       this.allArticle=data;
       this.popularArticle = this.allArticle.PopularArticle;
       this.allArticle=this.allArticle.Article;
       console.log(this.allArticle)
-    }) 
+    })
   }
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie

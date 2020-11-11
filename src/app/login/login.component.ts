@@ -2,12 +2,39 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import {LoginService} from'./login.service';
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [CookieService]
+  providers: [CookieService],
+  animations:[
+    trigger('openClose', [
+      state('open', style({
+        height: '200px',
+        opacity: 1,
+        backgroundColor: 'yellow'
+      })),
+      state('closed', style({
+        height: '100px',
+        opacity: 0.5,
+        backgroundColor: 'green'
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 
 })
 export class LoginComponent implements OnInit {
