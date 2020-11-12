@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-index-screen',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexScreenComponent implements OnInit {
   side="over";
-
-  constructor() { }
+  idUserLogin:any;
+  constructor(private cookieService:CookieService) { }
 
   ngOnInit(): void {
+    this.idUserLogin=this.cookieService.get("userIdLogged")
   }
 
 }

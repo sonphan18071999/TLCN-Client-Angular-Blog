@@ -18,6 +18,7 @@ export class IndexPostComponent implements OnInit {
   allArticle:any;
   popularArticle:any;
   page:any;
+  showPostArticle:boolean=false;
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
@@ -28,6 +29,9 @@ export class IndexPostComponent implements OnInit {
     this.page=0;
     this.getDataPaging()
 
+    if(this._cookieService.get("userIdLogged")!=''){
+      this.showPostArticle=true;
+    }
   }
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{

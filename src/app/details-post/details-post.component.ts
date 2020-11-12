@@ -90,6 +90,9 @@ export class DetailsPostComponent implements OnInit {
     this.commentContent=data   
   }
   sendComment(){
+  if(this.cookieService.get("userIdLogged")==''){
+    alert("You are not logged in yet!!")
+  }else{
     if(this.idParentComment==null) //Khong reply comment
     {
       let commentParent = {
@@ -119,6 +122,7 @@ export class DetailsPostComponent implements OnInit {
         this.autoReloadCommentRealTime();
       })
     }
+  }
 
     
    }
@@ -139,9 +143,12 @@ export class DetailsPostComponent implements OnInit {
      this.idParentComment=null;
    }
    sendFirstComment(){
-    if(this.commentContent==null){
+    if(this.commentContent==null ){
       alert("Input cant be empty")
-    }else{
+    }else if(this.cookieService.get("userIdLogged")==''){
+      alert("You must loggin to comment on this article")
+    }
+    else{
       var comment = {
         content:this.commentContent,
         idUser:this.cookieService.get("userIdLogged"),

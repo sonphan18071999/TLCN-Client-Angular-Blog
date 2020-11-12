@@ -7,10 +7,13 @@ import{ LoginComponent} from './login/login.component'
 import { formatNumber } from '@angular/common';
 import {CreateArticleComponent } from './create-article/create-article.component';
 
-const routes: Routes = [{path: '',component:LoginComponent},
+const routes: Routes = [
+{path: 'login',component:LoginComponent},
 {path:'index',component:IndexScreenComponent},
 {path:'detail-post/:title',component:DetailsPostComponent},
-{path:'create-article',component:CreateArticleComponent}];
+{path:'create-article',component:CreateArticleComponent},
+{path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
