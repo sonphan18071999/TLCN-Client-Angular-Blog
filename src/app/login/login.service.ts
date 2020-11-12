@@ -8,10 +8,13 @@ export class LoginService {
 
 
   constructor(private httpClient: HttpClient) { }
-  public checkUser(userName,password){
+  public checkUser(email,userName,typeAccount,password){
     var data= {
+      "email":email,
+      "password":password,
       "userName":userName,
-      "password":password
+      "typeAccount":typeAccount
+
     }
     return this.httpClient.post<any>(`http://localhost:4000/api/check-user`,data);
   }

@@ -45,9 +45,11 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   exports: [
@@ -97,7 +99,9 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     FormsModule,
     HttpClientModule,
     CKEditorModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ],
   imports: [
     A11yModule,
@@ -147,7 +151,9 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     FormsModule,
     HttpClientModule,
     CKEditorModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ]
 })
 export class MaterialModule { }

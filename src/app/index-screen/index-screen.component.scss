@@ -10,11 +10,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
   }
 .button-toggle-side-menu{
     margin-top: 10px;
     position: absolute;
-    color:white
 }
 .drawer-content-showup{
     width: 20%;

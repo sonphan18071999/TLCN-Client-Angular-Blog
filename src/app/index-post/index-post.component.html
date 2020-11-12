@@ -1,30 +1,69 @@
 
-<div class="container">
+<div class="container" *ngIf="popularArticle!=null">
     
     <div class="post-content-button-container">
-        <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button>
+        <!-- <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button> -->
+    <div style="background-color: rgb(204, 198, 198); height: 40px; border-radius: 5px; margin-top: 20px; "> 
+        <button mat-raised-button style="background-color: #007bff; color: white;" (click)="CreateNewArticle()">
+            <mat-icon style="font-size: 23px;margin-right: 10px;">add_photo_alternate</mat-icon> Post your article ...
+        </button>
     </div>
-
+    </div>
     <br>
     <div class="card-content">
         <div class="popular-card-content">
-            <mat-card *ngFor="let article of allArticle">
-                <div class="card-content-image">
-                    <img src={{article.AvatarPost}}>
-                    <div class="popular-card-content-left">
-                        <h2>{{article.tittle}}</h2>
-                        <p>{{article.description}}</p>
-                        <div class="footer-tool" style="bottom: 15px;position: absolute;width: 100%;">
-                            <mat-icon style="font-size: 20px;">favorite</mat-icon>
-                            <mat-icon style="font-size: 20px;"> comment</mat-icon>
-                            <mat-icon style="font-size: 20px;">share</mat-icon>
-                            <button mat-stroked-button style="margin-left: 45%;" (click)="showDetailPost(article._id)">Read more...</button>
-                        </div>
+            <mat-card>
+                <mat-card-subtitle><b>The best daily article</b></mat-card-subtitle>
+                <div class="popular-article">
+                    <img src="{{popularArticle.AvatarPost}}" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
+                    <div class="popular-article-right">
+                        <h2 class="title-article" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" >{{popularArticle.tittle}}</h2>
+                        <p class="desciption" >{{popularArticle.description}}
+                        </p>
+                        <br>
+                        <br>
+                        <h4>Author: <a href="#">Son Phan.</a></h4> 
+                        <label><i>15,Nov 2020 || 6 mins ago</i></label>
                     </div>
                 </div>
             </mat-card>
+
+            <mat-card style="text-align: center;">
+                <mat-card-subtitle><b>All popular article of the day</b></mat-card-subtitle>
+            </mat-card>
+        <div class="article-below-popular">
+            <mat-card class="tiny-article" *ngFor="let article of allArticle">
+                <img src={{article.AvatarPost}} width="100%" height="217px" (click)="showDetailPost(article._id,article.tittle)"> 
+                <div class="tiny-article-right">
+                    <h2 class="title-article" (click)="showDetailPost(article._id,article.tittle)">{{article.tittle}}</h2>
+                    <div class="title-article-p">
+                        <p class="desciption" >{{article.description}}
+                        </p>
+                    </div>
+                    <h4>Author: <a href="#">Son Phan.</a></h4> 
+                    <label> <i>{{article.postedOn}} || 6 mins ago</i></label>
+                    <br>
+                    <br>
+                    <div style="display: flex; ">
+                        <div style="margin-top: 8px;">
+                            <mat-icon style="font-size: 14px;">remove_red_eye</mat-icon>
+                        <label>14.000</label>
+                        </div>
+                        <!-- <button mat-raised-button style="margin-left: 143px;background-color: #007bff; color: white;" (click)="showDetailPost(1)" >Read more...</button> -->
+                    </div>
+                </div>
+            </mat-card>
+            <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
         </div>
     </div>
     
+        <div class="group-button-paging">
+            <button mat-button (click)="previousPage()">Previous</button>
+            <button mat-button>{{page}}</button>
+            <button mat-button (click)="nextPage()">Next</button>
+        </div>
+        </div>
+        
+    </div>   
 </div>
  

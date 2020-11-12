@@ -13,6 +13,8 @@ import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-con
 import { DetailsPostComponent } from './details-post/details-post.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { CreateArticleComponent } from './create-article/create-article.component';
+import { SocketioService } from './details-post/socketio.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import {MatMenuModule} from '@angular/material/menu';
     PopUpPostContentComponent,
     DetailsPostComponent,
     ProfileComponent,
- 
+    CreateArticleComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MaterialModule,
     MatMenuModule,
   ],
-  providers: [],
+  providers: [SocketioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

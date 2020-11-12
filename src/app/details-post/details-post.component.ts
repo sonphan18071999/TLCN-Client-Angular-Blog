@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material/icon';
+import { ApiServiceService} from '../APIServices/api-service.service'
+import {ActivatedRoute} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import {SocketioService } from'./socketio.service'
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -10,32 +12,154 @@ import {MatIconRegistry} from '@angular/material/icon';
 })
 export class DetailsPostComponent implements OnInit {
   public Editor=ClassicEditor
+  
   name = 'Angular 6';
   htmlContent = '';
   isShowForm=false;
-  stateLike=false;
+  stateLike:Number;
   side="over";
-  constructor() { }
+  article:any;
+  /**Id of article that we want to see detail. */
+  idArticle:any;
+  mainTitle:String;
+  ContentInParts:any;
+  commentContent:any;
+  allComment:any;
+  editorData:any;
+  idParentComment:any;
+  stateAnswer:boolean=true;
+  infoUserComment:any;
+  flag:boolean=true;
+  public model = {
+    editorData: '<p>Hello, world!</p>'
+  };
+  constructor(private apiService: ApiServiceService,
+    private cookieService: CookieService, private socketService: SocketioService) {
 
-  ngOnInit(): void {
   }
 
-
-  changeState(){
+  ngOnInit(): void {
+    /**Get id which set inside cookie of browser */
+    this.idArticle  = this.cookieService.get('idDetailArticle');
+  
+    /**Get article by id */
+    this.apiService.getArticleById(this.idArticle).subscribe((res) => {
+      this.article = res;
+      // console.log(JSON.stringify(res));
+      this.article=this.article.Aricle
+      this.mainTitle=this.article.tittle;
+      this.ContentInParts = this.article.content;
+    })
+    this.getAllComment();
     
+   
+  }
+  
+  getAllComment(){
+    /**Get article by comment */
+  this.apiService.getAllComment(this.idArticle).subscribe((allComment)=>{
+      this.allComment = allComment;
+    // console.log(JSON.stringify(this.allComment))
+    })
+    /**Get article by comment */
+  }
+  getUserInfo(idUser){
+    console.log("Beollo world")
+      this.apiService.getInforUser(idUser).subscribe((user)=>{
+        // this.infoUserComment=user;
+        console.log("Thong tin moi nguoi dung comment"+user)  
+        })
+  }
+  changeState(){
     if(this.isShowForm==false){
       this.isShowForm=true
     }else{
       this.isShowForm=false;
     }
   }
-  changeStateLike(){
-    if(this.stateLike){
-      this.stateLike=false;
+  changeStateLike(index){
+    if(this.stateLike==index){
+      this.stateLike==-100;
+    }else{
+      this.stateLike=index
     }
-    else
-    this.stateLike=true;
 
   }
+  saveEditor({ editor }: ChangeEvent){
+    const data = editor.getData();
+    this.commentContent=data   
+  }
+  sendComment(){
+    if(this.idParentComment==null) //Khong reply comment
+    {
+      let commentParent = {
+        "content":this.commentContent,
+        "idUser":this.cookieService.get("userIdLogged"),
+        "idArticle":this.idArticle,
+        "nameUser":this.cookieService.get("userName")
+      }
+      this.apiService.postCommentParent(commentParent).subscribe((data)=>{  
+        this.getAllComment();
+         /**Configure socket io */
+      this.autoReloadCommentRealTime();
+      })
+    }
+    else{
+      let commentChild = {
+        "idParent":this.idParentComment,
+        "childComment":{
+          "contentChild":this.commentContent,
+          "idUserChild":this.cookieService.get("userIdLogged"),
+          "nameUserChild":this.cookieService.get("userName")
+        }
+      }
+      this.apiService.postCommentChild(commentChild).subscribe((data)=>{ 
+        this.getAllComment(); 
+         /**Configure socket io */
+        this.autoReloadCommentRealTime();
+      })
+    }
 
+    
+   }
+   autoReloadCommentRealTime(){
+    this.socketService.emit('broadcast','typing user');
+    
+    this.socketService.listen('update state comment').subscribe((data)=>{
+      // console.log(data);
+      if(data){
+        this.getAllComment();
+      }
+    })
+   }
+   showAnswer(idComment){
+     this.idParentComment = idComment;
+   }
+   cancelComment(){
+     this.idParentComment=null;
+   }
+   sendFirstComment(){
+    if(this.commentContent==null){
+      alert("Input cant be empty")
+    }else{
+      var comment = {
+        content:this.commentContent,
+        idUser:this.cookieService.get("userIdLogged"),
+        idArticle:this.idArticle,
+        "nameUser":this.cookieService.get("userName")
+      }
+      this.apiService.postCommentParent(comment).subscribe((data)=>{  
+        this.getAllComment();
+        this.autoReloadCommentRealTime();
+      })
+    }
+   }
 }
+
+
+
+
+
+
+
+

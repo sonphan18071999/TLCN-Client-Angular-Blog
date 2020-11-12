@@ -1,21 +1,27 @@
 <div class="login-form-container">
-        <mat-card>
-        <h1>WELCOME TO OUR WEBSITE</h1>
-        <form class="login-form">
+        <div class="container-form">
+         <div>
+             <h3><b>Login now</b></h3>
+            <form class="login-form">
                 <mat-form-field class="input-field">
                     <mat-label>User account</mat-label>
-                    <input [(ngModel)]="userName"   [ngModelOptions]="{standalone: true}" matInput>
-                  </mat-form-field>
-                  <mat-form-field class="input-field">
-                      <mat-label>User password</mat-label>
-                      <input type="password" [(ngModel)]="password"  [ngModelOptions]="{standalone: true}"matInput>
-                  </mat-form-field>
-        </form>
-        <a href="#">Don't have an account?Register here!</a>
-        <br>        <br>
-
-        <button mat-raised-button color="primary" style="width: 100px;" (click)="submit()" >Login</button>
-        <button mat-raised-button style="margin-left: 20px;">Cancel</button>
-    </mat-card>
-
+                    <input [(ngModel)]="email" autocomplete="off" [ngModelOptions]="{standalone: true}" matInput>
+                </mat-form-field>
+                <mat-form-field class="input-field">
+                    <mat-label>User password</mat-label>
+                    <input type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
+                </mat-form-field>
+            </form>
+         </div>
+        <div class="group-buttons">
+            <div>
+                <button mat-raised-button color="primary" style="width: 100%;" (click)="submit()" >Login</button>
+            </div>
+            <br>
+            <div class="social-login">
+                <button mat-raised-button (click)="login()" style="width: 50%;">Facebook</button>
+                <button mat-raised-button color="primary" style="width: 50%;">Google</button>
+            </div>
+        </div>
+        </div>
 </div>

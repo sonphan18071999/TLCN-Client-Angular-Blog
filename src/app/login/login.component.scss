@@ -1,16 +1,40 @@
 
 
 .login-form-container{
- margin: auto;
-}
-.mat-focus-indicator{
-}
-.login-form {
-  min-width: 150px;
-  max-width: 400px;
+
+  background-image: url(../../assets/images/banner-with-surprised-children-peeking-edge.jpg);
+  background-size: cover;
+  height: 100%;
   width: 100%;
+  position: absolute;
 }
 
+.container-form{
+  border-radius: 4px;
+  margin-top: 100px;
+  margin-left: 100px;
+  width: 25%;
+  height: 80%;
+  background-color: white;
+}
+.container-form h3{
+padding: 30px;
+font-size: 30px;
+}
+.container-form a{
+  padding-left: 30px;
+}
+.container-form .group-buttons{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.login-form {
+  padding: 30px;
+}
+
+.group-buttons .social-login {
+  display: block;
+}
 .input-field {
   width: 100%;
   margin: auto;
