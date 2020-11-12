@@ -28,6 +28,8 @@ export class DetailsPostComponent implements OnInit {
   editorData:any;
   idParentComment:any;
   stateAnswer:boolean=true;
+  infoUserComment:any;
+  flag:boolean=true;
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
@@ -57,8 +59,16 @@ export class DetailsPostComponent implements OnInit {
     /**Get article by comment */
   this.apiService.getAllComment(this.idArticle).subscribe((allComment)=>{
       this.allComment = allComment;
-      console.log(this.allComment.Comment);
+    // console.log(JSON.stringify(this.allComment))
     })
+    /**Get article by comment */
+  }
+  getUserInfo(idUser){
+    console.log("Beollo world")
+      this.apiService.getInforUser(idUser).subscribe((user)=>{
+        // this.infoUserComment=user;
+        console.log("Thong tin moi nguoi dung comment"+user)  
+        })
   }
   changeState(){
     if(this.isShowForm==false){
@@ -85,10 +95,13 @@ export class DetailsPostComponent implements OnInit {
       let commentParent = {
         "content":this.commentContent,
         "idUser":this.cookieService.get("userIdLogged"),
-        "idArticle":this.idArticle
+        "idArticle":this.idArticle,
+        "nameUser":this.cookieService.get("userName")
       }
       this.apiService.postCommentParent(commentParent).subscribe((data)=>{  
         this.getAllComment();
+         /**Configure socket io */
+      this.autoReloadCommentRealTime();
       })
     }
     else{
@@ -96,22 +109,24 @@ export class DetailsPostComponent implements OnInit {
         "idParent":this.idParentComment,
         "childComment":{
           "contentChild":this.commentContent,
-          "idUserChild":this.cookieService.get("userIdLogged")
+          "idUserChild":this.cookieService.get("userIdLogged"),
+          "nameUserChild":this.cookieService.get("userName")
         }
       }
       this.apiService.postCommentChild(commentChild).subscribe((data)=>{ 
         this.getAllComment(); 
+         /**Configure socket io */
+        this.autoReloadCommentRealTime();
       })
     }
 
-     /**Configure socket io */
-     this.autoReloadCommentRealTime();
+    
    }
    autoReloadCommentRealTime(){
     this.socketService.emit('broadcast','typing user');
     
     this.socketService.listen('update state comment').subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       if(data){
         this.getAllComment();
       }
@@ -124,15 +139,20 @@ export class DetailsPostComponent implements OnInit {
      this.idParentComment=null;
    }
    sendFirstComment(){
-    var comment = {
-      content:this.commentContent,
-      idUser:this.cookieService.get("userIdLogged"),
-      idArticle:this.idArticle
+    if(this.commentContent==null){
+      alert("Input cant be empty")
+    }else{
+      var comment = {
+        content:this.commentContent,
+        idUser:this.cookieService.get("userIdLogged"),
+        idArticle:this.idArticle,
+        "nameUser":this.cookieService.get("userName")
+      }
+      this.apiService.postCommentParent(comment).subscribe((data)=>{  
+        this.getAllComment();
+        this.autoReloadCommentRealTime();
+      })
     }
-    this.apiService.postCommentParent(comment).subscribe((data)=>{  
-      this.getAllComment();
-    })
-    this.autoReloadCommentRealTime();
    }
 }
 

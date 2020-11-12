@@ -80,7 +80,11 @@
                     </div>
                     <mat-card style="width: 100%;">
                       <div style="display: flex;">
-                        <p style="font-size: 20px; color: #3f51b5;"><b>Obama</b></p>
+                        <!-- Hien thi ten user -->
+                        <a  href="#" style="font-size: 20px; color: #3f51b5; text-decoration: none;">
+                          <p [innerHtml]="comment.nameUser"></p>
+                        </a>
+                        <!-- Hien thi ten user -->
                         <p style="margin-left:15px ;"><i>Dai bang chua</i></p>
                       </div>
                       <p [innerHtml]="comment.content"></p>
@@ -102,13 +106,17 @@
                   <!-- Avatar va phan comment cha -->
                   <!-- Phan comment child -->
                   <br>
-                  <div *ngFor="let childComment of comment.childComment">
+                  <div *ngFor="let childComment of comment.childComment; index as a">
                     <div style="width: 837px;margin-left: 40px;display: flex; padding: 10px;">
                       <img src="../../assets/images/obama.jpg" width="40px" height="40px" style="border-radius: 50%;">
                       <mat-card style="width: 100%;">
                         <div>
                           <div style="display: flex;">
-                            <p style="font-size: 15px; color: #3f51b5;"><b>Obama the second</b></p>
+                            <!-- Hien thi ten user child -->
+                            <a href="#" style="font-size: 15px; color: #3f51b5;text-decoration: none;">
+                              <p [innerHtml]="childComment.nameUserChild"></p>
+                            </a>
+                            <!-- Hien thi ten user child -->
                             <p style="margin-left:15px ;"><i>Dai bang con</i></p>
                           </div>
                           <p [innerHtml]="childComment.contentChild"></p>

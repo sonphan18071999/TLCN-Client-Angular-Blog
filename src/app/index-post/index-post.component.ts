@@ -22,11 +22,12 @@ export class IndexPostComponent implements OnInit {
     private router: Router,
     public indexPostService:IndexPostService,
     private _cookieService:CookieService) { 
-      this.getDataPaging()
     }
  
   ngOnInit(): void {
     this.page=0;
+    this.getDataPaging()
+
   }
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{

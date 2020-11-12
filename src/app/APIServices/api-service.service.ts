@@ -15,7 +15,7 @@ export class ApiServiceService {
     return this.httpClient.get<any>(this.url+"get-article",{"observe":"body","responseType":"json","params":{id:id}});
   }
 
-  /**Comment section*/
+  /**Comment session*/
   //1. Post comment
   public postCommentParent(comment){
     return this.httpClient.post<any>(this.url+"post-comment-parent",comment)
@@ -28,5 +28,12 @@ export class ApiServiceService {
   public postCommentChild(comment){
     return this.httpClient.post<any>(this.url+"post-comment-child",comment)
   }
-  /**Comment section*/
+  /**Comment session*/
+
+
+    /**User account session */
+  public getInforUser(idUser){
+    return this.httpClient.post<any>(this.url+'get-user-information',{"idUser":idUser});
+  }     
+    /**User account session */
 }

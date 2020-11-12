@@ -16,7 +16,7 @@ export class SocketioService {
   listen(eventName: string){
     return new Observable((subscriber)=>{
       this.socket.on(eventName,(data)=>{
-        subscriber.next(data)
+        subscriber.next(data) 
       })
     })
   }

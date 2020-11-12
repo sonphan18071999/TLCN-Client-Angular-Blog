@@ -9,13 +9,11 @@
         </button>
     </div>
     </div>
-   
     <br>
     <div class="card-content">
-        
         <div class="popular-card-content">
             <mat-card>
-                <mat-card-subtitle><b>Bài viết hay nhất trong ngày</b></mat-card-subtitle>
+                <mat-card-subtitle><b>The best daily article</b></mat-card-subtitle>
                 <div class="popular-article">
                     <img src="{{popularArticle.AvatarPost}}" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
                     <div class="popular-article-right">
@@ -31,7 +29,7 @@
             </mat-card>
 
             <mat-card style="text-align: center;">
-                <mat-card-subtitle><b>Những bài viết nổi bật trong ngày</b></mat-card-subtitle>
+                <mat-card-subtitle><b>All popular article of the day</b></mat-card-subtitle>
             </mat-card>
         <div class="article-below-popular">
             <mat-card class="tiny-article" *ngFor="let article of allArticle">
@@ -56,7 +54,6 @@
                 </div>
             </mat-card>
             <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
-
         </div>
         <div class="group-button-paging">
             <button mat-button (click)="previousPage()">Previous</button>

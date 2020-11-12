@@ -76,18 +76,18 @@ export class LoginComponent implements OnInit {
   }
   login() {
     window['FB'].login((response) => {
-        console.log('login response',response);
+        // console.log('login response',response);
         if (response.authResponse) {
           window['FB'].api('/me', {
             fields: 'last_name, first_name, email'
           }, (userInfo) => {
  
-            console.log("user information");
-            console.log(userInfo);
+            // console.log("user information");
+            // console.log(userInfo);
 
             //Lưu email người dùng xuống cookie.
             this._cookieService.set( 'userIdLogged', userInfo.email );
-            this._cookieService.set( 'userName', userInfo.first_name );
+            this._cookieService.set( 'userName', userInfo.first_name+' '+ userInfo.last_name );
 
             this.email=userInfo.email;
             this.userName=userInfo.first_name+userInfo.last_name;
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
       }, {scope: 'email'});
   }
   submit():void{
-   this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
+  this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
       res=>{
         alert("Đăng nhập thành công!");
         this.router.navigate(['index']);
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
       },
       err=>{
         alert("Mật khẩu hoặc tài khoản không đúng!");
-        this._cookieService.set( 'userIdLogged', "null" );
+        // this._cookieService.set( 'userIdLogged', "null" );
       }
     )
   }
