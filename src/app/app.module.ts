@@ -13,6 +13,7 @@ import { PopUpPostContentComponent } from './pop-up-post-content/pop-up-post-con
 import { DetailsPostComponent } from './details-post/details-post.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { SocketioService } from './details-post/socketio.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { SocketioService } from './details-post/socketio.service';
     PopUpPostContentComponent,
     DetailsPostComponent,
     CreateArticleComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
