@@ -35,9 +35,7 @@ export class DetailsPostComponent implements OnInit {
   };
   constructor(private apiService: ApiServiceService,
     private cookieService: CookieService, private socketService: SocketioService) {
-
   }
-
   ngOnInit(): void {
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');

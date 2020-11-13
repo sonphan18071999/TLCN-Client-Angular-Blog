@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-content.component';
 import { Router } from '@angular/router';
@@ -27,8 +27,7 @@ export class IndexPostComponent implements OnInit {
  
   ngOnInit(): void {
     this.page=0;
-    this.getDataPaging()
-
+    this.getDataPaging();
     if(this._cookieService.get("userIdLogged")!=''){
       this.showPostArticle=true;
     }

@@ -1,1 +1,102 @@
 
+<mat-drawer-container class="example-container" [hasBackdrop]="true" >
+    <!-- Side navigation -->
+    <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
+        <img src="../../assets/images/landscape.jpg" width="100%">
+        <ul>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+            <li>Nội dung</li>
+        </ul>
+    </mat-drawer>
+    <!-- Content index screen -->
+    <mat-drawer-content>
+      <div class="app-header"> 
+        <app-header></app-header>
+      </div>
+      <div class="app-index-post">
+        <!-- Phan hien thi thong tin nguoi dung -->
+        <div class="container">
+          <!-- Hien thi anh bia -->
+            
+          <!-- Hien thi anh bia -->
+            <div class="container-body">
+              <!-- Hien thi avatar va follower, following... -->
+                <div class="container-body-header">
+                    <img src="../../assets/images/obama.jpg">  
+                    <div class="container-body-header-infor">
+                      <!--Display name -->
+                      <div class="container-body-header-infor-name" >
+                        <p style="font-size: 40px;"><b>Phan Sơn</b></p>
+                        <p>Nooby author</p>
+                      </div>
+                      <!--Display name -->
+                      <div class="container-body-header-infor-label-follow">
+                        <label> <b>140</b> Followers</label>
+                        <label> <b>250</b> Following</label>
+                      </div>
+                      <div class="container-body-header-infor-button-follow">
+                          <button mat-raised-button>Follow & get notification</button>
+                      </div>
+                    </div>
+                </div>
+                <!-- Hien thi avatar va follower, following... -->
+                <div style="display: flex; width: 1300px;">
+                  <div class="container-body-left">
+                    <mat-card>
+                      <h4 style="font-size: 30px;"><b>Introduction</b></h4>
+                      <hr>
+                      <p>Học tại <b>Trường đại học sư phạm kỹ thuật</b></p>
+                      <p>Sống tại <b>Thành Phố Hồ Chí Minh</b></p>
+                      <p>Đến từ <b>Phu Dien Chau, Nghệ An, Vietnam</b></p>
+                      <p>Instagram: <b>Skid_hollow</b></p>
+                    </mat-card>
+                  </div>
+              <!-- Hien thi avatar va follower, following... -->
+
+              <!-- Hien thi nhung article ma nguoi do da dang -->
+                  <div class="container-body-right">
+                    <mat-card>
+                      <div class="container-body-right-article">
+                        <h4 style="font-size:30px"><b>Recent posts</b></h4>
+                        <hr>
+                        <mat-card>
+                          <img src="http://res.cloudinary.com/dsnt8hyn6/image/upload/v1604020048/abovgsrwwufkqfuwiznw.jpg">
+                          <p style="font-size: 25px;">
+                            <b>[QC] Lắng nghe phản hồi khách hàng, Suzuki thay đổi từ sản phẩm đến dịch vụ.</b>
+                          </p>
+                          <p>Lắng nghe phản hồi khách hàng, đảm bảo quá trình sử dụng ô tô thuận tiện, dễ dàng, hài hoà, tiết kiệm nhất...</p>
+                          <div class="container-body-right-article-group-button">
+                            <button mat-raised-button>70 Like</button>
+                            <button mat-raised-button>1000 View</button>
+                            <label>1 hour ago</label>
+                          </div>
+                        </mat-card>
+                        <mat-card>
+                          <img src="http://res.cloudinary.com/dsnt8hyn6/image/upload/v1604020048/abovgsrwwufkqfuwiznw.jpg">
+                          <p style="font-size: 25px;">
+                            <b>[QC] Lắng nghe phản hồi khách hàng, Suzuki thay đổi từ sản phẩm đến dịch vụ.</b>
+                          </p>
+                          <p>Lắng nghe phản hồi khách hàng, đảm bảo quá trình sử dụng ô tô thuận tiện, dễ dàng, hài hoà, tiết kiệm nhất...</p>
+                          <div class="container-body-right-article-group-button">
+                            <button mat-raised-button>70 Like</button>
+                            <button mat-raised-button>1000 View</button>
+                            <label>1 hour ago</label>
+                          </div>
+                        </mat-card>
+                      </div>
+                    </mat-card>
+                  </div>
+              <!-- Hien thi nhung article ma nguoi do da dang -->
+                </div>
+            </div>
+        </div>
+        <!-- Phan hien thi thong tin nguoi dung -->
+      </div>
+      <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
+

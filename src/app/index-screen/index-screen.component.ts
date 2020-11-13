@@ -14,5 +14,8 @@ export class IndexScreenComponent implements OnInit {
   ngOnInit(): void {
     this.idUserLogin=this.cookieService.get("userIdLogged")
   }
-
+  ShowAlert(){
+    alert("Hello world")
+  }
+  
 }

@@ -1,0 +1,124 @@
+
+
+
+.example-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  mat-drawer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
+  }
+.button-toggle-side-menu{
+    margin-top: 10px;
+    position: absolute;
+}
+.drawer-content-showup{
+    width: 20%;
+    margin: auto;
+}
+ul li {
+    list-style-type: none;
+    height: 40px;
+    
+}
+.app-index-post{
+  width: 100%;
+  
+}
+.app-header{
+  width: 100%;
+}
+.container{
+  display: block;
+  width: 100%;
+}
+
+.container-body{
+  width: 1300px;
+  margin: auto;
+  display: block;
+  background: url('../../assets/images/background_detail_content.jpg') fixed no-repeat;
+  background-size: auto;
+  height: 300px;
+  border-radius: 30px;
+}
+.container-body-header{
+  display: flex;
+  width: 1300px;
+
+}
+.container-body-header img{
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-top:230px;
+  margin-left:50px;
+  border-color: gray;
+  border-width: 2px;
+  border-style: solid;
+}
+.container-body-header-infor{
+  display: flex;
+  width: 1300px;
+
+}
+.container-body-header-infor-name{
+  margin-top:320px;
+  margin-left:50px;
+}
+.container-body-header-infor-label-follow{
+  margin-top:320px;
+  margin-left:50px;
+}
+.container-body-header-infor-label-follow label{
+  margin-left: 80px;
+}
+
+.container-body-header-infor-button-follow button{
+  border-radius: 5px;
+  margin-top:310px;
+  margin-left: 305px;
+}
+.container-body-left{
+  width: 530px;
+}
+.container-body-left mat-card p{
+  font-style: 15px;
+  margin-top: 30px;
+}
+.container-body-right{
+  width: 730px;
+  margin-left: 40px;
+}
+.container-body-right-article{
+
+}
+.container-body-right-article mat-card{
+  margin-top:30px ;
+}
+.container-body-right-article img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  object-position:50% 50%;
+}
+.container-body-right-article p{
+  margin-top: 15px;
+  line-height: 1.5em;
+}
+.container-body-right-article-group-button{
+
+}
+.container-body-right-article-group-button button{
+  margin-right: 20px;
+}
+
+.container-body-right-article-group-button label{
+margin-left:50px;
+}

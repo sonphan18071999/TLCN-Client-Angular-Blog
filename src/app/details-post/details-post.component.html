@@ -53,10 +53,8 @@
             <p [innerHtml]="content.partContent"></p>
             <img src={{content.images}} style="border-radius: 10px;" width="100%">
             <br>
-
           </div>
           <!-- Phan noi dung trong article -->
-
           <div style="display: flex;">
             <button mat-button>
               <mat-icon>favorite</mat-icon> Like
@@ -93,7 +91,7 @@
                         <mat-icon color="primary" style="font-size: 13px;">favorite</mat-icon>
                         <span class="tooltiptext" style="font-size: 10px;">Like</span>
                         <!-- <mat-icon *ngIf="stateLike!=i" color="warn"style="font-size: 13px;">favorite</mat-icon>
-                  <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
+                        <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
                       </button>
                       <button mat-button (click)="showAnswer(comment._id)">
                         <mat-icon *ngIf="stateAnswer==true" color="primary" style="font-size: 13px;">comment</mat-icon>
@@ -136,7 +134,6 @@
                   </button>
                   <p style="padding: 10px;" class="cancel-comment-hide">Cancel reply</p>
                 </div>
-  
                 <div>
                   <br>
                   <ckeditor id="ckeditor" [editor]="Editor"
