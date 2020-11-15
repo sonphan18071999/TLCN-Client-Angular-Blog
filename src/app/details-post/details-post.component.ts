@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {SocketioService } from'./socketio.service'
+import AOS from 'aos';
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -38,6 +39,9 @@ export class DetailsPostComponent implements OnInit {
     private cookieService: CookieService, private socketService: SocketioService) {
   }
   ngOnInit(): void {
+    /**Init animate */
+    AOS.init();
+    /**Init animate */
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');
     /**Get article by id */

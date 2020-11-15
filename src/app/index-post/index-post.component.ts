@@ -4,6 +4,7 @@ import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-cont
 import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
 import {CookieService} from 'ngx-cookie-service';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-index-post',
@@ -26,6 +27,7 @@ export class IndexPostComponent implements OnInit {
     }
  
   ngOnInit(): void {
+    AOS.init();
     this.page=0;
     this.getDataPaging();
     if(this._cookieService.get("userIdLogged")!=''){

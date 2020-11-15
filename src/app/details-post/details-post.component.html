@@ -23,7 +23,8 @@
     <div class="container" *ngIf="ContentInParts!=null" >
 
       <div class="detail-content-post">
-        <mat-card>
+        <mat-card data-aos="fade-up"
+        data-aos-duration="1500" >
           <!-- Phan header article -->
           <h1><b>{{mainTitle}}</b></h1>
           <div style="display: flex;">
@@ -33,8 +34,8 @@
                 <p><b>Phan Sơn</b></p>
                 <label><i>1,200 RP</i></label>
               </div>
-              <button mat-stroked-button style="margin-top:5px; margin-left: 20px;height: 40px;">
-                <mat-icon>done</mat-icon> Follow author
+              <button mat-stroked-button style="margin-top:5px; margin-left: 20px;height: 40px;" >
+                <mat-icon >done</mat-icon> Follow author
               </button>
             </div>
             <!-- Luu bai viet -->
@@ -68,7 +69,7 @@
         </mat-card>
         <br>
         <mat-card>
-          <div class="edit1" *ngIf="allComment!=null">
+          <div class="edit1" *ngIf="allComment!=null" >
             <h2>Comment:</h2>
             <div *ngIf="allComment.Comment.length!=0">
               <div *ngFor="let comment of allComment.Comment; let i = index">

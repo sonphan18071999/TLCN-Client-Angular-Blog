@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,6 +14,9 @@ export class UserProfileComponent implements OnInit {
     
    }
   ngOnInit(): void {    
+    /**Khoi tao animate */
+    AOS.init();
+    /**Khoi tao animate */
   /**Lay id cua nguoi dung */
   this.activatedRoute.params.subscribe(paramsId => {
     this.id = paramsId.id;
