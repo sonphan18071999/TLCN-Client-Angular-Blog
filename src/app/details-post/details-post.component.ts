@@ -30,6 +30,7 @@ export class DetailsPostComponent implements OnInit {
   stateAnswer:boolean=true;
   infoUserComment:any;
   flag:boolean=true;
+  showBookMark:boolean=true;
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
@@ -39,7 +40,6 @@ export class DetailsPostComponent implements OnInit {
   ngOnInit(): void {
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');
-  
     /**Get article by id */
     this.apiService.getArticleById(this.idArticle).subscribe((res) => {
       this.article = res;
@@ -49,8 +49,12 @@ export class DetailsPostComponent implements OnInit {
       this.ContentInParts = this.article.content;
     })
     this.getAllComment();
-    
-   
+    /**Check saved article */
+    this.apiService.checkArticle(this.cookieService.get("userIdLogged"),this.idArticle).subscribe((ok)=>{
+      this.showBookMark=true;
+    },(er)=>{
+      this.showBookMark=false;
+    })
   }
   
   getAllComment(){
@@ -159,6 +163,18 @@ export class DetailsPostComponent implements OnInit {
       })
     }
    }
+  SaveArticle(){
+    this.apiService.saveArticle(this.cookieService.get("userIdLogged"), this.idArticle).subscribe(
+      (res) => {
+        if (res) {
+          alert("Save article successfully")
+          this.showBookMark=false;
+        }
+      }, (er) => {
+        alert("Unmark successfully")
+        this.showBookMark=true;
+      })
+  }
 }
 
 
