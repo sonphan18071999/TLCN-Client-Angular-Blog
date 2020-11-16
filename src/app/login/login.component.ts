@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit {
         alert("Đăng nhập thành công!");
         this.router.navigate(['index']);
         this._cookieService.set( 'userIdLogged', res.user._id );
+        this._cookieService.set( 'userName', res.user.name );
       },
       err=>{
         alert("Mật khẩu hoặc tài khoản không đúng!");

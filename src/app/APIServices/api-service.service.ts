@@ -60,6 +60,15 @@ export class ApiServiceService {
   public getInforUser(idUser){
     return this.httpClient.post<any>(this.url+'get-user-information',{"idUser":idUser});
   }     
+  public createAccount(fname,lname,email,phone,pwd,add){
+    return this.httpClient.post<any>(this.url+'add-new-user-account',{
+      "email":email,
+      "password":pwd,
+      "phone":phone,
+      "name":fname+' '+lname,
+      "typeAccount":"normal"
+    })
+  }
     /**User account session */
 
 
