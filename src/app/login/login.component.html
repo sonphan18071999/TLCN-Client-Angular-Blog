@@ -9,7 +9,7 @@
                 </mat-form-field>
                 <mat-form-field class="input-field">
                     <mat-label>User password</mat-label>
-                    <input type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
+                    <input (keyup.enter)="submit()" type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
                 </mat-form-field>
             </form>
          </div>

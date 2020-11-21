@@ -2,12 +2,27 @@
   <!-- Side navigation -->
   <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
     <img src="../../assets/images/landscape.jpg" width="100%">
-    <ul>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
+    <ul >
+      <li>
+        <div class="menu-button-action">
+          <a href="/create-article">Post an Article</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action"> 
+          <a href="/create-article">Article waiting for approval</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action">
+          <a href="/create-article">Posted Article</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action">
+          <a href="/create-article">Save Article</a>
+        </div>
+      </li>
     </ul>
   </mat-drawer>
   <!-- Content index screen -->
@@ -29,16 +44,16 @@
           <div style="display: flex;">
             <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
             <div style="display: flex;">
-              <div style="margin-left:10px">
-                <p style="font-size: 23px;"><b>Phan Sơn</b></p>
+              <div style="margin-left:10px;width: 100px;">
+                <p style="font-size: 20px;"><b>Phan Sơn</b></p>
                 <label><i>Point: 1,200 RP</i></label>
               </div>
-              <button mat-stroked-button style=" margin-left: 20px;height: 40px;" >
-                <mat-icon >done</mat-icon> Follow author
+              <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;"  >
+               <mat-icon >done</mat-icon>  Follow author 
               </button>
             </div>
             <!-- Luu bai viet -->
-            <button mat-button style="margin-left: 400px;"(click)="SaveArticle()" >
+            <button mat-button style="margin-left: 340px;"(click)="SaveArticle()" >
               <mat-icon *ngIf="showBookMark">bookmark_border</mat-icon>
               <mat-icon *ngIf="!showBookMark">bookmark</mat-icon>
             </button>

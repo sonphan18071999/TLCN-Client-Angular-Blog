@@ -64,9 +64,9 @@
           <!-- Hashtag -->
           <mat-form-field class="example-chip-list">
             <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(fruit)">
-                {{fruit.name}}
+              <mat-chip *ngFor="let hashTag of hashTags" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(hashTag)">
+                {{hashTag.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
               <input placeholder="Hashtag for this article..."
