@@ -36,6 +36,10 @@ export class ApiServiceService {
     }
     return this.httpClient.post<JSON>(this.url+"check-save-status-article",obj,{observe: "response"});
   }
+  //4. Get all article posted by user
+  public getAllArticlePostedByUser(idUser){
+    return this.httpClient.get<any>(this.url+"get-all-article-posted-by-user",{"observe":"body","responseType":"json","params":{id:idUser}});
+  }
   /**Artcile Session */
 
 
