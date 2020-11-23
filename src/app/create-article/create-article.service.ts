@@ -10,6 +10,6 @@ export class CreateArticleService {
     
    }
   public submitArticle(article){
-  return this.httpClient.post<any>(`http://localhost:4000/api/post-article`,article);
+    return this.httpClient.post<any>(`http://localhost:4000/api/post-article`,article);
   }
 }
