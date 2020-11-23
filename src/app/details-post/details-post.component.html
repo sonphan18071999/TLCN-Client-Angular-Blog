@@ -45,11 +45,11 @@
             <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
             <div style="display: flex;">
               <div style="margin-left:10px;width: 100px;">
-                <p style="font-size: 20px;"><b>Phan Sơn</b></p>
-                <label><i>Point: 1,200 RP</i></label>
+                <a style="font-size: 20px;" href="/profile/{{infoAuthor._id}}" ><b>{{infoAuthor.name}}</b></a>
+                <p><i>Point: 1,200 RP</i></p>
               </div>
               <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;"  >
-               <mat-icon >done</mat-icon>  Follow author 
+                  <mat-icon>done</mat-icon>Follow author 
               </button>
             </div>
             <!-- Luu bai viet -->
@@ -65,7 +65,7 @@
           <!-- Phan header article -->
 
           <!-- Phan noi dung trong article -->
-          <div *ngFor="let content of ContentInParts">
+          <div *ngFor="let content of ContentInParts" class="container-article-detail">
             <br>
             <p [innerHtml]="content.partContent"></p>
             <img src={{content.images}} style="border-radius: 10px;" width="100%">
@@ -187,7 +187,43 @@
           </div>
         </mat-card>
         <br>
+         <!-- Hiển thị hashtag liên quan -->
+        <mat-card>
+          <h3>Hashtag</h3>
+          <div style="display: flex;" >
+            <div *ngFor="let item of allHashTag" >
+              <button mat-button>#{{item.name}}</button>
+            </div>
+          </div>
+        </mat-card>        
+        <!-- Hiển thị hashtag liên quan -->
+        <br>
+        <!-- Hiển thị những bài viết liên quan -->
+        <div style="  display: flex; 
+                width: 956px;
+                flex-wrap: wrap;">
+          <div class="related-article" *ngFor="let item of allRelatedArticle">
+            <mat-card (click)="showDetailPost(item._id,item.tittle)">
+              <img src="{{item.AvatarPost}}" width="240px" height="120px">
+              <h3 style="overflow: hidden;
+                    width: 240px;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* number of lines to show */
+                    -webkit-box-orient: vertical;"><b>{{item.tittle}}</b></h3>
+              <p style="overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; /* number of lines to show */
+                    -webkit-box-orient: vertical;width: 240px;">{{item.description}}</p>
+            </mat-card>
+          </div>
+        </div>
+        <!-- Hiển thị những bài viết liên quan -->
+      
       </div>
+      <br>
+      <br>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

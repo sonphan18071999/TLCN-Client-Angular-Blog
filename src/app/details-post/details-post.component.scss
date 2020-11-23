@@ -74,3 +74,20 @@ mat-drawer-content .container{
   display: flex;
   color: red;
 }
+.container-article-detail img{
+  margin: auto;
+}
+.related-article{
+
+}
+.related-article mat-card:hover{
+  cursor: pointer;
+  width: 340px;
+  background-color: #17a2b8;
+}
+.related-article mat-card{
+  background-color: white;
+  width: 240px;
+  margin-right:12px;
+  margin-top:10px
+}

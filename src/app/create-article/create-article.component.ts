@@ -110,10 +110,12 @@ export class CreateArticleComponent implements OnInit {
 
     this.createArticleService.submitArticle(this.Article).subscribe(res=>{
       console.log(res);
-      alert("Create artcle successfully");
+      alert("Create article successfully");
       if(res){
         this.isLoaded=true;
       }
+    },err=>{
+      alert("Create article failed");
     }
     );
     // console.log(this.Article);
