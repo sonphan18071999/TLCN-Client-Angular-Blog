@@ -2,13 +2,19 @@
     <!-- Side navigation -->
     <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
         <img src="../../assets/images/landscape.jpg" width="100%">
-        <ul>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-        </ul>
+        <div class="group-button-menu">
+      
+          <button mat-button [routerLink]="['/create-article']">Post an Article</button>
+          <p>
+            <button mat-button [routerLink]="['/create-article']">View Article waiting for approval</button>
+          </p>
+          <p>
+            <button mat-button [routerLink]="['/create-article']">View Posted Article</button>
+          </p>
+          <p>
+            <button mat-button [routerLink]="['/create-article']">View Saved Article</button>
+          </p>
+        </div>
     </mat-drawer>
     <!-- Content index screen -->
     <mat-drawer-content>

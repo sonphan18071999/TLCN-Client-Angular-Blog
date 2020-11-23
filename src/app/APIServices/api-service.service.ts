@@ -10,10 +10,35 @@ export class ApiServiceService {
   constructor(private httpClient: HttpClient) { 
 
   }
-  /**Artcile */
+  /**Artcile Session */
+  // 1. Get article by id
   public getArticleById(id){
     return this.httpClient.get<any>(this.url+"get-article",{"observe":"body","responseType":"json","params":{id:id}});
   }
+  // 2. Save article for specific user.
+  public saveArticle(idUser,idArticle){
+    var obj = {
+      "idUser":idUser,
+      "allArticleSaved":{
+        "idArticle":idArticle
+      }
+    }
+    return this.httpClient.post<JSON>(this.url+"save-article",obj,{observe: "response"});
+  }
+
+  // 3. Check save article for specific user.
+  public checkArticle(idUser,idArticle){
+    var obj = {
+      "idUser":idUser,
+      "allArticleSaved":{
+        "idArticle":idArticle
+      }
+    }
+    return this.httpClient.post<JSON>(this.url+"check-save-status-article",obj,{observe: "response"});
+  }
+  /**Artcile Session */
+
+
 
   /**Comment session*/
   //1. Post comment
@@ -35,5 +60,17 @@ export class ApiServiceService {
   public getInforUser(idUser){
     return this.httpClient.post<any>(this.url+'get-user-information',{"idUser":idUser});
   }     
+  public createAccount(fname,lname,email,phone,pwd,add){
+    return this.httpClient.post<any>(this.url+'add-new-user-account',{
+      "email":email,
+      "password":pwd,
+      "phone":phone,
+      "name":fname+' '+lname,
+      "typeAccount":"normal"
+    })
+  }
     /**User account session */
+
+
+
 }

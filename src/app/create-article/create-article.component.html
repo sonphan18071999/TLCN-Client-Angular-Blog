@@ -43,7 +43,7 @@
                   <input type="file" class="choose-file" (change)="showPreviewMainImage($event)">
                   <mat-form-field appearance="fill">
                     <mat-label>Fill out title</mat-label>
-                    <input matInput placeholder="Ex: Parallel road..." (change)="saveTitleArticle($event.target.value)">
+                    <input matInput placeholder="Ex: [SS]:New technology..." (change)="saveTitleArticle($event.target.value)">
                     <mat-icon matSuffix>title</mat-icon>
                   </mat-form-field>
                   <br>
@@ -64,9 +64,9 @@
           <!-- Hashtag -->
           <mat-form-field class="example-chip-list">
             <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(fruit)">
-                {{fruit.name}}
+              <mat-chip *ngFor="let hashTag of hashTags" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(hashTag)">
+                {{hashTag.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
               <input placeholder="Hashtag for this article..."

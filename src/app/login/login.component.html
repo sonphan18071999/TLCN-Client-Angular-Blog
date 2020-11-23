@@ -9,12 +9,15 @@
                 </mat-form-field>
                 <mat-form-field class="input-field">
                     <mat-label>User password</mat-label>
-                    <input type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
+                    <input (keyup.enter)="submit()" type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
                 </mat-form-field>
             </form>
          </div>
         <div class="group-buttons">
-            <div>
+            <div class="register-account">
+                <a href="register-account">Don't have an account? Click here!</a>
+            </div>
+            <div class="basic-login">
                 <button mat-raised-button color="primary" style="width: 100%;" (click)="submit()" >Login</button>
             </div>
             <br>

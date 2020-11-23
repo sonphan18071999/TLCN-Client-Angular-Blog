@@ -2,7 +2,7 @@
 <div class="container" *ngIf="popularArticle!=null">
     
     <!-- Post article part -->
-    <div class="post-content-button-container" *ngIf="showPostArticle">
+    <div class="post-content-button-container"  *ngIf="showPostArticle" data-aos="fade-down">
         <!-- <button mat-raised-button (click)="openDialog()"><mat-icon style="font-size: 23px;" >add_photo_alternate</mat-icon> Post something on</button> -->
         <div style="background-color: rgb(204, 198, 198); height: 40px; border-radius: 5px; margin-top: 20px; ">
             <button mat-raised-button style="background-color: #007bff; color: white;" (click)="CreateNewArticle()">
@@ -12,11 +12,13 @@
     </div>
     <!-- Post article part -->
     <br>
-    <div class="card-content">
-        <div class="popular-card-content">
+    <div class="card-content"> 
+        <div class="popular-card-content" >
             <mat-card>
-                <mat-card-subtitle><b>The best daily article</b></mat-card-subtitle>
-                <div class="popular-article">
+                <mat-card-subtitle style="text-align: center;"><b>The best daily article</b></mat-card-subtitle>
+            </mat-card>
+            <mat-card  data-aos="fade-right" data-aos-duration="1000">
+                <div  class="popular-article" >
                     <img src="{{popularArticle.AvatarPost}}" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
                     <div class="popular-article-right">
                         <h2 class="title-article" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" >{{popularArticle.tittle}}</h2>
@@ -33,10 +35,10 @@
             <mat-card style="text-align: center;">
                 <mat-card-subtitle><b>All popular article of the day</b></mat-card-subtitle>
             </mat-card>
-        <div class="article-below-popular">
-            <mat-card class="tiny-article" *ngFor="let article of allArticle">
-                <img src={{article.AvatarPost}} width="100%" height="217px" (click)="showDetailPost(article._id,article.tittle)"> 
-                <div class="tiny-article-right">
+        <div class="article-below-popular"  >
+            <mat-card class="tiny-article"  *ngFor="let article of allArticle">
+                <img src={{article.AvatarPost}}  width="100%" height="217px" (click)="showDetailPost(article._id,article.tittle)"> 
+                <div class="tiny-article-right" >
                     <h2 class="title-article" (click)="showDetailPost(article._id,article.tittle)">{{article.tittle}}</h2>
                     <div class="title-article-p">
                         <p class="desciption" >{{article.description}}
@@ -55,8 +57,9 @@
                     </div>
                 </div>
             </mat-card>
-            <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
         </div>
+        <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
+
         <div class="group-button-paging">
             <button mat-button (click)="previousPage()">Previous</button>
             <button mat-button>{{page}}</button>

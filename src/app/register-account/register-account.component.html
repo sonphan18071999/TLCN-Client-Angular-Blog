@@ -1,0 +1,86 @@
+<div class="container">
+    <h4 style="color: white;" >Register</h4>
+
+    <div class="container-form">
+        <!-- Dien thong tin ben trong form -->
+        <div class="register-form">
+            
+            <!-- Noi dung form ben trai -->
+            <div class="left-register-form">
+                <table>
+                <tr>
+                    <td>
+                        <mat-form-field class="register-input-half" >
+                            <input matInput placeholder="First name" (input)="UpdateData($event.target.value,1)" >
+                        </mat-form-field>
+
+                        <mat-form-field class="register-input-half">
+                            <input matInput placeholder="Last name" (input)="UpdateData($event.target.value,2)">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="register-input-half">
+                            <input type="email"  matInput placeholder="Email" (input)="UpdateData($event.target.value,3)">
+                        </mat-form-field>
+                        <mat-form-field class="register-input-half">
+                            <input type="number" matInput placeholder="Phone" (input)="UpdateData($event.target.value,4)">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="register-input-half">
+                            <input type="password"   matInput placeholder="Password" (input)="UpdateData($event.target.value,5)">
+                        </mat-form-field>
+                        <mat-form-field class="register-input-half">
+                            <input type="password" matInput placeholder="Confirm Password"(input)="UpdateData($event.target.value,6)">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="register-input">
+                            <textarea type="number"  rows="5" matInput placeholder="Address" (input)="UpdateData($event.target.value,7)"></textarea>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" placeholder="AgreeTerm" (input)="UpdateData($event.target.value,8)">
+                        <label for="AgreeTerm">I Agree To The Term & Conditions</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <button style="margin-top: 10px;" mat-raised-button (click)="SubmitUser()">Register <mat-icon>arrow_right_alt</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                </table>
+            </div>
+            <!-- Noi dung form ben trai -->
+            <div class="middle-register-form">
+                <p>.</p>
+            </div>
+
+            <!-- Noi dung ben phai -->
+            <div class="right-register-form">
+                <p style="font-size: 30px;margin-top: 40px;font-family:  'Arial Narrow Bold', sans-serif;">
+                    Already Register?
+                </p>
+                <p>
+                    Then what do you waiting for? Press on the button below to login.
+                    Then what do you waiting for? Press on the button below to login
+                    Then what do you waiting for? Press on the button below to login
+                    Then what do you waiting for? Press on the button below to login
+                    Then what do you waiting for? Press on the button below to login
+                </p>
+                <button  [routerLink]="'/login'" mat-raised-button>Login  <mat-icon>arrow_right_alt</mat-icon></button>
+            </div>
+            <!-- Noi dung ben phai -->
+        </div>
+        <!-- Dien thong tin ben trong form -->
+    </div>
+</div>

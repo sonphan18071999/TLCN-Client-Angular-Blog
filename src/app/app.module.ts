@@ -14,6 +14,8 @@ import { DetailsPostComponent } from './details-post/details-post.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { SocketioService } from './details-post/socketio.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RegisterAccountComponent } from './register-account/register-account.component';
+import { WaitingApprovalArticleComponent } from './waiting-approval-article/waiting-approval-article.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     DetailsPostComponent,
     CreateArticleComponent,
     UserProfileComponent,
+    RegisterAccountComponent,
+    WaitingApprovalArticleComponent,
   ],
   imports: [
     BrowserModule,

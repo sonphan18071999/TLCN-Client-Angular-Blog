@@ -7,4 +7,7 @@ export class Article{
     ]
     idUser:  String
     AvatarPost: String
+    hashTag :[{
+        name:string
+    }]
 }

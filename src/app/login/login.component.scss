@@ -21,15 +21,15 @@
 padding: 30px;
 font-size: 30px;
 }
-.container-form a{
-  padding-left: 30px;
-}
+
 .container-form .group-buttons{
   padding-left: 30px;
   padding-right: 30px;
 }
 .login-form {
-  padding: 30px;
+  padding-top: 30px;
+  padding-right:30px ;
+  padding-left: 30px;
 }
 
 .group-buttons .social-login {
@@ -41,4 +41,10 @@ font-size: 30px;
 }
 .mat-form-field-wrapper {
   margin-left: 30%;
+}
+.register-account a{
+  margin-bottom: 20px;
+}
+.basic-login{
+  margin-top: 10px;
 }

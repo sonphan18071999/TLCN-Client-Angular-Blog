@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-content.component';
 import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
 import {CookieService} from 'ngx-cookie-service';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-index-post',
@@ -26,9 +27,9 @@ export class IndexPostComponent implements OnInit {
     }
  
   ngOnInit(): void {
+    AOS.init();
     this.page=0;
-    this.getDataPaging()
-
+    this.getDataPaging();
     if(this._cookieService.get("userIdLogged")!=''){
       this.showPostArticle=true;
     }

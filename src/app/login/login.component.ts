@@ -14,28 +14,7 @@ import {
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [CookieService],
-  animations:[
-    trigger('openClose', [
-      state('open', style({
-        height: '200px',
-        opacity: 1,
-        backgroundColor: 'yellow'
-      })),
-      state('closed', style({
-        height: '100px',
-        opacity: 0.5,
-        backgroundColor: 'green'
-      })),
-      transition('open => closed', [
-        animate('1s')
-      ]),
-      transition('closed => open', [
-        animate('0.5s')
-      ]),
-    ]),
-  ]
-
+  providers: [CookieService]
 })
 export class LoginComponent implements OnInit {
 
@@ -52,6 +31,10 @@ export class LoginComponent implements OnInit {
     this._cookieService.set( 'userIdLogged', "" );
     this._cookieService.set( 'userName', "" );
     this.fbLibrary();
+  }
+  
+  onLogin(){
+    alert("meow meow")
   }
   fbLibrary() {
   
@@ -106,6 +89,7 @@ export class LoginComponent implements OnInit {
         alert("Đăng nhập thành công!");
         this.router.navigate(['index']);
         this._cookieService.set( 'userIdLogged', res.user._id );
+        this._cookieService.set( 'userName', res.user.name );
       },
       err=>{
         alert("Mật khẩu hoặc tài khoản không đúng!");

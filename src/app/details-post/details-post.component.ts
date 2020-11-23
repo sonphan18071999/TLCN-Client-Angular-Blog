@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ApiServiceService} from '../APIServices/api-service.service'
-import {ActivatedRoute} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {SocketioService } from'./socketio.service'
+import AOS from 'aos';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -30,18 +32,24 @@ export class DetailsPostComponent implements OnInit {
   stateAnswer:boolean=true;
   infoUserComment:any;
   flag:boolean=true;
+  showBookMark:boolean=true;
+  infoAuthor : any = null;
+  allHashTag : any=null;
+  allRelatedArticle :any = null;
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
   constructor(private apiService: ApiServiceService,
-    private cookieService: CookieService, private socketService: SocketioService) {
-
+    private cookieService: CookieService, private socketService: SocketioService, 
+    private router: Router,
+    ) {
   }
-
   ngOnInit(): void {
+    /**Init animate */
+    AOS.init();
+    /**Init animate */
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');
-  
     /**Get article by id */
     this.apiService.getArticleById(this.idArticle).subscribe((res) => {
       this.article = res;
@@ -49,10 +57,18 @@ export class DetailsPostComponent implements OnInit {
       this.article=this.article.Aricle
       this.mainTitle=this.article.tittle;
       this.ContentInParts = this.article.content;
+      this.infoAuthor = res.Author;
+      this.allHashTag = res.hashTag;
+      this.allRelatedArticle = res.RelatedArticle;
+      // console.log(this.allRelatedArticle);
     })
     this.getAllComment();
-    
-   
+    /**Check saved article */
+    this.apiService.checkArticle(this.cookieService.get("userIdLogged"),this.idArticle).subscribe((ok)=>{
+      this.showBookMark=true;
+    },(er)=>{
+      this.showBookMark=false;
+    })
   }
   
   getAllComment(){
@@ -93,7 +109,10 @@ export class DetailsPostComponent implements OnInit {
   if(this.cookieService.get("userIdLogged")==''){
     alert("You are not logged in yet!!")
   }else{
-    if(this.idParentComment==null) //Khong reply comment
+    if(this.commentContent == null){
+      alert("Input cant be null")
+    }else{
+    if(this.idParentComment == null) //Khong reply comment
     {
       let commentParent = {
         "content":this.commentContent,
@@ -121,6 +140,7 @@ export class DetailsPostComponent implements OnInit {
          /**Configure socket io */
         this.autoReloadCommentRealTime();
       })
+    }
     }
   }
 
@@ -161,6 +181,26 @@ export class DetailsPostComponent implements OnInit {
       })
     }
    }
+  SaveArticle(){
+    this.apiService.saveArticle(this.cookieService.get("userIdLogged"), this.idArticle).subscribe(
+      (res) => {
+        if (res) {
+          alert("Save article successfully")
+          this.showBookMark=false;
+        }
+      }, (er) => {
+        alert("Unmark successfully")
+        this.showBookMark=true;
+      })
+  }
+  showDetailPost(id,title){
+    this.cookieService.set( 'idDetailArticle', id ); 
+    this.router.navigate(['/detail-post',title]);
+    // window.location.reload();
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };  
+  }
 }
 
 

@@ -2,12 +2,27 @@
   <!-- Side navigation -->
   <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
     <img src="../../assets/images/landscape.jpg" width="100%">
-    <ul>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
-      <li>Nội dung</li>
+    <ul >
+      <li>
+        <div class="menu-button-action">
+          <a href="/create-article">Post an Article</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action"> 
+          <a href="/create-article">Article waiting for approval</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action">
+          <a href="/create-article">Posted Article</a>
+        </div>
+      </li>
+      <li>
+        <div  class="menu-button-action">
+          <a href="/create-article">Save Article</a>
+        </div>
+      </li>
     </ul>
   </mat-drawer>
   <!-- Content index screen -->
@@ -21,42 +36,42 @@
     </button>
 
     <div class="container" *ngIf="ContentInParts!=null" >
-
       <div class="detail-content-post">
-        <mat-card>
+        <mat-card data-aos="fade-up"
+        data-aos-duration="1500" >
           <!-- Phan header article -->
           <h1><b>{{mainTitle}}</b></h1>
           <div style="display: flex;">
             <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
             <div style="display: flex;">
-              <div style="margin-left:10px">
-                <p><b>Phan Sơn</b></p>
-                <label><i>1,200 RP</i></label>
+              <div style="margin-left:10px;width: 100px;">
+                <a style="font-size: 20px;" href="/profile/{{infoAuthor._id}}" ><b>{{infoAuthor.name}}</b></a>
+                <p><i>Point: 1,200 RP</i></p>
               </div>
-              <button mat-stroked-button style="margin-top:5px; margin-left: 20px;height: 40px;">
-                <mat-icon>done</mat-icon> Follow author
+              <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;"  >
+                  <mat-icon>done</mat-icon>Follow author 
               </button>
             </div>
-            <button mat-button style="margin-left: 400px;">
-              <mat-icon>bookmark</mat-icon>
-              <mat-icon>bookmark_border</mat-icon>
+            <!-- Luu bai viet -->
+            <button mat-button style="margin-left: 340px;"(click)="SaveArticle()" >
+              <mat-icon *ngIf="showBookMark">bookmark_border</mat-icon>
+              <mat-icon *ngIf="!showBookMark">bookmark</mat-icon>
             </button>
             <button mat-button>
+            <!-- Luu bai viet -->
               <mat-icon>remove_red_eye</mat-icon> 14.000
             </button>
           </div>
           <!-- Phan header article -->
 
           <!-- Phan noi dung trong article -->
-          <div *ngFor="let content of ContentInParts">
+          <div *ngFor="let content of ContentInParts" class="container-article-detail">
             <br>
             <p [innerHtml]="content.partContent"></p>
             <img src={{content.images}} style="border-radius: 10px;" width="100%">
             <br>
-
           </div>
           <!-- Phan noi dung trong article -->
-
           <div style="display: flex;">
             <button mat-button>
               <mat-icon>favorite</mat-icon> Like
@@ -68,7 +83,7 @@
         </mat-card>
         <br>
         <mat-card>
-          <div class="edit1" *ngIf="allComment!=null">
+          <div class="edit1" *ngIf="allComment!=null" >
             <h2>Comment:</h2>
             <div *ngIf="allComment.Comment.length!=0">
               <div *ngFor="let comment of allComment.Comment; let i = index">
@@ -93,7 +108,7 @@
                         <mat-icon color="primary" style="font-size: 13px;">favorite</mat-icon>
                         <span class="tooltiptext" style="font-size: 10px;">Like</span>
                         <!-- <mat-icon *ngIf="stateLike!=i" color="warn"style="font-size: 13px;">favorite</mat-icon>
-                  <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
+                        <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
                       </button>
                       <button mat-button (click)="showAnswer(comment._id)">
                         <mat-icon *ngIf="stateAnswer==true" color="primary" style="font-size: 13px;">comment</mat-icon>
@@ -136,7 +151,6 @@
                   </button>
                   <p style="padding: 10px;" class="cancel-comment-hide">Cancel reply</p>
                 </div>
-  
                 <div>
                   <br>
                   <ckeditor id="ckeditor" [editor]="Editor"
@@ -173,7 +187,43 @@
           </div>
         </mat-card>
         <br>
+         <!-- Hiển thị hashtag liên quan -->
+        <mat-card>
+          <h3>Hashtag</h3>
+          <div style="display: flex;" >
+            <div *ngFor="let item of allHashTag" >
+              <button mat-button>#{{item.name}}</button>
+            </div>
+          </div>
+        </mat-card>        
+        <!-- Hiển thị hashtag liên quan -->
+        <br>
+        <!-- Hiển thị những bài viết liên quan -->
+        <div style="  display: flex; 
+                width: 956px;
+                flex-wrap: wrap;">
+          <div class="related-article" *ngFor="let item of allRelatedArticle">
+            <mat-card (click)="showDetailPost(item._id,item.tittle)">
+              <img src="{{item.AvatarPost}}" width="240px" height="120px">
+              <h3 style="overflow: hidden;
+                    width: 240px;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* number of lines to show */
+                    -webkit-box-orient: vertical;"><b>{{item.tittle}}</b></h3>
+              <p style="overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; /* number of lines to show */
+                    -webkit-box-orient: vertical;width: 240px;">{{item.description}}</p>
+            </mat-card>
+          </div>
+        </div>
+        <!-- Hiển thị những bài viết liên quan -->
+      
       </div>
+      <br>
+      <br>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

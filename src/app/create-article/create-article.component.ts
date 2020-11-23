@@ -21,11 +21,13 @@ import {MatChipInputEvent} from '@angular/material/chips';
 export class CreateArticleComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  Article= new Article()
+  Article = new Article()
   public Editor=ClassicEditor;
   localUrl: any[];
   MainImage:string;
   isLoaded:boolean=true;
+  arrHashTag:any[]
+
   constructor(private _formBuilder: FormBuilder,
     private createArticleService:CreateArticleService,
     private cookieService:CookieService) { }
@@ -101,16 +103,22 @@ export class CreateArticleComponent implements OnInit {
   }
   submitArticle(){
     this.isLoaded=false;
+    this.Article.hashTag = [{name:"empty"}]
+    this.hashTags.forEach(element => {
+      this.Article.hashTag.push({name:element.name})
+    });  
+
     this.createArticleService.submitArticle(this.Article).subscribe(res=>{
       console.log(res);
-      alert("Create artcle successfully");
+      alert("Create article successfully");
       if(res){
         this.isLoaded=true;
       }
+    },err=>{
+      alert("Create article failed");
     }
-
     );
-    console.log(this.Article);
+    // console.log(this.Article);
   }
   resetForm(){
     
@@ -120,10 +128,10 @@ export class CreateArticleComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruits: Fruit[] = [
-    {name: 'Lemon'},
-    {name: 'Lime'},
+  hashTags: HashTag[] = [
+    {name: 'Samsung'},
     {name: 'Apple'},
+    {name: 'Funny'},
   ];
 
   add(event: MatChipInputEvent): void {
@@ -132,7 +140,7 @@ export class CreateArticleComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push({name: value.trim()});
+      this.hashTags.push({name: value.trim()});
     }
 
     // Reset the input value
@@ -141,15 +149,15 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(hashTag: HashTag): void {
+    const index = this.hashTags.indexOf(hashTag);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.hashTags.splice(index, 1);
     }
   }
 
 }
-export interface Fruit {
+export interface HashTag {
   name: string;
 }
