@@ -35,6 +35,9 @@
       <mat-icon>menu</mat-icon>
     </button>
 
+    <div *ngIf="ContentInParts==null">
+      <img src="../../assets/images/loading.gif" width="1480px" height="600px">
+    </div>
     <div class="container" *ngIf="ContentInParts!=null" >
       <div class="detail-content-post">
         <mat-card data-aos="fade-up"

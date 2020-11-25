@@ -1,4 +1,7 @@
 
+<div *ngIf="popularArticle==null">
+    <img src="../../assets/images/loading.gif" width="1480px" height="600px">
+</div>
 <div class="container" *ngIf="popularArticle!=null">
     
     <!-- Post article part -->
@@ -19,7 +22,7 @@
             </mat-card>
             <mat-card  data-aos="fade-right" data-aos-duration="1000">
                 <div  class="popular-article" >
-                    <img src="{{popularArticle.AvatarPost}}" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
+                    <img src="{{popularArticle.AvatarPost}}" height="250px"  (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" width="450px">
                     <div class="popular-article-right">
                         <h2 class="title-article" (click)="showDetailPost(popularArticle._id,popularArticle.tittle)" >{{popularArticle.tittle}}</h2>
                         <p class="desciption" >{{popularArticle.description}}

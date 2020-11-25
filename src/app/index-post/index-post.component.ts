@@ -44,9 +44,7 @@ export class IndexPostComponent implements OnInit {
   }
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
-
     this.router.navigate(['/detail-post',title]);
-
     // alert(id);
   }
   openDialog() {

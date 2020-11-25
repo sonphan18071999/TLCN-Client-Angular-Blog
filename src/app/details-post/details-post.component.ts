@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
-  styleUrls: ['./details-post.component.scss']
+  styleUrls: ['./details-post.component.scss'],
+  providers:[CookieService]
 })
 export class DetailsPostComponent implements OnInit {
   public Editor=ClassicEditor
@@ -69,6 +70,7 @@ export class DetailsPostComponent implements OnInit {
     },(er)=>{
       this.showBookMark=false;
     })
+
   }
   
   getAllComment(){
@@ -80,11 +82,10 @@ export class DetailsPostComponent implements OnInit {
     /**Get article by comment */
   }
   getUserInfo(idUser){
-    console.log("Beollo world")
-      this.apiService.getInforUser(idUser).subscribe((user)=>{
-        // this.infoUserComment=user;
-        console.log("Thong tin moi nguoi dung comment"+user)  
-        })
+  this.apiService.getInforUser(idUser).subscribe((user)=>{
+    // this.infoUserComment=user;
+    console.log("Thong tin moi nguoi dung comment"+user)  
+    })
   }
   changeState(){
     if(this.isShowForm==false){
@@ -193,14 +194,7 @@ export class DetailsPostComponent implements OnInit {
         this.showBookMark=true;
       })
   }
-  showDetailPost(id,title){
-    this.cookieService.set( 'idDetailArticle', id ); 
-    this.router.navigate(['/detail-post',title]);
-    // window.location.reload();
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };  
-  }
+  
 }
 
 

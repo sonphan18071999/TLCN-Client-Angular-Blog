@@ -40,6 +40,10 @@ export class ApiServiceService {
   public getAllArticlePostedByUser(idUser){
     return this.httpClient.get<any>(this.url+"get-all-article-posted-by-user",{"observe":"body","responseType":"json","params":{id:idUser}});
   }
+  //5. Get saved article by specific user
+  public getAllSavedArticleByUser(idUser){
+    return this.httpClient.post<any>(this.url+"get-saved-article-by-user",{idUser:idUser});
+  }
   /**Artcile Session */
 
 
