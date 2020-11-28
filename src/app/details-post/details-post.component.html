@@ -62,10 +62,11 @@
               <mat-icon *ngIf="showBookMark">bookmark_border</mat-icon>
               <mat-icon *ngIf="!showBookMark">bookmark</mat-icon>
             </button>
-            <button mat-button>
+            <button mat-button (click)="openDialog()">
             <!-- Luu bai viet -->
-              <mat-icon>remove_red_eye</mat-icon> 14.000
+              <mat-icon>report_problem</mat-icon> Report
             </button>
+            
           </div>
           <!-- Phan header article -->
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { observable } from 'rxjs';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +81,16 @@ export class ApiServiceService {
     /**User account session */
 
 
+    /**Report Article */
+  public reportArticle(idArticle,idUser,reason){
+    return this.httpClient.post<any>(this.url+'create-report',{
+      "idArticle":idArticle,
+      "userReport":[{
+        "idUser":idUser,
+        "Reason":reason
+      }]
+    })
+  }
+    /**Report Article */
 
 }

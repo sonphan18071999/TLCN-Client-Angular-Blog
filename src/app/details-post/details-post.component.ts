@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ApiServiceService} from '../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -6,7 +6,8 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {SocketioService } from'./socketio.service'
 import AOS from 'aos';
 import { Router } from '@angular/router';
-
+import {MatDialog} from '@angular/material/dialog';
+import {ReportArticleComponent} from '../report-article/report-article.component'
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -37,12 +38,13 @@ export class DetailsPostComponent implements OnInit {
   infoAuthor : any = null;
   allHashTag : any=null;
   allRelatedArticle :any = null;
+
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
   constructor(private apiService: ApiServiceService,
     private cookieService: CookieService, private socketService: SocketioService, 
-    private router: Router,
+    private router: Router,public dialog: MatDialog
     ) {
   }
   ngOnInit(): void {
@@ -70,7 +72,6 @@ export class DetailsPostComponent implements OnInit {
     },(er)=>{
       this.showBookMark=false;
     })
-
   }
   
   getAllComment(){
@@ -143,15 +144,11 @@ export class DetailsPostComponent implements OnInit {
       })
     }
     }
-  }
-
-    
+  } 
    }
    autoReloadCommentRealTime(){
     this.socketService.emit('broadcast','typing user');
-    
     this.socketService.listen('update state comment').subscribe((data)=>{
-      // console.log(data);
       if(data){
         this.getAllComment();
       }
@@ -194,13 +191,8 @@ export class DetailsPostComponent implements OnInit {
         this.showBookMark=true;
       })
   }
-  
+  openDialog() {
+    this.dialog.open(ReportArticleComponent);
+  }
 }
-
-
-
-
-
-
-
 

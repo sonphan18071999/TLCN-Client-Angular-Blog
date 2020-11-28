@@ -16,6 +16,8 @@ import { SocketioService } from './details-post/socketio.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterAccountComponent } from './register-account/register-account.component';
 import { WaitingApprovalArticleComponent } from './waiting-approval-article/waiting-approval-article.component';
+import {ReportArticleComponent} from './report-article/report-article.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { WaitingApprovalArticleComponent } from './waiting-approval-article/wait
     UserProfileComponent,
     RegisterAccountComponent,
     WaitingApprovalArticleComponent,
+    ReportArticleComponent
   ],
   imports: [
     BrowserModule,

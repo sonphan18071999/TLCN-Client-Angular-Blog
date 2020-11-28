@@ -1,4 +1,4 @@
-import {Component, OnInit,HostListener } from '@angular/core';
+import {Component, OnInit,HostListener,Inject  } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -9,6 +9,7 @@ import {CreateArticleService }from './create-article.service'
 import {CookieService} from 'ngx-cookie-service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-create-article',
@@ -30,7 +31,7 @@ export class CreateArticleComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private createArticleService:CreateArticleService,
-    private cookieService:CookieService) { }
+    private cookieService:CookieService,@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     /**Khai bao part cua mat-stepper */
@@ -113,6 +114,7 @@ export class CreateArticleComponent implements OnInit {
       alert("Create article successfully");
       if(res){
         this.isLoaded=true;
+        this.document.location.reload();
       }
     },err=>{
       alert("Create article failed");

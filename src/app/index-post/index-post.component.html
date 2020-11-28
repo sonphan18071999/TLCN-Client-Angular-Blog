@@ -48,7 +48,7 @@
                         </p>
                     </div>
                     <h4>Author: <a href="#">Son Phan.</a></h4> 
-                    <label> <i>{{article.postedOn}} || 6 mins ago</i></label>
+                    <label > <i>{{article.postedOn}}</i></label>
                     <br>
                     <br>
                     <div style="display: flex; ">
@@ -61,8 +61,7 @@
                 </div>
             </mat-card>
         </div>
-        <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin:auto" *ngIf="allArticle==null">
-
+        <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin-left: 300px;" *ngIf="allArticle==null">
         <div class="group-button-paging">
             <button mat-button (click)="previousPage()">Previous</button>
             <button mat-button>{{page}}</button>

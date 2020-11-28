@@ -38,9 +38,27 @@ export class IndexPostComponent implements OnInit {
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
       this.allArticle=data;
       this.popularArticle = this.allArticle.PopularArticle;
-      this.allArticle=this.allArticle.Article;
-      console.log(this.allArticle)
+      this.allArticle=this.allArticle.Article;  // Lấy tất cả những bài viết
+       //Tiến hình đổi giờ mặc định sang string.
+      this.convertTimeToString(this.allArticle);
     })
+  }
+  convertTimeToString(data){
+    //Đổi thành đã đăng cách đây mấy giờ
+    var currentDate = new Date();
+    for(var item of data){
+      if(item.postedOn.substring(0,4)==currentDate.getFullYear() &&
+      item.postedOn.substring(5,7)==currentDate.getMonth()+1 &&
+      item.postedOn.substring(8,10)==currentDate.getDate() )
+      {
+        // Nếu thời gian trong ngày hiện tại mới đổi. Không vẫn giữ nguyên
+        item.postedOn =currentDate.getHours()- item.postedOn.substring(11,13)   +" hours a go"
+      }else{
+        item.postedOn = item.postedOn.substring(0,10)
+      }
+      console.log("Gio"+item.postedOn.substring(11,13))
+     console.log(item.postedOn.substring(11,19))
+    }
   }
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
