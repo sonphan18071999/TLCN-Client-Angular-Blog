@@ -58,9 +58,8 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/detail-post',title]);
   }
   showSavedArticle(){
-    var idUser = this.cookieService.get( 'userIdLogged'); 
     this.countSavedArticle+=4;
-    this.apiServiceService.getAllSavedArticleByUser(idUser).subscribe(res=>{
+    this.apiServiceService.getAllSavedArticleByUser(this.id).subscribe(res=>{
       this.allSavedArticle =res.SavedArticle
     })
   }
