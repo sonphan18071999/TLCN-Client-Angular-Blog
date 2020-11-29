@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   showArticleNumber:number;
   allSavedArticle :any;
   countSavedArticle :number=0;
+  inforUser:any;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiServiceService:ApiServiceService,
@@ -40,6 +41,13 @@ export class UserProfileComponent implements OnInit {
     //Clear idArticle
     this.cookieService.delete('idDetailArticle','/');
     this.cookieService.delete('idDetailArticle','/profile');
+
+
+    /**Lấy information của người dùng */
+    this.apiServiceService.getInforUser(this.id).subscribe(res=>{
+      this.inforUser=res.UserInfo;
+    });
+    /**Lấy information của người dùng */
   }
   showMoreArticle(){
     this.showArticleNumber+=4;
