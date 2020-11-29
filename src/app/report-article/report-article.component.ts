@@ -23,27 +23,34 @@ export class ReportArticleComponent implements OnInit {
     
   }
   sendReport(){
-    this.reason+=this.TextArea.toString();
-    if(this.CFTR){
+    if(this.TextArea!=null)
+    {
+      this.reason+=this.TextArea.toString();
+    }
+    if(this.CFTR !=null){
       this.reason+="Content conflict the rules;"
     }
-    if(this.SAA){
+    if(this.SAA !=null){
       this.reason+="Spam/Advertise article;"
     }
-    if(this.BTS){
+    if(this.BTS !=null){
       this.reason+="Break the subject;"
     }
-    if(this.BW){
+    if(this.BW !=null){
       this.reason+="Bad word;"
     }
-    if(this.DLOBM){
+    if(this.DLOBM!=null){
       this.reason+="Deliberately lashing out blog members;"
     }
-    alert("hello world")
-    this.apiServiceService.reportArticle(this.cookieService.get("idArticle"),
+    this.apiServiceService.reportArticle(
+    this.cookieService.get("idDetailArticle"),
     this.cookieService.get("userIdLogged"),this.reason
     ).subscribe(res=>{
-      alert("Report thanh cong "+ res.Message)
+      if(res.Message =="Report Limited"){
+        alert("Report has reach limited")
+      }else{
+        alert("Report successfully")
+      }
     })
   }
 

@@ -52,12 +52,10 @@ export class IndexPostComponent implements OnInit {
       item.postedOn.substring(8,10)==currentDate.getDate() )
       {
         // Nếu thời gian trong ngày hiện tại mới đổi. Không vẫn giữ nguyên
-        item.postedOn =currentDate.getHours()- item.postedOn.substring(11,13)   +" hours a go"
+        item.postedOn =currentDate.getHours()- item.postedOn.substring(11,13)-8   +" hours a go"
       }else{
         item.postedOn = item.postedOn.substring(0,10)
       }
-      console.log("Gio"+item.postedOn.substring(11,13))
-     console.log(item.postedOn.substring(11,19))
     }
   }
   showDetailPost(id,title){

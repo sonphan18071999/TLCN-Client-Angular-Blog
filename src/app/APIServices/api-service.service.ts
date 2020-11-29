@@ -84,7 +84,7 @@ export class ApiServiceService {
     /**Report Article */
   public reportArticle(idArticle,idUser,reason){
     return this.httpClient.post<any>(this.url+'create-report',{
-      "idArticle":idArticle,
+      idArticle:idArticle,
       "userReport":[{
         "idUser":idUser,
         "Reason":reason
