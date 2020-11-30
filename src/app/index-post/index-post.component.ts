@@ -20,6 +20,7 @@ export class IndexPostComponent implements OnInit {
   popularArticle:any;
   page:any;
   showPostArticle:boolean=false;
+  author:any;
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
@@ -36,9 +37,12 @@ export class IndexPostComponent implements OnInit {
   }
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
+      console.log(data);
       this.allArticle=data;
+      this.author=this.allArticle.Author
       this.popularArticle = this.allArticle.PopularArticle;
       this.allArticle=this.allArticle.Article;  // Lấy tất cả những bài viết
+      console.log(this.allArticle);
        //Tiến hình đổi giờ mặc định sang string.
       this.convertTimeToString(this.allArticle);
     })
@@ -85,8 +89,6 @@ export class IndexPostComponent implements OnInit {
     // reader.readAsDataURL(files[0]);
     // console.log(reader.readAsDataURL(files[0]))
   }
-  
-
   postImage(){
     var a ={
       photo:URL.createObjectURL(this.imagePath[0])

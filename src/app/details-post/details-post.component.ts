@@ -145,7 +145,7 @@ export class DetailsPostComponent implements OnInit {
     }
     }
   } 
-   }
+  }
    autoReloadCommentRealTime(){
     this.socketService.emit('broadcast','typing user');
     this.socketService.listen('update state comment').subscribe((data)=>{
