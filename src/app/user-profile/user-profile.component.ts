@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   allSavedArticle :any;
   countSavedArticle :number=0;
   inforUser:any;
+  official_user: Boolean=false;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiServiceService:ApiServiceService,
@@ -48,6 +49,13 @@ export class UserProfileComponent implements OnInit {
       this.inforUser=res.UserInfo;
     });
     /**Lấy information của người dùng */
+
+
+    /**Kiểm tra xem người dùng thật hay là guest*/
+    if(this.cookieService.get("userIdLogged")==this.id){
+      this.official_user=true;
+    }
+    /**Kiểm tra xem người dùng thật hay là guest*/
   }
   showMoreArticle(){
     this.showArticleNumber+=4;

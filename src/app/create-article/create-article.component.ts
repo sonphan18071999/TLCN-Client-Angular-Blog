@@ -57,9 +57,7 @@ export class CreateArticleComponent implements OnInit {
   }
   addMoreContent(){
     this.Article.content.push({partContent:null,images:null})
-
     console.log(this.Article)
-   
   }
   
   showPreviewImage(event: any,index) {
@@ -150,7 +148,10 @@ export class CreateArticleComponent implements OnInit {
       input.value = '';
     }
   }
-
+  removeTextEditor(order){
+    delete this.Article.content[order].partContent;
+    console.log(this.Article);
+  }
   remove(hashTag: HashTag): void {
     const index = this.hashTags.indexOf(hashTag);
 

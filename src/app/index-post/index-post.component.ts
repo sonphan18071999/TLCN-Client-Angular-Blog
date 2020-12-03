@@ -37,29 +37,44 @@ export class IndexPostComponent implements OnInit {
   }
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
-      console.log(data);
       this.allArticle=data;
       this.author=this.allArticle.Author
+
       this.popularArticle = this.allArticle.PopularArticle;
+      this.convertTimeToString(this.popularArticle);
       this.allArticle=this.allArticle.Article;  // Lấy tất cả những bài viết
-      console.log(this.allArticle);
        //Tiến hình đổi giờ mặc định sang string.
-      this.convertTimeToString(this.allArticle);
+       this.convertTimeToString(this.allArticle);
+       console.log(this.allArticle);
     })
   }
+
   convertTimeToString(data){
     //Đổi thành đã đăng cách đây mấy giờ
     var currentDate = new Date();
-    for(var item of data){
-      if(item.postedOn.substring(0,4)==currentDate.getFullYear() &&
-      item.postedOn.substring(5,7)==currentDate.getMonth()+1 &&
-      item.postedOn.substring(8,10)==currentDate.getDate() )
-      {
-        // Nếu thời gian trong ngày hiện tại mới đổi. Không vẫn giữ nguyên
-        item.postedOn =currentDate.getHours()- item.postedOn.substring(11,13)-8   +" hours a go"
-      }else{
-        item.postedOn = item.postedOn.substring(0,10)
+    if(data.length>1){
+      for(var item of data){
+        if(item.Article.postedOn.substring(0,4)==currentDate.getFullYear() &&
+        item.Article.postedOn.substring(5,7)==currentDate.getMonth()+1 &&
+        item.Article.postedOn.substring(8,10)==currentDate.getDate() )
+        {
+          // Nếu thời gian trong ngày hiện tại mới đổi. Không vẫn giữ nguyên
+          item.Article.postedOn =currentDate.getHours()- item.Article.postedOn.substring(11,13)-7   +" hours a go"
+        }else{
+          item.Article.postedOn = item.Article.postedOn.substring(0,10)
+        }
       }
+    }else{
+     console.log(data.Article);
+     if(data.Article.postedOn.substring(0,4)==currentDate.getFullYear() &&
+        data.Article.postedOn.substring(5,7)==currentDate.getMonth()+1 &&
+        data.Article.postedOn.substring(8,10)==currentDate.getDate() )
+        {
+          // Nếu thời gian trong ngày hiện tại mới đổi. Không vẫn giữ nguyên
+          data.Article.postedOn =currentDate.getHours()- data.Article.postedOn.substring(11,13)-7   +" hours a go"
+        }else{
+          data.Article.postedOn = data.Article.postedOn.substring(0,10)
+        }
     }
   }
   showDetailPost(id,title){

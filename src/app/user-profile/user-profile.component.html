@@ -96,14 +96,14 @@
                 <!-- Hiển thị những bài viết đã đăng -->
 
                 <!-- Hiển thị những bài viết đã lưu -->
-                <mat-tab label="Saved Article" >
+                <mat-tab label="Saved Article"  *ngIf="official_user">
                   <ng-template mat-tab-label>
-                    <span (click)="showSavedArticle()">Saved Article </span>
+                    <span (click)="showSavedArticle()">Saved Article</span>
                   </ng-template>
 
                   <mat-card class="mat-card-container-saved-article">
-                    <div *ngFor="let item of allSavedArticle"  class="container-saved-article">
-                      <mat-card class="outer-saved-article" (click)="showDetailArticle(item._id,item.tittle)"> 
+                    <div *ngFor="let item of allSavedArticle" class="container-saved-article">
+                      <mat-card class="outer-saved-article" (click)="showDetailArticle(item._id,item.tittle)">
                         <div class="saved-article">
                           <div class="left-saved-article">
                             <img src="{{item.AvatarPost}}">

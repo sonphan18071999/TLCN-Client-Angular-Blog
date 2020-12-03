@@ -2,9 +2,7 @@
     width: 80%;
     margin: auto;
 }
-.mat-form-field {
-    margin-top: 16px;
-  }
+
 
   .choose::-webkit-file-upload-button {
     color: white;
@@ -69,6 +67,10 @@
   font-family: Tahoma, Geneva, Verdana;
   margin-top: 10px;
 }
+.tiny-article-right{
+  margin-left: 30px;
+  width: 700px;
+}
 .tiny-article-right textarea{
   width: 99%;
   min-height: 150px;
@@ -80,8 +82,8 @@
 }
 .choose-file{
   position: absolute;
-  margin-left: 139px;
-  margin-top: -163px;
+  margin-left: 90px;
+  margin-top: 270px;
 }
 .choose-file::-webkit-file-upload-button {
   color: white;
@@ -100,9 +102,9 @@
 .group-go-next-page{
   margin-left: 10px;
 }
-.secondFormGroup mat-card{
- 
-}
 .example-chip-list {
   width: 100%;
+}
+.secondFormGroup{
+  display: flex;
 }

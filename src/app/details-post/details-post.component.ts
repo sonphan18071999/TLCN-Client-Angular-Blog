@@ -194,5 +194,12 @@ export class DetailsPostComponent implements OnInit {
   openDialog() {
     this.dialog.open(ReportArticleComponent);
   }
+  showDetailPost(id,title){
+    this.cookieService.set( 'idDetailArticle', id ); // To Set Cookie
+    this.router.navigate(['/detail-post',title]);
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };  
+  }
 }
 

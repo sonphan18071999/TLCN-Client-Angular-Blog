@@ -128,16 +128,16 @@ mat-icon {
  .popular-article h2:hover{
      cursor: pointer;
  }
-
- .tiny-article{
-     width: 28.5%;
-     margin: 0.9%;
-     max-height: 10%;
- }
  .article-below-popular{
-     display:flex;
-     flex-wrap: wrap;
- }
+    display: flex;
+    flex-wrap: wrap;
+}
+.article-below-popular mat-card{
+    flex: 1 1 5%;
+    width: 25%;
+    max-height: 530px;
+}
+
 .desciption{
     overflow: hidden;
     text-overflow: ellipsis;

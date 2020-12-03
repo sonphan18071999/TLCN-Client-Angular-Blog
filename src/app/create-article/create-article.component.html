@@ -6,8 +6,8 @@
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your content</ng-template>
             <div class="content-article" *ngFor="let content of Article.content; let i=index"  >
-               <div class="Editor-Content">
-                <button class="btn-remove-editor" mat-button color="warn"> <mat-icon>remove_circle_outline</mat-icon></button>
+               <div class="Editor-Content" *ngIf="content.partContent!==undefined">
+                <button class="btn-remove-editor" mat-button color="warn" (click)="removeTextEditor(i)"> <mat-icon>remove_circle_outline</mat-icon></button>
                 <ckeditor type="text"
                  (change)="saveEditor($event,i)"  
                   [ngModelOptions]="{standalone: true}"  [editor]="Editor"  
@@ -28,37 +28,40 @@
                 <button mat-raised-button color="primary" (click)="addMoreContent()" style="margin-left: 47%;"><mat-icon>add</mat-icon>Content</button>
 
             <div class="group-go-next-page">
-              <p>Go to next step</p>
+              <p><i>Go to next step</i></p>
               <button mat-button matStepperNext>Next</button>
             </div>
           </form>
         </mat-step>
+
+        <!-- Tittle Image and Description -->
         <mat-step [stepControl]="secondFormGroup" errorMessage="Title for article is required">
           <form [formGroup]="secondFormGroup" class="secondFormGroup">
             <ng-template matStepLabel>Fill out display content</ng-template>
-            <mat-card class="tiny-article">
-              <img [src]="MainImage" width="100%" > 
+            <img [src]="MainImage" width="500px" height="400px">
+            <input type="file" class="choose-file" (change)="showPreviewMainImage($event)">
+            <br>
+            <div class="tiny-article-right">
+              <mat-form-field appearance="fill">
+                <mat-label>Fill out title</mat-label>
+                <input matInput placeholder="Ex: [SS]:New technology..." (change)="saveTitleArticle($event.target.value)">
+                <mat-icon matSuffix>title</mat-icon>
+              </mat-form-field>
               <br>
-              <div class="tiny-article-right">
-                  <input type="file" class="choose-file" (change)="showPreviewMainImage($event)">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Fill out title</mat-label>
-                    <input matInput placeholder="Ex: [SS]:New technology..." (change)="saveTitleArticle($event.target.value)">
-                    <mat-icon matSuffix>title</mat-icon>
-                  </mat-form-field>
-                  <br>
-                  <textarea placeholder="Description for article..." (change)="saveDescriptionArticle($event.target.value)"></textarea>
-                  <br>
-              </div>
-          </mat-card>
-
-            <div class="group-go-next-page">
-              <p>Go to a different step to see the error state</p>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <textarea placeholder="Description for article..."
+                (change)="saveDescriptionArticle($event.target.value)"></textarea>
+              <br>
             </div>
           </form>
+          <br>
+          <br>
+          <div class="group-go-next-page">
+            <p><i>Go to a different step to see the error state</i></p>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
         </mat-step>
+        <!-- Tittle Image and Description -->
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
           <!-- Hashtag -->
