@@ -9,7 +9,14 @@
   width: 100%;
   height: 100%;
 }
-
+.container{
+  width: 900px;
+}
+.container .button-configure-article{
+  margin-left: 820px;
+  position: fixed;
+  margin-top: 5px;
+}
 mat-drawer-content {
   display: flex;
   flex-direction: column;
@@ -63,6 +70,7 @@ mat-drawer-content .container{
   width: auto;
 }
 .detail-content-post h1{
+  width: 800px;
   font-size: 30px;
   font-family:  Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;

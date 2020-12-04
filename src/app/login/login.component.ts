@@ -2,6 +2,8 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import {LoginService} from'./login.service';
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
+
 import {
   trigger,
   state,
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
   typeAccount:String;
   userName:String;
   constructor(private loginService:LoginService,private router: Router,
-    private _cookieService:CookieService, private ngZone:NgZone) { }
+    private _cookieService:CookieService, private ngZone:NgZone, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.typeAccount="normal"
@@ -86,13 +88,13 @@ export class LoginComponent implements OnInit {
   submit():void{
   this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
       res=>{
-        alert("Đăng nhập thành công!");
+        this.toastr.success('Login successfully', 'Login');
         this.router.navigate(['index']);
         this._cookieService.set( 'userIdLogged', res.user._id );
         this._cookieService.set( 'userName', res.user.name );
       },
       err=>{
-        alert("Mật khẩu hoặc tài khoản không đúng!");
+        this.toastr.error('Username or password not correct', 'Login');
         // this._cookieService.set( 'userIdLogged', "null" );
       }
     )

@@ -43,6 +43,21 @@
         <mat-card data-aos="fade-up"
         data-aos-duration="1500" >
           <!-- Phan header article -->
+          <!--Button Edit bai viet. Danh cho author cua bai viet-->
+          <button mat-icon-button *ngIf="showConfigureArticleButton"  [matMenuTriggerFor]="configureArticle" class="button-configure-article" >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #configureArticle="matMenu">        
+            <button mat-menu-item >
+              <mat-icon>edit</mat-icon>
+              <span>Edit article</span>
+            </button>
+            <button mat-menu-item >
+              <mat-icon>delete</mat-icon>
+              <span>Delete article</span>
+            </button>
+          </mat-menu>
+          <!--Button Edit bai viet. Danh cho author cua bai viet-->
           <h1><b>{{mainTitle}}</b></h1>
           <div style="display: flex;">
             <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
@@ -53,10 +68,11 @@
                 <br>
                 <p><i>Point: 1,200 RP</i></p>
               </div>
-              <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;"  >
+              <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;" (click)="FollowAuthor()">
                   <mat-icon>done</mat-icon>Follow author 
               </button>
             </div>
+           
             <!-- Luu bai viet -->
             <button mat-button style="margin-left: 340px;"(click)="SaveArticle()" >
               <mat-icon *ngIf="showBookMark">bookmark_border</mat-icon>

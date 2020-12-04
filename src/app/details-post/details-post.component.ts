@@ -8,6 +8,8 @@ import AOS from 'aos';
 import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ReportArticleComponent} from '../report-article/report-article.component'
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -38,13 +40,13 @@ export class DetailsPostComponent implements OnInit {
   infoAuthor : any = null;
   allHashTag : any=null;
   allRelatedArticle :any = null;
-
+  showConfigureArticleButton: Boolean = false;
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
   constructor(private apiService: ApiServiceService,
     private cookieService: CookieService, private socketService: SocketioService, 
-    private router: Router,public dialog: MatDialog
+    private router: Router,public dialog: MatDialog,private toastr: ToastrService
     ) {
   }
   ngOnInit(): void {
@@ -72,6 +74,9 @@ export class DetailsPostComponent implements OnInit {
     },(er)=>{
       this.showBookMark=false;
     })
+
+    //Check author authenitcation to show button confiure article
+    this.checkAuthor();
   }
   
   getAllComment(){
@@ -122,11 +127,17 @@ export class DetailsPostComponent implements OnInit {
         "idArticle":this.idArticle,
         "nameUser":this.cookieService.get("userName")
       }
+      /**Post comment  */
       this.apiService.postCommentParent(commentParent).subscribe((data)=>{  
         this.getAllComment();
          /**Configure socket io */
       this.autoReloadCommentRealTime();
       })
+      /**Post comment  */
+
+      /**Post announcement */
+
+      /**Post announcement */
     }
     else{
       let commentChild = {
@@ -173,21 +184,35 @@ export class DetailsPostComponent implements OnInit {
         idArticle:this.idArticle,
         "nameUser":this.cookieService.get("userName")
       }
+
+      /**Post comment */
       this.apiService.postCommentParent(comment).subscribe((data)=>{  
         this.getAllComment();
         this.autoReloadCommentRealTime();
       })
+      /**Post comment */
+
+      /**Post Announcement */
+      this.apiService.createAnnouncement(this.cookieService.get("userIdLogged"),
+      "đã comment vào bài viết","Comment",this.idArticle).subscribe((data)=>{
+        if(data.announcement!=null){
+          console.log("Cant save announcement");
+        }else{
+          console.log("Save annoucement successfully");
+        }
+      })
+      /**Post Announcement */
     }
    }
   SaveArticle(){
     this.apiService.saveArticle(this.cookieService.get("userIdLogged"), this.idArticle).subscribe(
       (res) => {
         if (res) {
-          alert("Save article successfully")
+          this.toastr.success('Save article successfully', 'Announcement!');
           this.showBookMark=false;
         }
       }, (er) => {
-        alert("Unmark successfully")
+        this.toastr.success('Unmark successfully', 'Announcement!');
         this.showBookMark=true;
       })
   }
@@ -200,6 +225,18 @@ export class DetailsPostComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };  
+  }
+  FollowAuthor(){
+    this.toastr.success('Follow author success', 'Announcement!');
+  }
+  checkAuthor(){
+  this.apiService.checkAuthorOfArticle(this.idArticle,this.cookieService.get("userIdLogged")).subscribe(data=>{
+       if(data.Message=="Unauthenticated"){
+         this.showConfigureArticleButton=false;
+       }else{
+         this.showConfigureArticleButton=true
+       }
+  })
   }
 }
 

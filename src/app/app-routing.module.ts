@@ -8,6 +8,7 @@ import { formatNumber } from '@angular/common';
 import {CreateArticleComponent } from './create-article/create-article.component';
 import {UserProfileComponent} from'./user-profile/user-profile.component'
 import {RegisterAccountComponent} from './register-account/register-account.component'
+import {AdminCMSComponent} from './admin-cms/admin-cms.component'
 const routes: Routes = [
 {path: 'login',component:LoginComponent},
 {path:'index',component:IndexScreenComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
 {path:'create-article',component:CreateArticleComponent},
 {path:'profile/:id',component:UserProfileComponent},
 {path:'register-account',component:RegisterAccountComponent},
+{path:'admin/index',component:AdminCMSComponent},
 {path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
 ];
 

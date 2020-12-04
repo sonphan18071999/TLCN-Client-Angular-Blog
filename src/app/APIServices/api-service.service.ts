@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { observable } from 'rxjs';
 import { resetFakeAsyncZone } from '@angular/core/testing';
+import { strict } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,13 @@ export class ApiServiceService {
   //5. Get saved article by specific user
   public getAllSavedArticleByUser(idUser){
     return this.httpClient.post<any>(this.url+"get-saved-article-by-user",{idUser:idUser});
+  }
+
+  //6. Check author of article to show button edit
+  public checkAuthorOfArticle(idArticle,idUser){
+    return this.httpClient.post<any>(this.url+"check-author",
+    {"idArticle":idArticle,
+    "idUser":idUser})
   }
   /**Artcile Session */
 
@@ -93,4 +101,16 @@ export class ApiServiceService {
   }
     /**Report Article */
 
+    /**Annoucement */
+  public createAnnouncement(idUser,description,typeComment,idArticle){
+    return this.httpClient.post<any>(this.url + "create-annoucement",{
+      "annoucement":{
+        "idUser": idUser,
+       "description":description,
+       "typeComment": typeComment,
+       "idArticle": idArticle
+       }
+    })
+  }
+    /**Annoucement */
 }

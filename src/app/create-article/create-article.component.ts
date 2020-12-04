@@ -10,7 +10,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { DOCUMENT } from '@angular/common';
-
+import { ToastrService} from 'ngx-toastr'
 @Component({
   selector: 'app-create-article',
   templateUrl: './create-article.component.html',
@@ -31,7 +31,8 @@ export class CreateArticleComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private createArticleService:CreateArticleService,
-    private cookieService:CookieService,@Inject(DOCUMENT) private document: Document) { }
+    private cookieService:CookieService,@Inject(DOCUMENT) private document: Document,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
     /**Khai bao part cua mat-stepper */
@@ -54,10 +55,11 @@ export class CreateArticleComponent implements OnInit {
 
     //**Thêm dữ liệu của người post bài */
     this.Article.idUser=this.cookieService.get("userIdLogged");
+    this.Article.tittle="";
+    this.Article.description="";
   }
   addMoreContent(){
     this.Article.content.push({partContent:null,images:null})
-    console.log(this.Article)
   }
   
   showPreviewImage(event: any,index) {
@@ -101,24 +103,27 @@ export class CreateArticleComponent implements OnInit {
     this.Article.description=description;
   }
   submitArticle(){
-    this.isLoaded=false;
+    if(this.Article.tittle.length<30){
+      this.toastr.warning("Title must be longer than 30 character","Title")
+    }else if(this.Article.description.length<220){
+      this.toastr.warning("Desciption must be longer than 220 character","Description")
+    }else{
+      this.isLoaded=false;
     this.Article.hashTag = [{name:"empty"}]
     this.hashTags.forEach(element => {
       this.Article.hashTag.push({name:element.name})
     });  
-
     this.createArticleService.submitArticle(this.Article).subscribe(res=>{
       console.log(res);
-      alert("Create article successfully");
+      this.toastr.success("Create article successfully","Article")
       if(res){
         this.isLoaded=true;
         this.document.location.reload();
       }
     },err=>{
-      alert("Create article failed");
-    }
+      this.toastr.error("Something went wrong. Make sure all field is filled","Article")    }
     );
-    // console.log(this.Article);
+    }
   }
   resetForm(){
     

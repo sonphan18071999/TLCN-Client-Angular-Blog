@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiServiceService} from '../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service';
-
+import {ToastrService} from 'ngx-toastr'
 @Component({
   selector: 'app-report-article',
   templateUrl: './report-article.component.html',
@@ -17,7 +17,9 @@ export class ReportArticleComponent implements OnInit {
   DLOBM:String=null;
   reason:String=null;
   TextArea:String=null
-  constructor(private apiServiceService:ApiServiceService,private cookieService: CookieService) { }
+  constructor(private apiServiceService:ApiServiceService,
+    private cookieService: CookieService,
+    private toastr:ToastrService) { }
 
   ngOnInit(): void {
     
@@ -47,9 +49,9 @@ export class ReportArticleComponent implements OnInit {
     this.cookieService.get("userIdLogged"),this.reason
     ).subscribe(res=>{
       if(res.Message =="Report Limited"){
-        alert("Report has reach limited")
+        this.toastr.error("Report has reach limited","Report")
       }else{
-        alert("Report successfully")
+        this.toastr.success("Report article successfully","Report")
       }
     })
   }

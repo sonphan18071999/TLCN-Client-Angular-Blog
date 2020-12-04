@@ -17,6 +17,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterAccountComponent } from './register-account/register-account.component';
 import { WaitingApprovalArticleComponent } from './waiting-approval-article/waiting-approval-article.component';
 import {ReportArticleComponent} from './report-article/report-article.component'
+import { ToastrModule } from 'ngx-toastr';
+import { AdminCMSComponent } from './admin-cms/admin-cms.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,16 @@ import {ReportArticleComponent} from './report-article/report-article.component'
     UserProfileComponent,
     RegisterAccountComponent,
     WaitingApprovalArticleComponent,
-    ReportArticleComponent
+    ReportArticleComponent,
+    AdminCMSComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    ToastrModule.forRoot({timeOut: 2000,
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [SocketioService],
   bootstrap: [AppComponent]
