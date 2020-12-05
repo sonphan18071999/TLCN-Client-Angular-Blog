@@ -50,8 +50,10 @@ export class ApiServiceService {
   //6. Check author of article to show button edit
   public checkAuthorOfArticle(idArticle,idUser){
     return this.httpClient.post<any>(this.url+"check-author",
-    {"idArticle":idArticle,
-    "idUser":idUser})
+    {
+    "idArticle":idArticle,
+    "idUser":idUser
+    })
   }
   /**Artcile Session */
 

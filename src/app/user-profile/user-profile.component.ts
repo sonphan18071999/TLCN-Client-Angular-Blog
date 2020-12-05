@@ -79,5 +79,4 @@ export class UserProfileComponent implements OnInit {
       this.allSavedArticle =res.SavedArticle
     })
   }
-
 }

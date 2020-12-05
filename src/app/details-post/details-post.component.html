@@ -48,11 +48,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #configureArticle="matMenu">        
-            <button mat-menu-item >
+            <button mat-menu-item (click)="ChangeToEditMode()" >
               <mat-icon>edit</mat-icon>
               <span>Edit article</span>
             </button>
-            <button mat-menu-item >
+            <button mat-menu-item>
               <mat-icon>delete</mat-icon>
               <span>Delete article</span>
             </button>
@@ -85,15 +85,47 @@
             
           </div>
           <!-- Phan header article -->
-
-          <!-- Phan noi dung trong article -->
-          <div *ngFor="let content of ContentInParts" class="container-article-detail">
-            <br>
-            <p [innerHtml]="content.partContent"></p>
-            <img src={{content.images}} style="border-radius: 10px;" width="100%">
-            <br>
+          <hr>
+          <!--Phần nội dung trong article ở trạng thái edit mode-->
+          <div *ngIf="editMode" class="article-edit-mode">
+            <p style="color: red;"> <b><i>Edit mode: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
+            <div *ngFor="let content of ContentInParts;let i = index" class="container-article-detail">
+              <!--Button remove Part Article-->
+              <button mat-raised-button color="accent" *ngIf="content.partContent!=null" (click)="removeContentInpart(i)">
+                <mat-icon>remove</mat-icon>Remove content
+              </button>
+              <!--Button remove Part Article-->
+              <ckeditor type="text" [ngModelOptions]="{standalone: true}" [editor]="Editor" tagName="textarea"
+                [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"
+                data={{content.partContent}} *ngIf="content.partContent!=null"></ckeditor>
+              <!--Button remove Image-->
+              <button mat-raised-button color="accent" *ngIf="content.images!=null" (click)="removeImageInpart(i)">
+                <mat-icon>remove</mat-icon>Remove Image
+              </button>
+              <!--Button remove Image-->
+              <div *ngIf="content.images!=null">
+                <input type="file" class="choose-file" style="position: fixed" (change)="showPreviewImage($event,i)">
+              </div>
+              <img src={{content.images}} style="border-radius: 10px;" width="100%">
+            </div>
+            <button mat-raised-button color="primary" (click)="InsertMoreContent()"> <mat-icon>playlist_add</mat-icon> Insert more content</button>
           </div>
-          <!-- Phan noi dung trong article -->
+          <!--Phần nội dung trong article ở trạng thái edit mode-->
+
+          <!-- Phan noi dung trong article ở trạng thái view mode -->
+          <div *ngIf="editMode==false">
+            <div *ngFor="let content of ContentInParts" class="container-article-detail">
+              <br>
+              <p [innerHtml]="content.partContent"></p>
+              <img src={{content.images}} style="border-radius: 10px;" width="100%">
+              <br>
+            </div>
+          </div>
+          <!-- Phan noi dung trong article ở trạng thái view mode -->
+          <div *ngIf="editMode" class="btn-group-edit-mode">
+            <button mat-raised-button color="primary">Update</button>
+            <button mat-raised-button color="accent" (click)="cancelEditMode()" >Cancel</button>
+          </div>
           <div style="display: flex;">
             <button mat-button>
               <mat-icon>favorite</mat-icon> Like

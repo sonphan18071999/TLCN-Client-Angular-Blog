@@ -17,6 +17,11 @@
   position: fixed;
   margin-top: 5px;
 }
+.article-edit-mode :host ::ng-deep .ck-editor__editable_inline {
+  min-height: 250px;
+  max-height: 550px;
+}
+
 mat-drawer-content {
   display: flex;
   flex-direction: column;
@@ -42,9 +47,6 @@ ul li a{
 
 }
 
-.menu-button-action:hover{
-
-}
 .app-index-post{
 width: 100%;
 }
@@ -84,10 +86,9 @@ mat-drawer-content .container{
 }
 .container-article-detail img{
   margin: auto;
+  max-height: 540px;
 }
-.related-article{
 
-}
 .related-article mat-card:hover{
   cursor: pointer;
   width: 300px;
@@ -98,4 +99,39 @@ mat-drawer-content .container{
   width: 240px;
   margin-right:12px;
   margin-top:10px
+}
+.btn-group-edit-mode{
+  margin-left: 685px;   
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.btn-group-edit-mode button{
+  margin-left: 10px;
+}
+.container-article-detail button{
+ margin-left:700px;
+ margin-top:10px;
+}
+.choose-file{
+  position: absolute;
+  margin-left: 290px;
+  margin-top: 270px;
+  // margin: auto;
+}
+.choose-file::-webkit-file-upload-button {
+  color: black;
+  display: inline-block;
+  background: white;
+  border: none;
+  padding: 7px 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+  width: 275px;
+  height: 38px;
+}
+.container-article-detail img{
+  max-height: 540px;
 }

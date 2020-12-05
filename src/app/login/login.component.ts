@@ -95,7 +95,6 @@ export class LoginComponent implements OnInit {
       },
       err=>{
         this.toastr.error('Username or password not correct', 'Login');
-        // this._cookieService.set( 'userIdLogged', "null" );
       }
     )
   }

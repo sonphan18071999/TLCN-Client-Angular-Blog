@@ -41,6 +41,10 @@ export class DetailsPostComponent implements OnInit {
   allHashTag : any=null;
   allRelatedArticle :any = null;
   showConfigureArticleButton: Boolean = false;
+  editMode : boolean = false;
+  tempContentEditMode: any = null;      //Lưu những nội dung tạm thời để update.
+  localUrl: any[];
+
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
@@ -53,6 +57,19 @@ export class DetailsPostComponent implements OnInit {
     /**Init animate */
     AOS.init();
     /**Init animate */
+    this.getDetailArticle();      //Read data of article
+    this.getAllComment();
+    /**Check saved article */
+    this.apiService.checkArticle(this.cookieService.get("userIdLogged"),this.idArticle).subscribe((ok)=>{
+      this.showBookMark=true;
+    },(er)=>{
+      this.showBookMark=false;
+    })
+
+    //Check author authenitcation to show button confiure article
+    this.checkAuthor();
+  }
+  getDetailArticle(){
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');
     /**Get article by id */
@@ -67,18 +84,7 @@ export class DetailsPostComponent implements OnInit {
       this.allRelatedArticle = res.RelatedArticle;
       // console.log(this.allRelatedArticle);
     })
-    this.getAllComment();
-    /**Check saved article */
-    this.apiService.checkArticle(this.cookieService.get("userIdLogged"),this.idArticle).subscribe((ok)=>{
-      this.showBookMark=true;
-    },(er)=>{
-      this.showBookMark=false;
-    })
-
-    //Check author authenitcation to show button confiure article
-    this.checkAuthor();
   }
-  
   getAllComment(){
     /**Get article by comment */
   this.apiService.getAllComment(this.idArticle).subscribe((allComment)=>{
@@ -237,6 +243,45 @@ export class DetailsPostComponent implements OnInit {
          this.showConfigureArticleButton=true
        }
   })
+  }
+  ChangeToEditMode(){
+    this.editMode=true;
+  }
+  cancelEditMode(){
+    this.editMode=false;
+    this.getDetailArticle();   
+  }
+  InsertMoreContent(){
+    this.tempContentEditMode= {
+      "partContent":"<i>Insert your new content right here...</i>",
+      "images":"../../assets/images/default-image.jpg"
+    }
+    this.ContentInParts.push(this.tempContentEditMode)
+  }
+  removeContentInpart(index){
+    this.ContentInParts[index].partContent=null
+  }
+  removeImageInpart(index){
+    this.ContentInParts[index].images=null
+  }
+  showPreviewImage(event: any,index) {
+    var fileName = event.target.files[0].name;
+    var fileContent = fileName.toLowerCase().substr(fileName-3)
+    console.log("File content "+fileContent);
+    if(fileName=="jpg" || fileName=="png" || fileName=="jpeg" ){
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+        reader.onload = (event: any) => {
+            this.localUrl = event.target.result;
+            //Save image to model
+            this.ContentInParts[index].images=this.localUrl.toString()    
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    }else{
+      alert("Please choose image in these format: ['jpg','png','jpeg']")
+    }
+    
   }
 }
 

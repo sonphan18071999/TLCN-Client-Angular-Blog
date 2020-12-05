@@ -4,20 +4,20 @@
 }
 
 
-  .choose::-webkit-file-upload-button {
-    color: white;
-    display: inline-block;
-    background: gray;
-    border: none;
-    padding: 7px 15px;
-    font-weight: 700;
-    border-radius: 3px;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 10pt;
-    width: 275px;
-    height: 38px;
-  }
+.choose::-webkit-file-upload-button {
+  color: white;
+  display: inline-block;
+  background: gray;
+  border: none;
+  padding: 7px 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+  width: 275px;
+  height: 38px;
+}
   .Image-Content{
     border-radius: 5px;
     width: 50%;
