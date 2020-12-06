@@ -58,23 +58,28 @@
             </button>
           </mat-menu>
           <!--Button Edit bai viet. Danh cho author cua bai viet-->
-          <h1><b>{{mainTitle}}</b></h1>
+          <h1  *ngIf="editMode==false"><b>{{mainTitle}}</b></h1>
+          <div *ngIf="editMode" style="width: 815px;margin-bottom: 20px;">
+            <label><i style="color: red;">Edit your own title</i></label>
+            <ckeditor type="text" [editor]="Editor" tagName="textarea"
+            [config]="{ toolbar:['bold', 'italic', 'blockQuote']}"
+            data={{mainTitle}}
+            ></ckeditor>
+          </div>
           <div style="display: flex;">
-            <img src="../../assets/images/obama.jpg" style="border-radius: 50%;" width="60px" height="60px">
+            <img src="../../assets/images/obama.jpg" style="border-radius: 10%;" width="60px" height="60px">
             <div style="display: flex;">
-              <div style="margin-left:10px;width: 100px;">
-                <a style="font-size: 20px;" href="/profile/{{infoAuthor._id}}" ><b>{{infoAuthor.name}}</b></a>
-                <br>
-                <br>
-                <p><i>Point: 1,200 RP</i></p>
+              <div style="margin-left:10px;width: 300px;">
+                <a style="font-size: 20px; list-style: none;text-decoration: none ;" href="/profile/{{infoAuthor._id}}" ><b>{{infoAuthor.name}}</b></a>
+                <p>Master teller story</p>
               </div>
-              <button mat-stroked-button style=" margin-left: 20px;height: 40px; width: 170px;" (click)="FollowAuthor()">
-                  <mat-icon>done</mat-icon>Follow author 
-              </button>
+              <!-- <button mat-stroked-button style=" margin-left: 20px;height: 60px; width: 20px; border-radius: 50%; border-color: blue;" (click)="FollowAuthor()">
+                  <mat-icon>done</mat-icon>
+              </button> -->
             </div>
            
             <!-- Luu bai viet -->
-            <button mat-button style="margin-left: 340px;"(click)="SaveArticle()" >
+            <button mat-button style="margin-left: 338px;"(click)="SaveArticle()" >
               <mat-icon *ngIf="showBookMark">bookmark_border</mat-icon>
               <mat-icon *ngIf="!showBookMark">bookmark</mat-icon>
             </button>
@@ -88,27 +93,36 @@
           <hr>
           <!--Phần nội dung trong article ở trạng thái edit mode-->
           <div *ngIf="editMode" class="article-edit-mode">
+            <img *ngIf="loading==true" src="../../assets/images/loading.gif">
             <p style="color: red;"> <b><i>Edit mode: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
-            <div *ngFor="let content of ContentInParts;let i = index" class="container-article-detail">
+           <div *ngIf="loading==false">
+            <div  *ngFor="let content of ContentInParts;let i = index" class="container-article-detail">
               <!--Button remove Part Article-->
               <button mat-raised-button color="accent" *ngIf="content.partContent!=null" (click)="removeContentInpart(i)">
                 <mat-icon>remove</mat-icon>Remove content
               </button>
               <!--Button remove Part Article-->
-              <ckeditor type="text" [ngModelOptions]="{standalone: true}" [editor]="Editor" tagName="textarea"
+              <ckeditor
+               type="text"
+                [ngModelOptions]="{standalone: true}" [editor]="Editor" tagName="textarea"
                 [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"
-                data={{content.partContent}} *ngIf="content.partContent!=null"></ckeditor>
+                data={{content.partContent}} 
+                (change)="saveContentEditMode($event,i)"  
+                *ngIf="content.partContent!=null"></ckeditor>
               <!--Button remove Image-->
               <button mat-raised-button color="accent" *ngIf="content.images!=null" (click)="removeImageInpart(i)">
                 <mat-icon>remove</mat-icon>Remove Image
               </button>
               <!--Button remove Image-->
               <div *ngIf="content.images!=null">
-                <input type="file" class="choose-file" style="position: fixed" (change)="showPreviewImage($event,i)">
+                <input type="file" class="choose-file" style="position: fixed" 
+                accept="image/x-png,image/gif,image/jpeg"
+                (change)="showPreviewImage($event,i)">
               </div>
               <img src={{content.images}} style="border-radius: 10px;" width="100%">
             </div>
             <button mat-raised-button color="primary" (click)="InsertMoreContent()"> <mat-icon>playlist_add</mat-icon> Insert more content</button>
+           </div>
           </div>
           <!--Phần nội dung trong article ở trạng thái edit mode-->
 
@@ -123,7 +137,7 @@
           </div>
           <!-- Phan noi dung trong article ở trạng thái view mode -->
           <div *ngIf="editMode" class="btn-group-edit-mode">
-            <button mat-raised-button color="primary">Update</button>
+            <button mat-raised-button color="primary" (click)="updateContent()">Update</button>
             <button mat-raised-button color="accent" (click)="cancelEditMode()" >Cancel</button>
           </div>
           <div style="display: flex;">

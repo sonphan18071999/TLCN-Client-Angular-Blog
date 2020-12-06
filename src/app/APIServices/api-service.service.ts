@@ -55,6 +55,14 @@ export class ApiServiceService {
     "idUser":idUser
     })
   }
+
+  // 7. Update article content
+  public updateContentOfArticle(idArticle,content){
+    return this.httpClient.post<any>(this.url+'update-article-content',{
+      "idArticle":idArticle,
+      "content":content
+    })
+  }
   /**Artcile Session */
 
 

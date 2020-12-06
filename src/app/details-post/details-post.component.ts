@@ -44,7 +44,7 @@ export class DetailsPostComponent implements OnInit {
   editMode : boolean = false;
   tempContentEditMode: any = null;      //Lưu những nội dung tạm thời để update.
   localUrl: any[];
-
+  loading:boolean =false;
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
@@ -265,23 +265,32 @@ export class DetailsPostComponent implements OnInit {
     this.ContentInParts[index].images=null
   }
   showPreviewImage(event: any,index) {
-    var fileName = event.target.files[0].name;
-    var fileContent = fileName.toLowerCase().substr(fileName-3)
-    console.log("File content "+fileContent);
-    if(fileName=="jpg" || fileName=="png" || fileName=="jpeg" ){
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-        reader.onload = (event: any) => {
-            this.localUrl = event.target.result;
-            //Save image to model
-            this.ContentInParts[index].images=this.localUrl.toString()    
-        }
-        reader.readAsDataURL(event.target.files[0]);
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.localUrl = event.target.result;
+        //Save image to model
+        this.ContentInParts[index].images = this.localUrl.toString()
+      }
+      reader.readAsDataURL(event.target.files[0]);
     }
-    }else{
-      alert("Please choose image in these format: ['jpg','png','jpeg']")
-    }
-    
+  }
+  updateContent(){
+    this.loading=true;
+    this.apiService.updateContentOfArticle(this.idArticle,this.ContentInParts)
+    .subscribe(res=>{
+      this.toastr.success("Update successfully","Message")
+      if(res){
+        this.loading=false;
+        this.cancelEditMode();
+      }
+    },err=>{
+      this.toastr.error("Update successfully","Message")
+    })
+  }
+  saveContentEditMode(  { editor }: ChangeEvent,index){
+    const data = editor.getData();
+    this.ContentInParts[index].partContent=data    
   }
 }
 

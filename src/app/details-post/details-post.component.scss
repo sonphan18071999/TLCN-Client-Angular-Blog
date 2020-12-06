@@ -21,6 +21,10 @@
   min-height: 250px;
   max-height: 550px;
 }
+.title-article :host ::ng-deep .ck-editor__editable_inline {
+  min-height: 250px;
+  width: 400px;
+}
 
 mat-drawer-content {
   display: flex;
