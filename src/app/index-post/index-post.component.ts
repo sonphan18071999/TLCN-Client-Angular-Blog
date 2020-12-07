@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
 import {CookieService} from 'ngx-cookie-service';
 import AOS from 'aos';
-
+import {Location} from '@angular/common'
 @Component({
   selector: 'app-index-post',
   templateUrl: './index-post.component.html',
@@ -24,9 +24,11 @@ export class IndexPostComponent implements OnInit {
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
-    private _cookieService:CookieService) { 
+    private _cookieService:CookieService,
+    private location:Location) { 
     }
- 
+
+  @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
   ngOnInit(): void {
     AOS.init();
     this.page=0;
@@ -34,6 +36,7 @@ export class IndexPostComponent implements OnInit {
     if(this._cookieService.get("userIdLogged")!=''){
       this.showPostArticle=true;
     }
+    this.funcSetStateIndexPost("Index-Post-InProcess")
   }
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
@@ -79,8 +82,8 @@ export class IndexPostComponent implements OnInit {
   }
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
-    this.router.navigate(['/detail-post',title]);
-    // alert(id);
+    // this.router.set(['/detail-post',title]);
+    this.funcSetStateIndexPost("Detail-Post")
   }
   openDialog() {
     this.dialog.open(PopUpPostContentComponent)
@@ -138,6 +141,13 @@ export class IndexPostComponent implements OnInit {
       this.page-=1;
       this.getDataPaging();
     }
+  }
+  funcSetStateIndexPost(value: string) {
+    this.setStateIndexPost.emit(value);
+  }
+  viewAuthorProfile(author:string){
+    this.location.go("/profile/"+author)
+    this.funcSetStateIndexPost("User-Profile")
   }
 }
 

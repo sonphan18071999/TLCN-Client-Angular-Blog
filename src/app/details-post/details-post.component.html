@@ -1,39 +1,3 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="true">
-  <!-- Side navigation -->
-  <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
-    <img src="../../assets/images/landscape.jpg" width="100%">
-    <ul >
-      <li>
-        <div class="menu-button-action">
-          <a href="/create-article">Post an Article</a>
-        </div>
-      </li>
-      <li>
-        <div  class="menu-button-action"> 
-          <a href="/create-article">Article waiting for approval</a>
-        </div>
-      </li>
-      <li>
-        <div  class="menu-button-action">
-          <a href="/create-article">Posted Article</a>
-        </div>
-      </li>
-      <li>
-        <div  class="menu-button-action">
-          <a href="/create-article">Save Article</a>
-        </div>
-      </li>
-    </ul>
-  </mat-drawer>
-  <!-- Content index screen -->
-  <mat-drawer-content>
-    <div class="app-header">
-      <app-header></app-header>
-    </div>
-
-    <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu">
-      <mat-icon>menu</mat-icon>
-    </button>
 
     <div *ngIf="ContentInParts==null">
       <img src="../../assets/images/loading.gif" width="1480px" height="600px">
@@ -41,13 +5,13 @@
     <div class="container" *ngIf="ContentInParts!=null" >
       <div class="detail-content-post">
         <mat-card data-aos="fade-up"
-        data-aos-duration="1500" >
+        data-aos-duration="1500" class="mat-card-article" >
           <!-- Phan header article -->
-          <!--Button Edit bai viet. Danh cho author cua bai viet-->
-          <button mat-icon-button *ngIf="showConfigureArticleButton"  [matMenuTriggerFor]="configureArticle" class="button-configure-article" >
+           <!--Button Edit bai viet. Danh cho author cua bai viet-->
+           <button mat-icon-button *ngIf="showConfigureArticleButton"  [matMenuTriggerFor]="configureArticle" class="button-configure-article" >
             <mat-icon>more_vert</mat-icon>
           </button>
-          <mat-menu #configureArticle="matMenu">        
+          <mat-menu #configureArticle="matMenu">    
             <button mat-menu-item (click)="ChangeToEditMode()" >
               <mat-icon>edit</mat-icon>
               <span>Edit article</span>
@@ -65,12 +29,14 @@
             [config]="{ toolbar:['bold', 'italic', 'blockQuote']}"
             data={{mainTitle}}
             ></ckeditor>
+           
           </div>
+           
           <div style="display: flex;">
             <img src="../../assets/images/obama.jpg" style="border-radius: 10%;" width="60px" height="60px">
             <div style="display: flex;">
               <div style="margin-left:10px;width: 300px;">
-                <a style="font-size: 20px; list-style: none;text-decoration: none ;" href="/profile/{{infoAuthor._id}}" ><b>{{infoAuthor.name}}</b></a>
+                <a style="font-size: 20px; list-style: none;text-decoration: none ;" (click)="viewUserProfile(infoAuthor._id)" ><b>{{infoAuthor.name}}</b></a>
                 <p>Master teller story</p>
               </div>
               <!-- <button mat-stroked-button style=" margin-left: 20px;height: 60px; width: 20px; border-radius: 50%; border-color: blue;" (click)="FollowAuthor()">
@@ -92,6 +58,7 @@
           <!-- Phan header article -->
           <hr>
           <!--Phần nội dung trong article ở trạng thái edit mode-->
+          
           <div *ngIf="editMode" class="article-edit-mode">
             <img *ngIf="loading==true" src="../../assets/images/loading.gif">
             <p style="color: red;"> <b><i>Edit mode: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
@@ -137,7 +104,7 @@
           </div>
           <!-- Phan noi dung trong article ở trạng thái view mode -->
           <div *ngIf="editMode" class="btn-group-edit-mode">
-            <button mat-raised-button color="primary" (click)="updateContent()">Update</button>
+            <button mat-raised-button color="primary" (click)="updateContent()">Save change</button>
             <button mat-raised-button color="accent" (click)="cancelEditMode()" >Cancel</button>
           </div>
           <div style="display: flex;">
@@ -150,7 +117,7 @@
           </div>
         </mat-card>
         <br>
-        <mat-card>
+        <mat-card class="mat-card-comment">
           <div class="edit1" *ngIf="allComment!=null" >
             <h2>Comment:</h2>
             <div *ngIf="allComment.Comment.length!=0">
@@ -256,7 +223,7 @@
         </mat-card>
         <br>
          <!-- Hiển thị hashtag liên quan -->
-        <mat-card>
+        <mat-card class="mat-card-hashtag">
           <h3>Hashtag</h3>
           <div style="display: flex;" >
             <div *ngFor="let item of allHashTag" >
@@ -268,7 +235,7 @@
         <br>
         <!-- Hiển thị những bài viết liên quan -->
         <div style="display: flex; 
-                    width: 956px;
+                    width: 890px;
                     flex-wrap: wrap;">
           <div class="related-article" *ngFor="let item of allRelatedArticle">
             <mat-card *ngIf="item" (click)="showDetailPost(item._id,item.tittle)">
@@ -292,5 +259,3 @@
       </div>
      
     </div>
-  </mat-drawer-content>
-</mat-drawer-container>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import AOS from 'aos';
 import {ApiServiceService} from '../APIServices/api-service.service'
@@ -18,6 +18,10 @@ export class UserProfileComponent implements OnInit {
   countSavedArticle :number=0;
   inforUser:any;
   official_user: Boolean=false;
+  @Output() setStateUserProfile = new EventEmitter<string>();
+  currentUrl:string=null;
+  // @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
+
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiServiceService:ApiServiceService,
@@ -29,10 +33,8 @@ export class UserProfileComponent implements OnInit {
     AOS.init();
     /**Khoi tao animate */
     /**Lay id cua nguoi dung */
-    this.activatedRoute.params.subscribe(paramsId => {
-      this.id = paramsId.id;
-      // console.log(this.id)
-    });
+    this.currentUrl = window.location.href.toString();
+    this.id=this.currentUrl.substr(this.currentUrl.length-24)
     /**Lay id cua nguoi dung */
     // Lấy những bài viết đã đăng của người dùng
     this.apiServiceService.getAllArticlePostedByUser(this.id).subscribe(res => {
@@ -56,6 +58,10 @@ export class UserProfileComponent implements OnInit {
       this.official_user=true;
     }
     /**Kiểm tra xem người dùng thật hay là guest*/
+
+    /**Set state User profile */
+    this.funcSetStateUserProfile("User-Profile");
+    /**Set state User profile */
   }
   showMoreArticle(){
     this.showArticleNumber+=4;
@@ -78,5 +84,8 @@ export class UserProfileComponent implements OnInit {
     this.apiServiceService.getAllSavedArticleByUser(this.id).subscribe(res=>{
       this.allSavedArticle =res.SavedArticle
     })
+  }
+  funcSetStateUserProfile(value:string){
+    this.setStateUserProfile.emit(value)
   }
 }

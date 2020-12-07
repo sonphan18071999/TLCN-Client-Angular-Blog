@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ApiServiceService} from '../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ReportArticleComponent} from '../report-article/report-article.component'
 import { ToastrService } from 'ngx-toastr';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',
@@ -45,12 +45,16 @@ export class DetailsPostComponent implements OnInit {
   tempContentEditMode: any = null;      //Lưu những nội dung tạm thời để update.
   localUrl: any[];
   loading:boolean =false;
+  editTitleMode : boolean = false;
+  @Output() setStateDetailPost = new EventEmitter<string>();  //Event tra ve loading item
+
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
   constructor(private apiService: ApiServiceService,
     private cookieService: CookieService, private socketService: SocketioService, 
-    private router: Router,public dialog: MatDialog,private toastr: ToastrService
+    private router: Router,public dialog: MatDialog,private toastr: ToastrService,
+    private location:Location
     ) {
   }
   ngOnInit(): void {
@@ -65,7 +69,6 @@ export class DetailsPostComponent implements OnInit {
     },(er)=>{
       this.showBookMark=false;
     })
-
     //Check author authenitcation to show button confiure article
     this.checkAuthor();
   }
@@ -291,6 +294,18 @@ export class DetailsPostComponent implements OnInit {
   saveContentEditMode(  { editor }: ChangeEvent,index){
     const data = editor.getData();
     this.ContentInParts[index].partContent=data    
+  }
+  ChangeToEditTitleMode(){
+    this.editTitleMode=true;
+  }
+  funcSetStateDetail(value:string){
+    this.setStateDetailPost.emit(value)
+  }
+  viewUserProfile(item: string){
+    //  /profile/{{infoAuthor._id}}
+    this.location.go("/profile/"+item)
+    this.funcSetStateDetail("User-Profile")
+    
   }
 }
 

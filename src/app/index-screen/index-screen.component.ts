@@ -10,12 +10,12 @@ export class IndexScreenComponent implements OnInit {
   side="over";
   idUserLogin:any;
   constructor(private cookieService:CookieService) { }
-
+  currentComponent:string;
   ngOnInit(): void {
     this.idUserLogin=this.cookieService.get("userIdLogged")
+    this.currentComponent="Index-Post-InProcess";
   }
-  ShowAlert(){
-    alert("Hello world")
+  getStateComponent(state:string){
+    this.currentComponent=state;
   }
-  
 }

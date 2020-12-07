@@ -22,7 +22,9 @@
         <app-header></app-header>
       </div>
       <div class="app-index-post">
-        <app-index-post></app-index-post>
+        <app-index-post *ngIf="this.currentComponent=='Index-Post-InProcess'" (setStateIndexPost)="getStateComponent($event)"></app-index-post>
+        <app-details-post *ngIf="this.currentComponent=='Detail-Post'" (setStateDetailPost)="getStateComponent($event)"></app-details-post>
+        <app-user-profile *ngIf="this.currentComponent=='User-Profile'" (setStateUserProfile)="getStateComponent($event)"></app-user-profile>
       </div>
       <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
       </button>

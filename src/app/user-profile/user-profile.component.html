@@ -1,139 +1,119 @@
 
-<mat-drawer-container class="example-container" [hasBackdrop]="true" >
-    <!-- Side navigation -->
-    <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
-        <img src="../../assets/images/landscape.jpg" width="100%">
-        <ul>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-            <li>Nội dung</li>
-        </ul>
-    </mat-drawer>
-    <!-- Content index screen -->
-    <mat-drawer-content>
-      <div class="app-header"> 
-        <app-header></app-header>
-      </div>
-      <div class="app-index-post">
-        <!-- Phan hien thi thong tin nguoi dung -->
-        <div class="container">
-          <!-- Hien thi anh bia -->
-            
-          <!-- Hien thi anh bia -->
-            <div class="container-body">
-              <!-- Hien thi avatar va follower, following... -->
-                <div class="container-body-header"
-                 data-aos="fade-right" data-aos-duration="1000" >
-                    <img src="../../assets/images/obama.jpg">  
-                    <div class="container-body-header-infor">
-                      <!--Display name -->
-                      <div class="container-body-header-infor-name" >
-                        <p style="font-size: 40px;"><b>{{inforUser.name}}</b></p>
-                        <p>Nooby author</p>
-                      </div>
-                      <!--Display name -->
-                      <div class="container-body-header-infor-label-follow">
-                        <label> <b>140</b> Followers</label>
-                        <label> <b>250</b> Following</label>
-                      </div>
-                      <div class="container-body-header-infor-button-follow">
-                          <button mat-raised-button>Follow & get notification</button>
-                      </div>
-                    </div>
+<div class="app-index-post">
+  <!-- Phan hien thi thong tin nguoi dung -->
+  <div class="container">
+    <!-- Hien thi anh bia -->
+      
+    <!-- Hien thi anh bia -->
+      <div class="container-body">
+        <!-- Hien thi avatar va follower, following... -->
+          <div class="container-body-header"
+            data-aos="fade-right" data-aos-duration="1000" >
+              <img src="../../assets/images/obama.jpg">  
+              <div class="container-body-header-infor">
+                <!--Display name -->
+                <div class="container-body-header-infor-name" >
+                  <p style="font-size: 40px;"><b>{{inforUser.name}}</b></p>
+                  <p>Nooby author</p>
                 </div>
-                <!-- Hien thi avatar va follower, following... -->
-                <div style="display: flex; width: 1300px;" data-aos="fade-up" data-aos-duration="1000">
-                  <div class="container-body-left">
-                    <mat-card>
-                      <h4 style="font-size: 30px;"><b>Introduction</b></h4>
-                      <hr>
-                      <p>Học tại <b>Trường đại học sư phạm kỹ thuật</b></p>
-                      <p>Sống tại <b>Thành Phố Hồ Chí Minh</b></p>
-                      <p>Đến từ <b>Phu Dien Chau, Nghệ An, Vietnam</b></p>
-                      <p>Instagram: <b>Skid_hollow</b></p>
-                    </mat-card>
-                  </div>
-              <!-- Hien thi avatar va follower, following... -->
-
-              <div class="container-body-right" data-aos="fade-up" data-aos-duration="1000">
-              <mat-tab-group>
-                <!-- Hiển thị những bài viết đã đăng -->
-                <mat-tab label="Posted Article"> 
-                  <mat-card>
-                    <div class="container-body-right-article">
-                      <div *ngFor = "let item of allPostedArticle;let i = index">
-                      <mat-card *ngIf="i<showArticleNumber" (click)="showDetailPost(item._id,item.tittle)">
-                        <img src="{{item.AvatarPost}}">
-                        <p style="
-                        font-size: 25px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2; 
-                        -webkit-box-orient: vertical;">
-                          <b>{{item.tittle}}</b>
-                        </p>
-                        <p style=" overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 4; 
-                        -webkit-box-orient: vertical;">
-                          {{item.description}}
-                        </p>
-                        <div class="container-body-right-article-group-button" >
-                          <button mat-raised-button>70 Like</button>
-                          <button mat-raised-button>1000 View</button>
-                          <label>1 hour ago</label>
-                        </div>
-                      </mat-card>
-                      </div>
-                      <button class="button-show-more-article" mat-raised-button color="primary" (click)="showMoreArticle()">Show more...</button>
-                    </div>
-                  </mat-card>
-                </mat-tab>
-                <!-- Hiển thị những bài viết đã đăng -->
-
-                <!-- Hiển thị những bài viết đã lưu -->
-                <mat-tab label="Saved Article"  *ngIf="official_user">
-                  <ng-template mat-tab-label>
-                    <span (click)="showSavedArticle()">Saved Article</span>
-                  </ng-template>
-
-                  <mat-card class="mat-card-container-saved-article">
-                    <div *ngFor="let item of allSavedArticle" class="container-saved-article">
-                      <mat-card class="outer-saved-article" (click)="showDetailArticle(item._id,item.tittle)">
-                        <div class="saved-article">
-                          <div class="left-saved-article">
-                            <img src="{{item.AvatarPost}}">
-                          </div>
-                          <div class="right-saved-article">
-                            <p><b>{{item.tittle}}</b></p>
-                            <label>{{item.description}}</label>
-                          </div>
-                        </div>
-                      </mat-card>
-                    </div>
-                    <button 
-                    mat-raised-button 
-                    class="btn-show-more-saved-article"
-                    color="primary"
-                    (click)="showSavedArticle()">Show more...</button>
-                  </mat-card>
-                 </mat-tab>
-                <!-- Hiển thị những bài viết đã lưu -->
-              </mat-tab-group>
-              <!-- Hien thi nhung article ma nguoi do da dang -->
-                  </div>
-              <!-- Hien thi nhung article ma nguoi do da dang -->
+                <!--Display name -->
+                <div class="container-body-header-infor-label-follow">
+                  <label> <b>140</b> Followers</label>
+                  <label> <b>250</b> Following</label>
                 </div>
+                <div class="container-body-header-infor-button-follow">
+                    <button mat-raised-button>Follow & get notification</button>
+                </div>
+              </div>
+          </div>
+          <!-- Hien thi avatar va follower, following... -->
+          <div style="display: flex; width: 1300px;" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container-body-left">
+              <mat-card>
+                <h4 style="font-size: 30px;"><b>Introduction</b></h4>
+                <hr>
+                <p>Học tại <b>Trường đại học sư phạm kỹ thuật</b></p>
+                <p>Sống tại <b>Thành Phố Hồ Chí Minh</b></p>
+                <p>Đến từ <b>Phu Dien Chau, Nghệ An, Vietnam</b></p>
+                <p>Instagram: <b>Skid_hollow</b></p>
+              </mat-card>
             </div>
-        </div>
-        <!-- Phan hien thi thong tin nguoi dung -->
+        <!-- Hien thi avatar va follower, following... -->
+
+        <div class="container-body-right" data-aos="fade-up" data-aos-duration="1000">
+        <mat-tab-group>
+          <!-- Hiển thị những bài viết đã đăng -->
+          <mat-tab label="Posted Article"> 
+            <mat-card>
+              <div class="container-body-right-article">
+                <div *ngFor = "let item of allPostedArticle;let i = index">
+                <mat-card *ngIf="i<showArticleNumber" (click)="showDetailPost(item._id,item.tittle)">
+                  <img src="{{item.AvatarPost}}">
+                  <p style="
+                  font-size: 25px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2; 
+                  -webkit-box-orient: vertical;">
+                    <b>{{item.tittle}}</b>
+                  </p>
+                  <p style=" overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 4; 
+                  -webkit-box-orient: vertical;">
+                    {{item.description}}
+                  </p>
+                  <div class="container-body-right-article-group-button" >
+                    <button mat-raised-button>70 Like</button>
+                    <button mat-raised-button>1000 View</button>
+                    <label>1 hour ago</label>
+                  </div>
+                </mat-card>
+                </div>
+                <button class="button-show-more-article" mat-raised-button color="primary" (click)="showMoreArticle()">Show more...</button>
+              </div>
+            </mat-card>
+          </mat-tab>
+          <!-- Hiển thị những bài viết đã đăng -->
+
+          <!-- Hiển thị những bài viết đã lưu -->
+          <mat-tab label="Saved Article"  *ngIf="official_user">
+            <ng-template mat-tab-label>
+              <span (click)="showSavedArticle()">Saved Article</span>
+            </ng-template>
+
+            <mat-card class="mat-card-container-saved-article">
+              <div *ngFor="let item of allSavedArticle" class="container-saved-article">
+                <mat-card class="outer-saved-article" (click)="showDetailArticle(item._id,item.tittle)">
+                  <div class="saved-article">
+                    <div class="left-saved-article">
+                      <img src="{{item.AvatarPost}}">
+                    </div>
+                    <div class="right-saved-article">
+                      <p><b>{{item.tittle}}</b></p>
+                      <label>{{item.description}}</label>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+              <button 
+              mat-raised-button 
+              class="btn-show-more-saved-article"
+              color="primary"
+              (click)="showSavedArticle()">Show more...</button>
+            </mat-card>
+            </mat-tab>
+          <!-- Hiển thị những bài viết đã lưu -->
+        </mat-tab-group>
+        <!-- Hien thi nhung article ma nguoi do da dang -->
+            </div>
+        <!-- Hien thi nhung article ma nguoi do da dang -->
+          </div>
       </div>
-      <button mat-button (click)="drawer.toggle()" class="button-toggle-side-menu" ><mat-icon>menu</mat-icon>
-      </button>
-    </mat-drawer-content>
-  </mat-drawer-container>
+  </div>
+  <!-- Phan hien thi thong tin nguoi dung -->
+</div>
+
 

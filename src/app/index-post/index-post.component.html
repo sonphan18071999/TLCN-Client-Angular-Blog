@@ -29,7 +29,7 @@
                         </p>
                         <br>
                         <br>
-                        <h4>Author: <a href="/profile/{{popularArticle.Article.idUser}}">{{popularArticle.userName}}</a></h4> 
+                        <h4>Author: <a (click)="viewAuthorProfile(popularArticle.Article.idUser)" >{{popularArticle.userName}}</a></h4> 
                         <label><i>{{popularArticle.Article.postedOn}}</i></label>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         <p class="desciption" >{{article.Article.description}}
                         </p>
                     </div>
-                    <h4>Author: <a href="/profile/{{article.Article.idUser}}" >{{article.Author}}</a></h4> 
+                    <h4>Author: <a (click)="viewAuthorProfile(article.Article.idUser)" >{{article.Author}}</a></h4> 
                     <label> <i>{{article.Article.postedOn}}</i></label>
                     <br>
                     <br>
