@@ -17,10 +17,10 @@
   width: 890px;
 }
 .mat-card-comment{
-  width: 890px;
+  width: 930px;
 }
 .mat-card-hashtag{
-  width: 890px;
+  width: 930px;
 }
 .container .button-configure-article{
   margin-left: 820px;
@@ -105,7 +105,6 @@ mat-drawer-content .container{
 
 .related-article mat-card:hover{
   cursor: pointer;
-  width: 300px;
   background-color: #17a2b8;
 }
 .related-article mat-card{
@@ -115,7 +114,7 @@ mat-drawer-content .container{
   margin-top:10px
 }
 .btn-group-edit-mode{
-  margin-left: 685px;   
+  margin-left: 659px;   
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -123,7 +122,7 @@ mat-drawer-content .container{
   margin-left: 10px;
 }
 .container-article-detail button{
- margin-left:700px;
+ margin-left:784px;
  margin-top:10px;
 }
 .choose-file{
@@ -148,4 +147,26 @@ mat-drawer-content .container{
 }
 .container-article-detail img{
   max-height: 540px;
+}
+.author-infor-display{
+  margin-left:10px;
+  width: 300px;
+}
+.author-infor-display{
+  margin-left: 10px;
+}
+.author-infor-display a{
+  font-size: 20px;
+  list-style: none;
+  text-decoration: none ;
+  color: #0e7fe1;
+}
+.author-infor-display a:hover{
+  cursor: pointer;
+}
+.btn-insert-content{
+  width: 200px;
+  margin-left: 331px;
+  padding: 5px;
+  margin-top: 20px;
 }

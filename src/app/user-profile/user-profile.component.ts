@@ -3,6 +3,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 import AOS from 'aos';
 import {ApiServiceService} from '../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service';
+import {Location} from '@angular/common'
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -25,7 +26,8 @@ export class UserProfileComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private apiServiceService:ApiServiceService,
-    private cookieService:CookieService) {
+    private cookieService:CookieService,
+    private location:Location) {
     this.showArticleNumber=4;
    }
   ngOnInit(): void {
@@ -68,17 +70,10 @@ export class UserProfileComponent implements OnInit {
   }
   showDetailPost(id,title){
     this.cookieService.set( 'idDetailArticle', id ); 
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };  
-    this.router.navigate(['/detail-post',title]);
-    // window.location.reload();
-    
+    this.location.go("/detail-post/"+title);
+    this.funcSetStateUserProfile("Detail-Post");
   }
-  showDetailArticle(id,title){
-    this.cookieService.set( 'idDetailArticle', id ); // To Set Cookie
-    this.router.navigate(['/detail-post',title]);
-  }
+
   showSavedArticle(){
     this.countSavedArticle+=4;
     this.apiServiceService.getAllSavedArticleByUser(this.id).subscribe(res=>{

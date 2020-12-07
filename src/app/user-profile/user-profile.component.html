@@ -86,7 +86,7 @@
 
             <mat-card class="mat-card-container-saved-article">
               <div *ngFor="let item of allSavedArticle" class="container-saved-article">
-                <mat-card class="outer-saved-article" (click)="showDetailArticle(item._id,item.tittle)">
+                <mat-card class="outer-saved-article" (click)="showDetailPost(item._id,item.tittle)">
                   <div class="saved-article">
                     <div class="left-saved-article">
                       <img src="{{item.AvatarPost}}">

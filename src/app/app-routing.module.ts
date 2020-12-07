@@ -12,10 +12,10 @@ import {AdminCMSComponent} from './admin-cms/admin-cms.component'
 const routes: Routes = [
 {path: 'login',component:LoginComponent},
 {path:'index',component:IndexScreenComponent},
-{path:'detail-post/:title',component:DetailsPostComponent},
-{path:'create-article',component:CreateArticleComponent},
-{path:'profile/:id',component:UserProfileComponent},
-{path:'register-account',component:RegisterAccountComponent},
+// {path:'detail-post/:title',component:DetailsPostComponent},
+// {path:'create-article',component:CreateArticleComponent},
+// {path:'profile/:id',component:UserProfileComponent},
+// {path:'register-account',component:RegisterAccountComponent},
 {path:'admin/index',component:AdminCMSComponent},
 {path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
 ];

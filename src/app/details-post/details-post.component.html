@@ -22,21 +22,21 @@
             </button>
           </mat-menu>
           <!--Button Edit bai viet. Danh cho author cua bai viet-->
-          <h1  *ngIf="editMode==false"><b>{{mainTitle}}</b></h1>
-          <div *ngIf="editMode" style="width: 815px;margin-bottom: 20px;">
+          <h1 ><b>{{mainTitle}}</b></h1>
+          <!-- <div *ngIf="editMode" style="width: 815px;margin-bottom: 20px;">
             <label><i style="color: red;">Edit your own title</i></label>
             <ckeditor type="text" [editor]="Editor" tagName="textarea"
             [config]="{ toolbar:['bold', 'italic', 'blockQuote']}"
             data={{mainTitle}}
             ></ckeditor>
            
-          </div>
+          </div> -->
            
           <div style="display: flex;">
             <img src="../../assets/images/obama.jpg" style="border-radius: 10%;" width="60px" height="60px">
             <div style="display: flex;">
-              <div style="margin-left:10px;width: 300px;">
-                <a style="font-size: 20px; list-style: none;text-decoration: none ;" (click)="viewUserProfile(infoAuthor._id)" ><b>{{infoAuthor.name}}</b></a>
+              <div class="author-infor-display">
+                <a  (click)="viewUserProfile(infoAuthor._id)" ><b>{{infoAuthor.name}}</b></a>
                 <p>Master teller story</p>
               </div>
               <!-- <button mat-stroked-button style=" margin-left: 20px;height: 60px; width: 20px; border-radius: 50%; border-color: blue;" (click)="FollowAuthor()">
@@ -61,12 +61,12 @@
           
           <div *ngIf="editMode" class="article-edit-mode">
             <img *ngIf="loading==true" src="../../assets/images/loading.gif">
-            <p style="color: red;"> <b><i>Edit mode: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
+            <p style="color: red;"> <b><i>[Edit mode]: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
            <div *ngIf="loading==false">
             <div  *ngFor="let content of ContentInParts;let i = index" class="container-article-detail">
               <!--Button remove Part Article-->
               <button mat-raised-button color="accent" *ngIf="content.partContent!=null" (click)="removeContentInpart(i)">
-                <mat-icon>remove</mat-icon>Remove content
+                <mat-icon>remove</mat-icon>Remove 
               </button>
               <!--Button remove Part Article-->
               <ckeditor
@@ -78,7 +78,7 @@
                 *ngIf="content.partContent!=null"></ckeditor>
               <!--Button remove Image-->
               <button mat-raised-button color="accent" *ngIf="content.images!=null" (click)="removeImageInpart(i)">
-                <mat-icon>remove</mat-icon>Remove Image
+                <mat-icon>remove</mat-icon>Remove 
               </button>
               <!--Button remove Image-->
               <div *ngIf="content.images!=null">
@@ -88,7 +88,7 @@
               </div>
               <img src={{content.images}} style="border-radius: 10px;" width="100%">
             </div>
-            <button mat-raised-button color="primary" (click)="InsertMoreContent()"> <mat-icon>playlist_add</mat-icon> Insert more content</button>
+            <button class="btn-insert-content" mat-raised-button color="primary" (click)="InsertMoreContent()"> <mat-icon>playlist_add</mat-icon> Insert more content</button>
            </div>
           </div>
           <!--Phần nội dung trong article ở trạng thái edit mode-->
@@ -104,7 +104,8 @@
           </div>
           <!-- Phan noi dung trong article ở trạng thái view mode -->
           <div *ngIf="editMode" class="btn-group-edit-mode">
-            <button mat-raised-button color="primary" (click)="updateContent()">Save change</button>
+            <button mat-raised-button color="primary" (click)="updateContent()">
+              <mat-icon>save</mat-icon>Save change</button>
             <button mat-raised-button color="accent" (click)="cancelEditMode()" >Cancel</button>
           </div>
           <div style="display: flex;">
@@ -131,7 +132,7 @@
                     <mat-card style="width: 100%;">
                       <div style="display: flex;">
                         <!-- Hien thi ten user -->
-                        <a href="/profile/{{comment.idUser}}" style="font-size: 20px; color: #3f51b5; text-decoration: none;">
+                        <a  (click)="viewUserProfile(comment.idUser)" style="font-size: 20px; color: #3f51b5; text-decoration: none;">
                           <p [innerHtml]="comment.nameUser"></p>
                         </a>
                         <!-- Hien thi ten user -->
@@ -162,7 +163,7 @@
                         <div>
                           <div style="display: flex;">
                             <!-- Hien thi ten user child -->
-                            <a href="#" style="font-size: 15px; color: #3f51b5;text-decoration: none;">
+                            <a  (click)="viewUserProfile(childComment.idUserChild)"  style="font-size: 15px; color: #3f51b5;text-decoration: none;">
                               <p [innerHtml]="childComment.nameUserChild"></p>
                             </a>
                             <!-- Hien thi ten user child -->
@@ -193,7 +194,8 @@
                     (change)="saveEditor($event)"></ckeditor>
                 </div>
                 <br>
-                <button mat-raised-button color="primary" (click)="sendComment()">Send Comment</button>
+                <button mat-raised-button color="primary" (click)="sendComment()">
+                  <mat-icon>send</mat-icon>Send Comment</button>
               </div>
             </div>
            <!-- Phan submit comment khi da ton tai comment truoc do  -->

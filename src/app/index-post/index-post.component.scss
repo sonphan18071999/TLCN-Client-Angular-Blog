@@ -122,6 +122,19 @@ mat-icon {
  .popular-article-right p{
     line-height: 1.6;
  }
+ .popular-article-right a{
+     color: #007bff;
+ }
+
+ .popular-article-right a:hover{
+    cursor: pointer;
+}
+.tiny-article-right a{
+    color: #007bff;
+ }
+ .tiny-article-right a:hover{
+    cursor: pointer;
+ }
  .popular-article img:hover{
      cursor: pointer;
  }

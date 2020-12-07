@@ -73,6 +73,7 @@ export class DetailsPostComponent implements OnInit {
     this.checkAuthor();
   }
   getDetailArticle(){
+    this.ContentInParts=null;
     /**Get id which set inside cookie of browser */
     this.idArticle  = this.cookieService.get('idDetailArticle');
     /**Get article by id */
@@ -85,7 +86,7 @@ export class DetailsPostComponent implements OnInit {
       this.infoAuthor = res.Author;
       this.allHashTag = res.hashTag;
       this.allRelatedArticle = res.RelatedArticle;
-      // console.log(this.allRelatedArticle);
+      
     })
   }
   getAllComment(){
@@ -228,12 +229,11 @@ export class DetailsPostComponent implements OnInit {
   openDialog() {
     this.dialog.open(ReportArticleComponent);
   }
-  showDetailPost(id,title){
-    this.cookieService.set( 'idDetailArticle', id ); // To Set Cookie
-    this.router.navigate(['/detail-post',title]);
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };  
+  showDetailPost(id,title){  
+    this.cookieService.set( 'idDetailArticle', id ); 
+    this.location.go("/detail-post/"+title);
+    this.funcSetStateDetail("Detail-Post");
+    this.getDetailArticle();
   }
   FollowAuthor(){
     this.toastr.success('Follow author success', 'Announcement!');
@@ -305,7 +305,6 @@ export class DetailsPostComponent implements OnInit {
     //  /profile/{{infoAuthor._id}}
     this.location.go("/profile/"+item)
     this.funcSetStateDetail("User-Profile")
-    
   }
 }
 
