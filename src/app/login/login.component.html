@@ -12,7 +12,12 @@
                     <input (keyup.enter)="submit()" type="password" autocomplete="off" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" matInput>
                 </mat-form-field>
             </form>
-         </div>
+        <div class="check-is-admin">
+            <input type="checkbox" (change)="checkAdminAuthenticate($event)" [(ngModel)]="isAdmin"  name="Admin">
+        <label for="Admin"> Login as admin.</label>
+        </div>
+        </div>
+        
         <div class="group-buttons">
             <div class="register-account">
                 <a href="register-account">Don't have an account? Click here!</a>

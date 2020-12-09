@@ -129,6 +129,12 @@ mat-icon {
  .popular-article-right a:hover{
     cursor: pointer;
 }
+.tiny-article:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.popular-article-mat-card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .tiny-article-right a{
     color: #007bff;
  }

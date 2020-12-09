@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-cms.component.scss']
 })
 export class AdminCMSComponent implements OnInit {
-
+  mode:string=null;
+  hasBackdrop:string=null;
+  stateUICMS:string=null;
   constructor() { }
 
   ngOnInit(): void {
+    this.mode="over"
+    this.hasBackdrop="true";
+    this.stateUICMS="Dashboard"
+
+  }
+  getStateAdmin(value){
+    this.stateUICMS=value
   }
 
 }

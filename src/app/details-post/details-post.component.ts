@@ -231,7 +231,6 @@ export class DetailsPostComponent implements OnInit {
   }
   showDetailPost(id,title){  
     this.cookieService.set( 'idDetailArticle', id ); 
-    this.location.go("/detail-post/"+title);
     this.funcSetStateDetail("Detail-Post");
     this.getDetailArticle();
   }
@@ -302,7 +301,6 @@ export class DetailsPostComponent implements OnInit {
     this.setStateDetailPost.emit(value)
   }
   viewUserProfile(item: string){
-    //  /profile/{{infoAuthor._id}}
     this.location.go("/profile/"+item)
     this.funcSetStateDetail("User-Profile")
   }

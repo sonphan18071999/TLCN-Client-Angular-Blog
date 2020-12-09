@@ -24,11 +24,13 @@ export class LoginComponent implements OnInit {
   password:String;
   typeAccount:String;
   userName:String;
+  isAdmin:boolean=false;
   constructor(private loginService:LoginService,private router: Router,
     private _cookieService:CookieService, private ngZone:NgZone, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.typeAccount="normal"
+    console.log(this.typeAccount)
     /**Using Facebook API to login */
     this._cookieService.set( 'userIdLogged', "" );
     this._cookieService.set( 'userName', "" );
@@ -87,15 +89,26 @@ export class LoginComponent implements OnInit {
   }
   submit():void{
   this.loginService.checkUser(this.email,this.userName,this.typeAccount,this.password).subscribe(
-      res=>{
-        this.toastr.success('Login successfully', 'Login');
+    res=>{
+      this.toastr.success('Login successfully', 'Login');
+      this._cookieService.set( 'userIdLogged', res.user._id );
+      this._cookieService.set( 'userName', res.user.name );
+      if(this.isAdmin){
+        this.router.navigate(['admin/index'])
+      }else{
         this.router.navigate(['index']);
-        this._cookieService.set( 'userIdLogged', res.user._id );
-        this._cookieService.set( 'userName', res.user.name );
-      },
-      err=>{
-        this.toastr.error('Username or password not correct', 'Login');
       }
-    )
+    },
+    err=>{
+      this.toastr.error('Username or password not correct', 'Login');
+    }
+  )
+  }
+  checkAdminAuthenticate(event){
+    if(this.isAdmin){
+      this.typeAccount="admin"
+    }else{
+      this.typeAccount="normal"
+    }
   }
 }

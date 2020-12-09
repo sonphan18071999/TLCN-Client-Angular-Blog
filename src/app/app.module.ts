@@ -19,6 +19,8 @@ import { WaitingApprovalArticleComponent } from './waiting-approval-article/wait
 import {ReportArticleComponent} from './report-article/report-article.component'
 import { ToastrModule } from 'ngx-toastr';
 import { AdminCMSComponent } from './admin-cms/admin-cms.component';
+import { SearchArticleComponent } from './search-article/search-article.component';
+import { DashBoardComponent } from './dash-board/dash-board.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AdminCMSComponent } from './admin-cms/admin-cms.component';
     RegisterAccountComponent,
     WaitingApprovalArticleComponent,
     ReportArticleComponent,
-    AdminCMSComponent
+    AdminCMSComponent,
+    SearchArticleComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,

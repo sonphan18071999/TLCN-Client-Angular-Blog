@@ -1,0 +1,10 @@
+<div class="part-two">
+    <mat-card-content>
+      <form class="form-search">
+        <mat-form-field class="example-full-width">
+          <mat-label><mat-icon>search</mat-icon>Searching for some content in here... </mat-label>
+          <input matInput [(ngModel)]="searchContent" autocomplete="off" [ngModelOptions]="{standalone: true}" (keyup)="searchBar()"  >
+        </mat-form-field>
+    </form>   
+    </mat-card-content>
+</div>

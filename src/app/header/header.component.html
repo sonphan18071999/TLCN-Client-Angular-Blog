@@ -2,18 +2,9 @@
   <div class="part-one">
   
         <!-- Hiển thị logo con -->
-  <a href="http://localhost:4200/index"> <img src="../../assets/images/logo.png" style="padding: 10px ; margin-left: 60px;" width="50%" ></a>
+  <a href="http://localhost:4200/index"> <img src="../../assets/images/logo.png" style="padding: 10px ; margin-left: 60px;" width="150px" ></a>
   </div>
-  <div class="part-two">
-        <mat-card-content>
-          <form class="form-search">
-            <mat-form-field class="example-full-width">
-              <mat-label><mat-icon>search</mat-icon>Searching for some content in here... </mat-label>
-              <input matInput  >
-            </mat-form-field>
-        </form>   
-        </mat-card-content>
-  </div>
+  <app-search-article></app-search-article>
   <div class="part-three">
     <div class="icon-group">
       <button mat-raised-button *ngIf="!showProfile" routerLink="/login" style="width: 100px;">

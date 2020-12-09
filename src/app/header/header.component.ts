@@ -9,6 +9,7 @@ import {CookieService} from 'ngx-cookie-service';
 export class HeaderComponent implements OnInit {
   userName:String;
   showProfile:boolean;
+  searchContent:string;
   constructor(private cookieService:CookieService) { }
   
   ngOnInit(): void {
@@ -19,5 +20,5 @@ export class HeaderComponent implements OnInit {
       this.userName=this.cookieService.get('userName');
     }
   }
-
+  
 }
