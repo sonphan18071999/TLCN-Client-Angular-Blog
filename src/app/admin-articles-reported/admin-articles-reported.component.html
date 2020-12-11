@@ -1,0 +1,58 @@
+<div class="container"> 
+    <!-- Hiển thị những button chức năng cho chương trình -->
+    <mat-card>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle >Articles Being Report</mat-button-toggle>
+            <mat-button-toggle value="italic">Suspensions: 3 days </mat-button-toggle>
+            <mat-button-toggle value="underline">Suspensions: 7 days</mat-button-toggle>
+          </mat-button-toggle-group>
+    <!-- Hiển thị những button chức năng cho chương trình -->
+    <br>
+    <br>
+    <!-- Phần table hiển thị tất cả những bài viết  -->
+    <h2>Table of data: </h2>
+    <div class="mat-elevation-z1">
+      <table>
+        <tr>
+          <th class="article-being-report-checkbox">No.</th>
+          <th class="article-being-report-normal-row">Id Article</th>
+          <th  class="article-being-report-normal-row">End Ban Date</th> 
+          <th  class="article-being-report-normal-row">Level Ban</th>
+          <th  class="article-being-report-normal-row">Is Disable</th>
+          <th  class="article-being-report-normal-row">Reason</th>
+
+        </tr>
+        <tr *ngFor="let item of allArticleBeingReport">
+          <td>
+            <input   type="checkbox" name="checkReportArticle"(click)="assignCheckItem(item.idArticle)" >
+            <label for="checkReportArticle"></label>
+          </td>
+          <td  *ngIf="item.idArticle" ><label>{{item.idArticle}}</label></td>
+          <td *ngIf="!item.idArticle"><i>NaN</i></td>
+          <td><label>{{item.endBanDate}}</label></td>
+          <td><label>{{item.levelBan}}</label></td>
+          <td><label>{{item.isDisabled}}</label></td>
+          <td>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-description>
+                 Expand
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div *ngFor="let itemChild of item.userReport">
+               <p [innerHtml]= 'itemChild.Reason'></p>
+              </div>
+            </mat-expansion-panel>
+          </td>
+         
+        </tr>
+      
+
+
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+    <!-- Phần table hiển thị tất cả những bài viết  -->
+    </mat-card>
+  </div>

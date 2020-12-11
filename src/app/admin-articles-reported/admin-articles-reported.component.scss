@@ -1,0 +1,23 @@
+.container{
+    width: 1467px;
+    padding: 15px;
+  }
+  table {
+    width: 1467px;
+  }
+.article-being-report-checkbox{
+  text-align: left;
+  width:  50px;
+  padding: 5px;
+}
+  table tr .article-being-report-normal-row{
+    text-align: left;
+    height: 50px;
+    width:  250px;
+  }
+  table tr td{
+    margin-left: 10px;
+  }
+  table tr td mat-expansion-panel {
+    width: 230px;
+  }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { observable } from 'rxjs';
 import { resetFakeAsyncZone } from '@angular/core/testing';
 import { strict } from 'assert';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -108,6 +109,10 @@ export class ApiServiceService {
         "Reason":reason
       }]
     })
+  }
+
+  public getAllBeingReportedArticle() {
+    return this.httpClient.get<any>(this.url+'all-article-being-report');
   }
     /**Report Article */
 

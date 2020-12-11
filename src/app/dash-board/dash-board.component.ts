@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit,Output } from '@angular/core';
+ 
 
 @Component({
   selector: 'app-dash-board',
@@ -15,5 +16,4 @@ export class DashBoardComponent implements OnInit {
   setStateForDashboard(value){
     this.showDashBoard.emit(value)
   }
-
 }

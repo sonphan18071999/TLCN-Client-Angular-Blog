@@ -14,11 +14,20 @@ export class AdminCMSComponent implements OnInit {
   ngOnInit(): void {
     this.mode="over"
     this.hasBackdrop="true";
-    this.stateUICMS="Dashboard"
+    this.stateUICMS="ArticlesReported"
 
   }
   getStateAdmin(value){
     this.stateUICMS=value
+  }
+  openAdminDashboard(){
+    this.stateUICMS="Dashboard";
+  }
+  openAllArticles(){
+    this.stateUICMS="AllArticles"
+  }
+  openArticlesReported(){
+    this.stateUICMS="ArticlesReported"
   }
 
 }

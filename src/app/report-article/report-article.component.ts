@@ -27,22 +27,22 @@ export class ReportArticleComponent implements OnInit {
   sendReport(){
     if(this.TextArea!=null)
     {
-      this.reason+=this.TextArea.toString();
+      this.reason+=this.TextArea.toString()+ '<br>';
     }
     if(this.CFTR !=null){
-      this.reason+="Content conflict the rules;"
+      this.reason+="Content conflict the rules <br>"
     }
     if(this.SAA !=null){
-      this.reason+="Spam/Advertise article;"
+      this.reason+="Spam/Advertise article <br>"
     }
     if(this.BTS !=null){
-      this.reason+="Break the subject;"
+      this.reason+="Break the subject<br>"
     }
     if(this.BW !=null){
-      this.reason+="Bad word;"
+      this.reason+="Bad word<br>"
     }
     if(this.DLOBM!=null){
-      this.reason+="Deliberately lashing out blog members;"
+      this.reason+="Deliberately lashing out blog members<br>"
     }
     this.apiServiceService.reportArticle(
     this.cookieService.get("idDetailArticle"),

@@ -21,6 +21,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { AdminCMSComponent } from './admin-cms/admin-cms.component';
 import { SearchArticleComponent } from './search-article/search-article.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
+import { AdminAllArticlesComponent } from './admin-all-articles/admin-all-articles.component';
+import { AdminArticlesReportedComponent } from './admin-articles-reported/admin-articles-reported.component';
+import { AdminDialogOptionComponent } from './admin-dialog-option/admin-dialog-option.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
     ReportArticleComponent,
     AdminCMSComponent,
     SearchArticleComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    AdminAllArticlesComponent,
+    AdminArticlesReportedComponent,
+    AdminDialogOptionComponent
   ],
   imports: [
     BrowserModule,
