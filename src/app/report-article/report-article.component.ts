@@ -44,6 +44,7 @@ export class ReportArticleComponent implements OnInit {
     if(this.DLOBM!=null){
       this.reason+="Deliberately lashing out blog members<br>"
     }
+    this.reason=this.reason.replace('null','');
     this.apiServiceService.reportArticle(
     this.cookieService.get("idDetailArticle"),
     this.cookieService.get("userIdLogged"),this.reason

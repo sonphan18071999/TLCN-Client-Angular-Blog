@@ -24,6 +24,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { AdminAllArticlesComponent } from './admin-all-articles/admin-all-articles.component';
 import { AdminArticlesReportedComponent } from './admin-articles-reported/admin-articles-reported.component';
 import { AdminDialogOptionComponent } from './admin-dialog-option/admin-dialog-option.component';
+import { DialogBanArticleComponent } from './dialog-ban-article/dialog-ban-article.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AdminDialogOptionComponent } from './admin-dialog-option/admin-dialog-o
     DashBoardComponent,
     AdminAllArticlesComponent,
     AdminArticlesReportedComponent,
-    AdminDialogOptionComponent
+    AdminDialogOptionComponent,
+    DialogBanArticleComponent
   ],
   imports: [
     BrowserModule,

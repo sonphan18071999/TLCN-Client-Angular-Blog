@@ -6,6 +6,8 @@ import {AdminDialogOptionComponent} from '../admin-dialog-option/admin-dialog-op
 import {ApiServiceService} from '../APIServices/api-service.service'
 import { setEmitFlags } from 'typescript';
 import {CookieService} from 'ngx-cookie-service';
+import { DialogBanArticleComponent} from '../dialog-ban-article/dialog-ban-article.component'
+import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-articles-reported',
@@ -23,6 +25,7 @@ export class AdminArticlesReportedComponent implements OnInit {
   sreenToDisplay:string=null;
   @Output() setStateIndexPost = new EventEmitter<string>();
   idViewDetail:string=null;
+  selectedLevel:string=null;
   constructor(public dialog: MatDialog,private apiService :ApiServiceService,
     private _cookieService: CookieService) {
     this.getAllArticleBeingReport() // Lấy tất cả những bài viết đang bị report đủ thể loại
@@ -34,7 +37,6 @@ export class AdminArticlesReportedComponent implements OnInit {
   getAllArticleBeingReport(){
     return this.apiService.getAllBeingReportedArticle().subscribe((data: any)=>{
       this.allArticleBeingReport=data.Article
-
     });
   }
   switchActiveOptionButton(order){
@@ -64,6 +66,28 @@ export class AdminArticlesReportedComponent implements OnInit {
   funcSetStateIndexPost(value: string) {
     this.setStateIndexPost.emit(value);
   }
+  returnToMainScreen(){
+    this.sreenToDisplay=null;
+  }
+  openDialog(idItem){
+    //1. Bên Dialog sẽ mở lên và chọn level.
+    //2. Sau khi chọn level xog nó sẽ cho ra dữ liệu ngay event dialog close.
+    //3. Sau khi event close pass data về component chính. Thằng subcribe sẽ hứng dữ liệu đó.
+    var DialogRef = this.dialog.open(DialogBanArticleComponent);
+    DialogRef.afterClosed()
+    .subscribe(result=>{
+      this.allArticleBeingReport=null;
+      this.selectedLevel=result   // Gán data thành công cho thằng selectedLevel nè 
+      if(result){
+        this.apiService.updateLevelBanOfArticle(idItem,result).subscribe(ok=>{
+          this.allArticleBeingReport=ok.Article
+        },er=>{
+          alert("Update level unsuccessfully!")
+        });
+      }
+    })
+  }
+  
 }
 export interface PeriodicElement {
   idArticle: string;

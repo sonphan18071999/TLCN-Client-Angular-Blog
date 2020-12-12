@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>
+    Choose Level
+    </mat-card-title>
+    <mat-card-subtitle>
+        If you choose this, author's article will unable to display their article.
+    </mat-card-subtitle>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a level</mat-label>
+            <mat-select [formControl]="levelControl" required >
+                <mat-option *ngFor="let item of levelBan" [value]="item.level">
+                    {{item.level}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p>
+            <button mat-button  color="primary" (click)="showSelectedItem()">Confirm</button>
+            <button mat-button >Close</button>
+        </p>
+</mat-card>

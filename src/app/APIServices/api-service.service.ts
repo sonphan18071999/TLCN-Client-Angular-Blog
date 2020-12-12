@@ -110,6 +110,13 @@ export class ApiServiceService {
       }]
     })
   }
+  public updateLevelBanOfArticle(idArticle,level){
+    return this.httpClient.post<any>(this.url+'update-level-artilce-report',{
+      "idArticle":idArticle,
+      "level":level
+    });
+  }
+    /**Report Article */
 
   public getAllBeingReportedArticle() {
     return this.httpClient.get<any>(this.url+'all-article-being-report');

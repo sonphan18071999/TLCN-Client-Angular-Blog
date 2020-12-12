@@ -16,6 +16,10 @@
     height: 50px;
     width:  200px;
   }
+  table tr{
+    height: 80px;
+    min-height: 80px;
+  }
   table tr:hover{
     background-color: #4993b8;
     color: white;
@@ -25,9 +29,19 @@
   table th td{
     border-collapse: collapse;
     border-bottom: 0px solid #fff;
+
   }
   table tr td{
     margin-left: 50px;
+    min-height: 100px;
+
+  }
+  table tr td p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
  
   table tr  mat-expansion-panel {

@@ -1,6 +1,6 @@
 <div class="container"> 
     <!-- Hiển thị những button chức năng cho chương trình -->
-    <mat-card>
+    <mat-card *ngIf="sreenToDisplay==null">
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Being Report')" >All Articles Being Report</mat-button-toggle>
             <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Banned Level 0')" >Banned Article Level: 0</mat-button-toggle>
@@ -15,8 +15,11 @@
     <mat-card>
       <p [(ngModel)]="tableToDisplay" name="tableToDisplay" ngDefaultControl class="Main-Title-Table"> Display Tabel Of:<b>{{tableToDisplay}}</b> </p>
     </mat-card>
+    <!-- Tải hình loading -->
+    <img  width="100%" *ngIf="this.allArticleBeingReport==null" src="../../assets/images/loading.gif">
+    <!-- Tải hình loading -->
     <!-- Bảng chứa dư liệu những  -->
-      <table>
+      <table *ngIf="this.allArticleBeingReport!=null" >
         <tr style="font-size:16px">
           <th class="article-being-report-checkbox">No.</th>
           <th  class="article-being-report-normal-row">Title</th> 
@@ -29,14 +32,14 @@
         <tr *ngFor="let item of allArticleBeingReport"  >
           <td>
             <input type="checkbox" name="checkReportArticle" [checked]="this.idArticleBeingReport==item.Article.idArticle" >
-            <label for="checkReportArticle"></label>
+            <p for="checkReportArticle"></p>
           </td>
-          <td><label><i>{{item.Title.title}}</i></label></td>
+          <td><p><i>{{item.Title.title}}</i></p></td>
 
-          <td><label>{{item.Article.endBanDate}}</label></td>
-          <td><label>{{item.Article.levelBan}}</label></td>
+          <td><p>{{item.Article.endBanDate}}</p></td>
+          <td><p>{{item.Article.levelBan}}</p></td>
           <td>
-            <label>{{item.Article.isDisabled}}</label>
+            <p>{{item.Article.isDisabled}}</p>
           </td>
           <td style="background-color: white;">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -49,19 +52,33 @@
             </mat-expansion-panel>
           </td>
           <td style="background-color:white; width: 300px;">
-            <button mat-raised-button (click)="changeToDetailArticle(item.Article.idArticle)"  class="button-action-on-table-article" color="primary"><mat-icon>launch</mat-icon>
-              View </button>
-              <button mat-raised-button class="button-action-on-table-article" color="accent"><mat-icon>update</mat-icon>
-              Update</button>
-              <button mat-raised-button class="button-action-on-table-article" color="warn"><mat-icon>warning</mat-icon>
-                Ban</button>
+            <button mat-raised-button (click)="changeToDetailArticle(item.Article.idArticle)" class="button-action-on-table-article"
+              color="primary">
+              <mat-icon>launch</mat-icon>
+              View
+            </button>
+            <button mat-raised-button class="button-action-on-table-article" color="accent">
+              <mat-icon>update</mat-icon>
+              Update
+            </button>
+            <button mat-raised-button  (click)="openDialog(item.Article.idArticle)"
+              class="button-action-on-table-article" color="warn">
+              <mat-icon>warning</mat-icon>
+              Ban
+            </button>
           </td>
         </tr>
       </table>
     <!-- Bảng chứa dư liệu những  -->
     <!-- Hiển thị chi tiết bài viết  -->
-    <app-details-post *ngIf="sreenToDisplay=='Detail Article'"  [idArticleDetail]="idArticleBeingReport"></app-details-post>
+    
     <!-- Hiển thị chi tiết bài viết  -->
     <!-- Phần table hiển thị tất cả những bài viết  -->
     </mat-card>
+    <mat-card *ngIf="sreenToDisplay!=null">
+      <button mat-raised-button (click)="returnToMainScreen()">
+        <mat-icon>arrow_back</mat-icon>Back
+      </button>
+    </mat-card>
+    <app-details-post *ngIf="sreenToDisplay=='Detail Article'"  [idArticleDetail]="idArticleBeingReport"></app-details-post>
   </div>
