@@ -3,7 +3,8 @@
     padding: 15px;
   }
   table {
-    width: 1467px;
+    width: 1400px;
+    border-collapse: collapse;
   }
 .article-being-report-checkbox{
   text-align: left;
@@ -13,11 +14,34 @@
   table tr .article-being-report-normal-row{
     text-align: left;
     height: 50px;
-    width:  250px;
+    width:  200px;
+  }
+  table tr:hover{
+    background-color: #4993b8;
+    color: white;
+    cursor: pointer;
+  }
+
+  table th td{
+    border-collapse: collapse;
+    border-bottom: 0px solid #fff;
   }
   table tr td{
-    margin-left: 10px;
+    margin-left: 50px;
   }
-  table tr td mat-expansion-panel {
-    width: 230px;
+ 
+  table tr  mat-expansion-panel {
+    width: 100%;
+  }
+  mat-expansion-panel-header{
+    height: 36px;
+  }
+  .Main-Title-Table{
+    font-size: 20px;
+  }
+  .button-action-on-table-article{
+    margin-right: 5px;
+  }
+  mat-icon{
+    font-size: 18px;
   }

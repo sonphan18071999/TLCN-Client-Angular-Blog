@@ -2,57 +2,66 @@
     <!-- Hiển thị những button chức năng cho chương trình -->
     <mat-card>
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle >Articles Being Report</mat-button-toggle>
-            <mat-button-toggle value="italic">Suspensions: 3 days </mat-button-toggle>
-            <mat-button-toggle value="underline">Suspensions: 7 days</mat-button-toggle>
+            <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Being Report')" >All Articles Being Report</mat-button-toggle>
+            <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Banned Level 0')" >Banned Article Level: 0</mat-button-toggle>
+            <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Banned Level 1')">Banned Article Level: 1 </mat-button-toggle>
+            <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Banned Level 2')">Banned Article Level: 2</mat-button-toggle>
+            <mat-button-toggle (click)="switchModeDisplayArticle(' All Article Banned Level 3')">Banned Article Level: 3</mat-button-toggle>
           </mat-button-toggle-group>
     <!-- Hiển thị những button chức năng cho chương trình -->
     <br>
     <br>
     <!-- Phần table hiển thị tất cả những bài viết  -->
-    <h2>Table of data: </h2>
-    <div class="mat-elevation-z1">
+    <mat-card>
+      <p [(ngModel)]="tableToDisplay" name="tableToDisplay" ngDefaultControl class="Main-Title-Table"> Display Tabel Of:<b>{{tableToDisplay}}</b> </p>
+    </mat-card>
+    <!-- Bảng chứa dư liệu những  -->
       <table>
-        <tr>
+        <tr style="font-size:16px">
           <th class="article-being-report-checkbox">No.</th>
-          <th class="article-being-report-normal-row">Id Article</th>
+          <th  class="article-being-report-normal-row">Title</th> 
           <th  class="article-being-report-normal-row">End Ban Date</th> 
           <th  class="article-being-report-normal-row">Level Ban</th>
           <th  class="article-being-report-normal-row">Is Disable</th>
-          <th  class="article-being-report-normal-row">Reason</th>
-
+          <th  class="article-being-report-normal-row">Reasons</th>
+          <th class="article-being-report-normal-row">Action</th>
         </tr>
-        <tr *ngFor="let item of allArticleBeingReport">
+        <tr *ngFor="let item of allArticleBeingReport"  >
           <td>
-            <input   type="checkbox" name="checkReportArticle"(click)="assignCheckItem(item.idArticle)" >
+            <input type="checkbox" name="checkReportArticle" [checked]="this.idArticleBeingReport==item.Article.idArticle" >
             <label for="checkReportArticle"></label>
           </td>
-          <td  *ngIf="item.idArticle" ><label>{{item.idArticle}}</label></td>
-          <td *ngIf="!item.idArticle"><i>NaN</i></td>
-          <td><label>{{item.endBanDate}}</label></td>
-          <td><label>{{item.levelBan}}</label></td>
-          <td><label>{{item.isDisabled}}</label></td>
+          <td><label><i>{{item.Title.title}}</i></label></td>
+
+          <td><label>{{item.Article.endBanDate}}</label></td>
+          <td><label>{{item.Article.levelBan}}</label></td>
           <td>
+            <label>{{item.Article.isDisabled}}</label>
+          </td>
+          <td style="background-color: white;">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
-                <mat-panel-description>
-                 Expand
-                </mat-panel-description>
+                 Expand: 
               </mat-expansion-panel-header>
-              <div *ngFor="let itemChild of item.userReport">
+              <div *ngFor="let itemChild of item.Article.userReport">
                <p [innerHtml]= 'itemChild.Reason'></p>
               </div>
             </mat-expansion-panel>
           </td>
-         
+          <td style="background-color:white; width: 300px;">
+            <button mat-raised-button (click)="changeToDetailArticle(item.Article.idArticle)"  class="button-action-on-table-article" color="primary"><mat-icon>launch</mat-icon>
+              View </button>
+              <button mat-raised-button class="button-action-on-table-article" color="accent"><mat-icon>update</mat-icon>
+              Update</button>
+              <button mat-raised-button class="button-action-on-table-article" color="warn"><mat-icon>warning</mat-icon>
+                Ban</button>
+          </td>
         </tr>
-      
-
-
-
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    </div>
+    <!-- Bảng chứa dư liệu những  -->
+    <!-- Hiển thị chi tiết bài viết  -->
+    <app-details-post *ngIf="sreenToDisplay=='Detail Article'"  [idArticleDetail]="idArticleBeingReport"></app-details-post>
+    <!-- Hiển thị chi tiết bài viết  -->
     <!-- Phần table hiển thị tất cả những bài viết  -->
     </mat-card>
   </div>

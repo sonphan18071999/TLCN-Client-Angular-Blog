@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, ViewChild,OnInit} from '@angular/core';
+import {AfterViewInit, Component, ViewChild,OnInit,Output,EventEmitter} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import {AdminDialogOptionComponent} from '../admin-dialog-option/admin-dialog-option.component'
 import {ApiServiceService} from '../APIServices/api-service.service'
 import { setEmitFlags } from 'typescript';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-admin-articles-reported',
@@ -16,14 +17,19 @@ export class AdminArticlesReportedComponent implements OnInit {
   activeButtonOption:boolean = true;
   orderBeingActive : number=0;
   panelOpenState = false;
-  selectedArticleBeingReport:any=null;
+  idArticleBeingReport:any=null;
   public allArticleBeingReport : any;
-  constructor(public dialog: MatDialog,private apiService :ApiServiceService) {
+  tableToDisplay:string=null;     //Bảng chứa các article bị report
+  sreenToDisplay:string=null;
+  @Output() setStateIndexPost = new EventEmitter<string>();
+  idViewDetail:string=null;
+  constructor(public dialog: MatDialog,private apiService :ApiServiceService,
+    private _cookieService: CookieService) {
     this.getAllArticleBeingReport() // Lấy tất cả những bài viết đang bị report đủ thể loại
   }
 
   ngOnInit(): void {
-    
+    this.tableToDisplay='All Article Being Report';
   }
   getAllArticleBeingReport(){
     return this.apiService.getAllBeingReportedArticle().subscribe((data: any)=>{
@@ -43,8 +49,20 @@ export class AdminArticlesReportedComponent implements OnInit {
     this.orderBeingActive = order;
   }
   assignCheckItem(selected){
-    this.selectedArticleBeingReport=selected;
-    console.log("item dang duoc selected la "+selected)
+    this.idArticleBeingReport=selected;
+  }
+  switchModeDisplayArticle(name){
+    this.tableToDisplay=name;
+  }
+  changeToDetailArticle(id){
+    this.idArticleBeingReport=id;
+    this.sreenToDisplay='Detail Article';
+    this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
+    this.assignCheckItem(id);
+  }
+
+  funcSetStateIndexPost(value: string) {
+    this.setStateIndexPost.emit(value);
   }
 }
 export interface PeriodicElement {

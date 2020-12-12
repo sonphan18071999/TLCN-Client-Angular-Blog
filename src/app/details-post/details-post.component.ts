@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, Input ,AfterViewInit,OnChanges } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ApiServiceService} from '../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -16,7 +16,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./details-post.component.scss'],
   providers:[CookieService]
 })
-export class DetailsPostComponent implements OnInit {
+export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   public Editor=ClassicEditor
   
   name = 'Angular 6';
@@ -47,7 +47,8 @@ export class DetailsPostComponent implements OnInit {
   loading:boolean =false;
   editTitleMode : boolean = false;
   @Output() setStateDetailPost = new EventEmitter<string>();  //Event tra ve loading item
-
+  @Input() idArticleDetail: string;
+  
   public model = {
     editorData: '<p>Hello, world!</p>'
   };
@@ -56,6 +57,9 @@ export class DetailsPostComponent implements OnInit {
     private router: Router,public dialog: MatDialog,private toastr: ToastrService,
     private location:Location
     ) {
+  }
+  ngAfterViewInit(): void {
+    this.ngOnInit();
   }
   ngOnInit(): void {
     /**Init animate */
@@ -71,6 +75,9 @@ export class DetailsPostComponent implements OnInit {
     })
     //Check author authenitcation to show button confiure article
     this.checkAuthor();
+  }
+  ngOnChanges() {
+    this.ngOnInit();
   }
   getDetailArticle(){
     this.ContentInParts=null;
