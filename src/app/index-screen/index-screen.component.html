@@ -1,11 +1,15 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true" >
     <!-- Side navigation -->
     <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
-      <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="200px">
+      <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="300px">
         <div class="group-button-menu">
-          <button mat-button [routerLink]="['/create-article']">Post Article</button>
+          <button mat-button  (click)="gotoPostArticlePage()" >
+            <mat-icon>keyboard_arrow_right</mat-icon>
+            Post Article</button>
           <p>
-            <button mat-button [routerLink]="['/create-article']">All Posted Article</button>
+            <button mat-button ><mat-icon>keyboard_arrow_right</mat-icon>
+               All Hashtag</button>
+            <button mat-button ><mat-icon>keyboard_arrow_right</mat-icon>           Discorevy</button>
           </p>
         </div>
     </mat-drawer>

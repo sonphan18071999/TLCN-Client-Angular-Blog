@@ -32,11 +32,11 @@
           </div> -->
            
           <div style="display: flex;">
-            <img src="../../assets/images/obama.jpg" style="border-radius: 10%;" width="60px" height="60px">
+            <img src="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.0-1/p320x320/124932561_1689823464532336_4072302693366354423_o.jpg?_nc_cat=108&ccb=2&_nc_sid=7206a8&_nc_ohc=KgtuFpqXdA0AX8HTwGI&_nc_ht=scontent.fhan5-7.fna&tp=6&oh=83e88a8b942fa75068c8ec46347d7976&oe=5FFBED84" style="border-radius: 10%;" width="60px" height="60px">
             <div style="display: flex;">
               <div class="author-infor-display">
                 <a  (click)="viewUserProfile(infoAuthor._id)" ><b>{{infoAuthor.name}}</b></a>
-                <p>Master teller story</p>
+                <p>Master Teller Story</p>
               </div>
               <!-- <button mat-stroked-button style=" margin-left: 20px;height: 60px; width: 20px; border-radius: 50%; border-color: blue;" (click)="FollowAuthor()">
                   <mat-icon>done</mat-icon>
@@ -59,7 +59,7 @@
           <!--Phần nội dung trong article ở trạng thái edit mode-->
           
           <div *ngIf="editMode" class="article-edit-mode">
-            <img *ngIf="loading==true" src="../../assets/images/loading.gif">
+            <img *ngIf="loading==true" src="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.0-1/p320x320/124932561_1689823464532336_4072302693366354423_o.jpg?_nc_cat=108&ccb=2&_nc_sid=7206a8&_nc_ohc=KgtuFpqXdA0AX8HTwGI&_nc_ht=scontent.fhan5-7.fna&tp=6&oh=83e88a8b942fa75068c8ec46347d7976&oe=5FFBED84">
             <p style="color: red;"> <b><i>[Edit mode]: In this mode, you can easily insert, remove content or image of your article</i> </b></p>
            <div *ngIf="loading==false">
             <div  *ngFor="let content of ContentInParts;let i = index" class="container-article-detail">
@@ -126,7 +126,7 @@
                   <!-- Avatar va phan comment cha -->
                   <div style="display:flex;">
                     <div>
-                      <img src="../../assets/images/obama.jpg" width="40px" height="40px" style="border-radius: 50%;">
+                      <img src="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.0-1/p320x320/124932561_1689823464532336_4072302693366354423_o.jpg?_nc_cat=108&ccb=2&_nc_sid=7206a8&_nc_ohc=KgtuFpqXdA0AX8HTwGI&_nc_ht=scontent.fhan5-7.fna&tp=6&oh=83e88a8b942fa75068c8ec46347d7976&oe=5FFBED84" width="40px" height="40px" style="border-radius: 50%;">
                     </div>
                     <mat-card style="width: 100%;">
                       <div style="display: flex;">
@@ -135,7 +135,7 @@
                           <p [innerHtml]="comment.nameUser"></p>
                         </a>
                         <!-- Hien thi ten user -->
-                        <p style="margin-left:15px ;"><i>Dai bang chua</i></p>
+                        <p style="margin-left:15px ;"><i>Master Teller Story</i></p>
                       </div>
                       <p [innerHtml]="comment.content"></p>
                       <hr>
@@ -157,7 +157,7 @@
                   <!-- Phan comment child -->
                   <div *ngFor="let childComment of comment.childComment; index as a">
                     <div style="width: 837px;margin-left: 40px;display: flex; padding: 10px;">
-                      <img src="../../assets/images/obama.jpg" width="40px" height="40px" style="border-radius: 50%;">
+                      <img src="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.0-1/p320x320/124932561_1689823464532336_4072302693366354423_o.jpg?_nc_cat=108&ccb=2&_nc_sid=7206a8&_nc_ohc=KgtuFpqXdA0AX8HTwGI&_nc_ht=scontent.fhan5-7.fna&tp=6&oh=83e88a8b942fa75068c8ec46347d7976&oe=5FFBED84" width="40px" height="40px" style="border-radius: 50%;">
                       <mat-card style="width: 100%;">
                         <div>
                           <div style="display: flex;">
@@ -217,7 +217,7 @@
               <ckeditor [editor]="Editor"
                 [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','bulletedList', 'numberedList', 'blockQuote']}"
                 (change)="saveEditor($event)"></ckeditor>
-              <button mat-raised-button color="primary" (click)="sendFirstComment()">Send Comment</button>
+              <button mat-raised-button color="primary" (click)="sendFirstComment()"><mat-icon>send</mat-icon>Send Comment</button>
             </div>
             <!-- Phan comment hien thi neu khong co comment nao khac  -->
           </div>
@@ -236,7 +236,7 @@
         <br>
         <!-- Hiển thị những bài viết liên quan -->
         <div style="display: flex; 
-                    width: 890px;
+                    width: 962px;
                     flex-wrap: wrap;">
           <div class="related-article" *ngFor="let item of allRelatedArticle">
             <mat-card *ngIf="item" (click)="showDetailPost(item._id,item.tittle)">
@@ -246,7 +246,7 @@
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-line-clamp: 2; /* number of lines to show */
-                    -webkit-box-orient: vertical;"><b>{{item.tittle}}</b></h3>
+                    -webkit-box-orient: vertical; height: 55px;"><b>{{item.tittle}}</b></h3>
               <p style="overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;

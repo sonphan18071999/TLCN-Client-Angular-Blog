@@ -28,7 +28,7 @@ export class CreateArticleComponent implements OnInit {
   MainImage:string;
   isLoaded:boolean=true;
   arrHashTag:any[]
-
+  disableCreateArticle:boolean=false;
   constructor(private _formBuilder: FormBuilder,
     private createArticleService:CreateArticleService,
     private cookieService:CookieService,@Inject(DOCUMENT) private document: Document,
@@ -57,6 +57,12 @@ export class CreateArticleComponent implements OnInit {
     this.Article.idUser=this.cookieService.get("userIdLogged");
     this.Article.tittle="";
     this.Article.description="";
+    this.checkAuthentication();
+  }
+  checkAuthentication(){
+    if(!this.cookieService.get("userIdLogged")){
+      this.disableCreateArticle=true;
+    }
   }
   addMoreContent(){
     this.Article.content.push({partContent:null,images:null})

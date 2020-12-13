@@ -19,7 +19,7 @@
     position: absolute;
 }
 .drawer-content-showup{
-    width: 200px;
+    width: 300px;
     margin: auto;
 }
 
@@ -34,9 +34,11 @@
 }
 .group-button-menu button{
   text-align: left;
-  width: 200px;
+  width: 300px;
   font-family: 'Segoe UI', Roboto;
   border-radius: 0px;
+  height: 50px;
+  font-size: 20px;
 }
 .group-button-menu button:hover{
   background-color: black;

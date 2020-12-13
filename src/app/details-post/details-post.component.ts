@@ -131,10 +131,10 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   }
   sendComment(){
   if(this.cookieService.get("userIdLogged")==''){
-    alert("You are not logged in yet!!")
+    this.toastr.warning("You are not logged in yet!!","Message")
   }else{
     if(this.commentContent == null){
-      alert("Input cant be null")
+      this.toastr.warning("Input can't be null","Message")
     }else{
     if(this.idParentComment == null) //Khong reply comment
     {
@@ -190,9 +190,9 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
    }
    sendFirstComment(){
     if(this.commentContent==null ){
-      alert("Input cant be empty")
+      this.toastr.warning("Input cant be empty","Message")
     }else if(this.cookieService.get("userIdLogged")==''){
-      alert("You must loggin to comment on this article")
+      this.router.navigateByUrl('/login');
     }
     else{
       var comment = {
@@ -294,7 +294,7 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
         this.cancelEditMode();
       }
     },err=>{
-      this.toastr.error("Update successfully","Message")
+      this.toastr.error("Update unsuccessfully","Message")
     })
   }
   saveContentEditMode(  { editor }: ChangeEvent,index){
