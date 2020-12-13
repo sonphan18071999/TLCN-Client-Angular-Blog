@@ -29,11 +29,16 @@
             <br>
                 <button mat-raised-button color="primary" (click)="addMoreContent()" style="margin-left: 47%;"><mat-icon>add</mat-icon>Content</button>
 
-            <div class="group-go-next-page">
-              <p><i>Go to next step</i></p>
-              <button mat-button matStepperNext>
-                <mat-icon>arrow_right_alt</mat-icon>Next</button>
-            </div>
+                <div class="group-go-next-page">
+                  <button mat-raised-button matStepperPrevious class="group-go-next-page-right">
+                    <mat-icon>navigate_before</mat-icon>
+                    Back
+                  </button>
+                  <button mat-raised-button matStepperNext class="group-go-next-page-left">
+                    <mat-icon>navigate_next</mat-icon>
+                    Next
+                  </button>
+                </div>
           </form>
         </mat-step>
 
@@ -59,9 +64,14 @@
           <br>
           <br>
           <div class="group-go-next-page">
-            <p><i>Go to a different step to see the error state</i></p>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext><mat-icon>arrow_right_alt</mat-icon>Next</button>
+            <button mat-raised-button matStepperPrevious class="group-go-next-page-right">
+              <mat-icon>navigate_before</mat-icon>
+              Back
+            </button>
+            <button mat-raised-button matStepperNext class="group-go-next-page-left">
+              <mat-icon>navigate_next</mat-icon>
+              Next
+            </button>
           </div>
         </mat-step>
         <!-- Tittle Image and Description -->
@@ -86,8 +96,14 @@
           <!-- Hashtag -->
           <button mat-raised-button (click)="submitArticle()"><mat-icon>check_circle_outline</mat-icon>Submit article</button>
           <div class="group-go-next-page">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button matStepperPrevious class="group-go-next-page-right">
+              <mat-icon>navigate_before</mat-icon>
+              Back
+            </button>
+            <button mat-raised-button matStepperNext class="group-go-next-page-left">
+              <mat-icon>navigate_next</mat-icon>
+              Next
+            </button>
           </div>
         </mat-step>
     </mat-horizontal-stepper>

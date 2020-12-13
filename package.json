@@ -3,11 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --aot -prod"
+  },
+  "engines": {
+    "node": "12.11.1",
+    "npm":"3.10.10"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +36,7 @@
     "angular-responsive-carousel": "^1.5.11",
     "aos": "^2.3.4",
     "chart.js": "^2.9.4",
+    "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "ng2-charts": "^2.4.2",
     "ngx-cookie-service": "^10.1.1",
@@ -42,8 +49,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.1",
-    "@angular/cli": "~10.1.1",
-    "@angular/compiler-cli": "~10.1.1",
+    "@angular/cli": "^11.0.4",
+    "@angular/compiler-cli": "^10.1.6",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

@@ -16,6 +16,6 @@ export class LoginService {
       "typeAccount":typeAccount
 
     }
-    return this.httpClient.post<any>(`http://localhost:4000/api/check-user`,data);
+    return this.httpClient.post<any>(`https://be-nodejs-tlcn.herokuapp.com/api/check-user`,data);
   }
 }
