@@ -1,0 +1,56 @@
+<div class="container"> 
+  <mat-card *ngIf="sreenToDisplay==null">
+    <h1>All article</h1>
+    <label>View all artilce & author in system</label>
+    
+  </mat-card>
+  <mat-card *ngIf="sreenToDisplay=='Detail Article'">
+    <div class="Button-Return-All-Article" >
+      <button mat-raised-button (click)="resetFormAllArticle()" ><mat-icon>keyboard_backspace</mat-icon>
+        <u><i>Back</i></u></button>
+    </div>
+  </mat-card>
+  <br>
+  <br>
+  <img *ngIf="allArticle==null" src="../../assets/images/loading.gif" width="100%"> 
+  <mat-card *ngIf="sreenToDisplay==null" >
+    <table>
+      <tr>
+        <th>No.</th>
+        <th>Title </th>
+        <th>Author</th>
+        <th>Likes</th>
+        <th>Date Posted</th>
+        <th style="width: 350px;">Actions</th>
+      </tr>
+      <tr *ngFor="let item of allArticle">
+        <td>
+         <input type="checkbox"> 
+        </td>
+        <td>{{item.Article.tittle}}</td>
+        <td>{{item.Author}}</td>
+        <td>{{item.Article.likesCount}}</td>
+        <td>{{item.Article.postedOn}}</td>
+        <td>
+          <button mat-raised-button color="primary" (click)="viewDetailArticle(item.Article._id)">
+            <mat-icon>launch</mat-icon>
+            View
+          </button>
+          <button mat-raised-button color="accent">
+            <mat-icon>update</mat-icon>
+            Update
+          </button>
+          <button mat-raised-button color="warn">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </td>
+      </tr>
+     </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </mat-card>
+ 
+  <app-details-post *ngIf="sreenToDisplay=='Detail Article'"  [idArticleDetail]="idArticleBeingView"></app-details-post>
+
+</div>
