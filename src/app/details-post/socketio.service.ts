@@ -7,7 +7,7 @@ import {io} from 'socket.io-client';
 })
 export class SocketioService {
 
-  readonly uri:string = "https://be-nodejs-tlcn.herokuapp.com/api";
+  readonly uri:string = "https://be-nodejs-tlcn.herokuapp.com/api/";
   socket:any;
   constructor() {  
     this.socket = io(this.uri)
