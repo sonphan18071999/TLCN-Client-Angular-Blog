@@ -8,9 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "npm": "install",
-    "postinstall": "ng build --aot --prod"
-
+    "postinstall": "(cd src && npm install)"
   },
   "engines": {
     "node": "15.3.0",
