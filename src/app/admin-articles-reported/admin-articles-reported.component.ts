@@ -9,7 +9,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { DialogBanArticleComponent} from '../dialog-ban-article/dialog-ban-article.component'
 import {MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-
+import AOS from 'aos';
 @Component({
   selector: 'app-admin-articles-reported',
   templateUrl: './admin-articles-reported.component.html',
@@ -33,6 +33,7 @@ export class AdminArticlesReportedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    AOS.init();
     this.tableToDisplay='All Article Being Report';
     
   }

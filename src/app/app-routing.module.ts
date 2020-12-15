@@ -17,7 +17,7 @@ const routes: Routes = [
 // {path:'profile/:id',component:UserProfileComponent},
 {path:'register-account',component:RegisterAccountComponent},
 {path:'admin/index',component:AdminCMSComponent},
-{path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
+// {path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
 ];
 
 @NgModule({

@@ -103,18 +103,6 @@ mat-drawer-content .container{
   max-height: 540px;
 }
 
-.related-article mat-card:hover{
-  cursor: pointer;
-  background-color: #17a2b8;
-}
-.related-article mat-card{
-  background-color: white;
-  width: 276px;
-  margin-right:12px;
-  margin-top:10px;
-  height:250px;
-  margin-bottom: 50px;
-}
 .btn-group-edit-mode{
   margin-left: 659px;   
   margin-top: 10px;
@@ -171,4 +159,13 @@ mat-drawer-content .container{
   margin-left: 331px;
   padding: 5px;
   margin-top: 20px;
+}
+.display-comment-user :hover{
+  cursor: pointer;
+
+}
+.display-comment-user{
+  font-size: 20px; 
+  color: #3f51b5;
+  text-decoration: none; 
 }

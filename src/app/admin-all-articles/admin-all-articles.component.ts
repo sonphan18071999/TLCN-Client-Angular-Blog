@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {ApiServiceService} from '../APIServices/api-service.service'
 import {CookieService } from 'ngx-cookie-service'
+import AOS from 'aos'
 @Component({
   selector: 'app-admin-all-articles',
   templateUrl: './admin-all-articles.component.html',
@@ -18,6 +19,7 @@ export class AdminAllArticlesComponent implements OnInit  {
   constructor(private apiService:ApiServiceService,private cookieService:CookieService) { }
 
   ngOnInit(): void {
+    AOS.init();
     this.apiService.getAllArtilce(1).subscribe(ok=>{
       this.allArticle=ok.Article;
       console.log(this.allArticle)

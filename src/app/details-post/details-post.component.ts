@@ -39,7 +39,6 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   showBookMark:boolean=true;
   infoAuthor : any = null;
   allHashTag : any=null;
-  allRelatedArticle :any = null;
   showConfigureArticleButton: Boolean = false;
   editMode : boolean = false;
   tempContentEditMode: any = null;      //Lưu những nội dung tạm thời để update.
@@ -79,6 +78,12 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   ngOnChanges() {
     this.ngOnInit();
   }
+  showDetailPost(id){
+    this.cookieService.set('idArticle',id);
+    this.setStateDetailPost.emit('Detail-Post')
+    this.getDetailArticle();
+    
+  }
   getDetailArticle(){
     this.ContentInParts=null;
     /**Get id which set inside cookie of browser */
@@ -92,7 +97,6 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
       this.ContentInParts = this.article.content;
       this.infoAuthor = res.Author;
       this.allHashTag = res.hashTag;
-      this.allRelatedArticle = res.RelatedArticle;
       
     })
   }
@@ -236,11 +240,7 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   openDialog() {
     this.dialog.open(ReportArticleComponent);
   }
-  showDetailPost(id,title){  
-    this.cookieService.set( 'idDetailArticle', id ); 
-    this.funcSetStateDetail("Detail-Post");
-    this.getDetailArticle();
-  }
+
   FollowAuthor(){
     this.toastr.success('Follow author success', 'Announcement!');
   }

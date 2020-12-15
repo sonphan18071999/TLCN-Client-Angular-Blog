@@ -46,6 +46,11 @@
           <mat-tab label="Posted Article"> 
             <mat-card>
               <div class="container-body-right-article">
+                <mat-card *ngIf="allPostedArticle==null">
+                  <mat-card-title>
+                    {{inforUser.name}} haven't post any article yet!
+                  </mat-card-title>
+                </mat-card>
                 <div *ngFor = "let item of allPostedArticle;let i = index">
                 <mat-card *ngIf="i<showArticleNumber" (click)="showDetailPost(item._id,item.tittle)">
                   <img src="{{item.AvatarPost}}">

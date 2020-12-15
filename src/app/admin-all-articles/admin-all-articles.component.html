@@ -1,4 +1,4 @@
-<div class="container"> 
+<div class="container" data-aos="zoom-in"> 
   <mat-card *ngIf="sreenToDisplay==null">
     <h1>All article</h1>
     <label>View all artilce & author in system</label>
@@ -14,7 +14,7 @@
   <br>
   <img *ngIf="allArticle==null" src="../../assets/images/loading.gif" width="100%"> 
   <mat-card *ngIf="sreenToDisplay==null" >
-    <table>
+    <table *ngIf="allArticle!=null"  >
       <tr>
         <th>No.</th>
         <th>Title </th>
@@ -27,7 +27,7 @@
         <td>
          <input type="checkbox"> 
         </td>
-        <td>{{item.Article.tittle}}</td>
+        <td class="Allallticle-tittle">{{item.Article.tittle}}</td>
         <td>{{item.Author}}</td>
         <td>{{item.Article.likesCount}}</td>
         <td>{{item.Article.postedOn}}</td>
