@@ -99,7 +99,7 @@ export class AdminArticlesReportedComponent implements OnInit {
   updateLevelBanArticle(IdItem,level){
     return this.apiService.updateLevelBanOfArticle(IdItem,level).subscribe(ok=>{
       this.allArticleBeingReport=ok.Article;
-      this.toast.success('Login successfully', 'Login');
+      this.toast.success('Ban use to level: '+level+' successfully!!', 'Message');
     })
   }
   
