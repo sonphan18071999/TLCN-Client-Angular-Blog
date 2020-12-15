@@ -1,0 +1,14 @@
+
+
+.related-article mat-card:hover{
+    cursor: pointer;
+    background-color: #17a2b8;
+  }
+  .related-article mat-card{
+    background-color: white;
+    width: 276px;
+    margin-right:12px;
+    margin-top:10px;
+    height:250px;
+    margin-bottom: 50px;
+  }
