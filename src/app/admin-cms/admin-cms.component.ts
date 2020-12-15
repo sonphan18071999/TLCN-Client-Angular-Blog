@@ -15,7 +15,7 @@ export class AdminCMSComponent implements OnInit {
   ngOnInit(): void {
     this.mode="over"
     this.hasBackdrop="true";
-    this.stateUICMS="AllArticles"
+    this.stateUICMS="Dashboard"
 
   }
   getStateAdmin(value){

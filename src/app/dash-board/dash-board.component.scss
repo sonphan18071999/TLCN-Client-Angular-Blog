@@ -9,6 +9,10 @@
     margin: 50px;
     padding: 10px; 
 }
+mat-card:hover{
+    box-shadow: 5px 10px #888888;
+    cursor: pointer;
+}
 .body-dashboard{
     padding: 10px; 
     display: flex;

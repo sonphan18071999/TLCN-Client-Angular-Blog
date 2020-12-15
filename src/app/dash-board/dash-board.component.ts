@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit,Output } from '@angular/core';
- 
+import AOS from 'aos';
 
 
 @Component({
@@ -12,7 +12,9 @@ export class DashBoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.setStateForDashboard("Dashboard")
+    this.setStateForDashboard("Dashboard");
+    AOS.init();
+
   }
   setStateForDashboard(value){
     this.showDashBoard.emit(value)
