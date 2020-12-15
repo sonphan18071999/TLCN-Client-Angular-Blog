@@ -1,5 +1,7 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true" >
-    <!-- Side navigation -->
+ 
+  
+  <!-- Side navigation -->
     <mat-drawer #drawer [mode]="side" class="drawer-content-showup">
       <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="300px">
         <div class="group-button-menu">
@@ -18,6 +20,9 @@
       <div class="app-header"> 
         <app-header></app-header>
       </div>
+      <!-- Daily Bullentin Board  -->
+      <app-bullentin-board-index ></app-bullentin-board-index>
+      <!-- Daily Bullentin Board  -->
       <div class="app-index-post">
         <app-index-post *ngIf="this.currentComponent=='Index-Post-InProcess'" (setStateIndexPost)="getStateComponent($event)"></app-index-post>
         <app-details-post *ngIf="this.currentComponent=='Detail-Post'" (setStateDetailPost)="getStateComponent($event)"></app-details-post>

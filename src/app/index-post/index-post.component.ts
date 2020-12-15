@@ -48,7 +48,6 @@ export class IndexPostComponent implements OnInit {
       this.allArticle=this.allArticle.Article;  // Lấy tất cả những bài viết
        //Tiến hình đổi giờ mặc định sang string.
        this.convertTimeToString(this.allArticle);
-       console.log(this.allArticle);
     })
   }
 
@@ -68,7 +67,6 @@ export class IndexPostComponent implements OnInit {
         }
       }
     }else{
-     console.log(data.Article);
      if(data.Article.postedOn.substring(0,4)==currentDate.getFullYear() &&
         data.Article.postedOn.substring(5,7)==currentDate.getMonth()+1 &&
         data.Article.postedOn.substring(8,10)==currentDate.getDate() )
@@ -105,7 +103,6 @@ export class IndexPostComponent implements OnInit {
     // var reader = new FileReader();
     this.imagePath = files;
     // reader.readAsDataURL(files[0]);
-    // console.log(reader.readAsDataURL(files[0]))
   }
   postImage(){
     var a ={
@@ -113,7 +110,6 @@ export class IndexPostComponent implements OnInit {
     }
     // this.indexPostService.postImageToServer(a).subscribe(
     //   res=>{
-    //     console.log("Send Image successfully")
     //   },
     //   err=>{
     //     console.log("Send image not successfully"+err);
@@ -123,7 +119,6 @@ export class IndexPostComponent implements OnInit {
     reader.readAsDataURL(this.imagePath[0]); 
     reader.onloadend = function() {
         var base64data = reader.result;                
-        console.log(base64data);
     }
     // console.log(JSON.stringify(a))
   }

@@ -29,6 +29,9 @@ import { ChartsModule } from 'ng2-charts';
 import { AdminLineGraphChartJSComponent } from './admin-line-graph-chart-js/admin-line-graph-chart-js.component';
 import { AdminCircleGraphChartJsComponent } from './admin-circle-graph-chart-js/admin-circle-graph-chart-js.component';
 import { DetailsPostRelatedArticleComponent } from './details-post-related-article/details-post-related-article.component';
+import { BullentinBoardCreatePostComponent } from './bullentin-board-create-post/bullentin-board-create-post.component';
+import { BullentinBoardDetailPostComponent } from './bullentin-board-detail-post/bullentin-board-detail-post.component';
+import { BullentinBoardIndexComponent } from './bullentin-board-index/bullentin-board-index.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { DetailsPostRelatedArticleComponent } from './details-post-related-artic
     DialogBanArticleComponent,
     AdminLineGraphChartJSComponent,
     AdminCircleGraphChartJsComponent,
-    DetailsPostRelatedArticleComponent
+    DetailsPostRelatedArticleComponent,
+    BullentinBoardCreatePostComponent,
+    BullentinBoardDetailPostComponent,
+    BullentinBoardIndexComponent
   ],
   imports: [
     BrowserModule,

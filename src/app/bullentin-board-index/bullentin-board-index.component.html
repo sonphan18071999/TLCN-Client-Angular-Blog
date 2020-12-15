@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card class="all-item-daily-bullentin-board">
+        <mat-card class="item-daily-bullentin-board"  (click)="showDialogCreate()">
+            <button mat-raised-button>
+                <mat-icon>add_a_photo</mat-icon>
+            </button>
+            <label >New Facts</label>
+        </mat-card>
+        <div *ngFor="let item of allFacts">
+            <mat-card class="item-daily-bullentin-board">
+                <img [src]="item.imgUrl">
+            </mat-card>
+        </div>
+    </mat-card>
+</div>

@@ -29,4 +29,5 @@ export class IndexScreenComponent implements OnInit {
     }
 
   }
+
 }

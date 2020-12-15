@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {BullentinBoardCreatePostComponent} from '../bullentin-board-create-post/bullentin-board-create-post.component'
+import {CookieService} from 'ngx-cookie-service'
+import {ApiServiceService} from '../APIServices/api-service.service'
+@Component({
+  selector: 'app-bullentin-board-index',
+  templateUrl: './bullentin-board-index.component.html',
+  styleUrls: ['./bullentin-board-index.component.scss']
+})
+export class BullentinBoardIndexComponent implements OnInit {
+
+  allFacts : any;
+  constructor(private dialog: MatDialog,private cookieService:CookieService,
+    private apiService:ApiServiceService
+    ) { }
+
+  ngOnInit(): void {
+    this.getAllBullentinBoard()
+  }
+  getAllBullentinBoard(){
+    return this.apiService.getAllBullentinBoard().subscribe(ok=>{
+      this.allFacts=ok.AllBullentinBoard
+      console.log(this.allFacts)
+
+    })
+  }
+  showDialogCreate(){
+    const dialogRef = this.dialog.open(BullentinBoardCreatePostComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAllBullentinBoard()
+    });
+  }
+}
