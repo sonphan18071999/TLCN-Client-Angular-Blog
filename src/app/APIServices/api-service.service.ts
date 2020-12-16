@@ -146,13 +146,13 @@ export class ApiServiceService {
 
   /**  Bullentin board*/
   public createBullentinBoard(data){
-    return this.httpClient.post<any>("http://localhost:4000/api/bullentinBoard/create",{"bullentinBoard":data})
+    return this.httpClient.post<any>(this.url+"bullentinBoard/create",{"bullentinBoard":data})
   }
   public getAllBullentinBoard(){
-    return this.httpClient.get<any>("http://localhost:4000/api/bullentinBoard/get-all");
+    return this.httpClient.get<any>(this.url+"bullentinBoard/get-all");
   }
   public getDetailButtinBoard(id){
-    return this.httpClient.post<any>("http://localhost:4000/api//bullentinBoard/detail",{
+    return this.httpClient.post<any>(this.url+"bullentinBoard/detail",{
       "id":id
     })
   }
