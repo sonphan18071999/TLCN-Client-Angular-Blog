@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
             this._cookieService.set( 'userName', userInfo.first_name+' '+ userInfo.last_name );
 
             this.email=userInfo.id+"@gmail.com"
-            this.userName=userInfo.first_name+userInfo.last_name;
+            this.userName=userInfo.first_name +" "+userInfo.last_name;
             this.typeAccount="facebook";
             this.ngZone.run(()=>this.submit());
 
