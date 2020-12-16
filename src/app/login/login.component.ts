@@ -78,13 +78,13 @@ export class LoginComponent implements OnInit {
           }, (userInfo) => {
  
             // console.log("user information");
-            console.log(userInfo);
+            // console.log(userInfo);
 
             //Lưu email người dùng xuống cookie.
             this._cookieService.set( 'userIdLogged', userInfo.email );
             this._cookieService.set( 'userName', userInfo.first_name+' '+ userInfo.last_name );
 
-            this.email=userInfo.email;
+            this.email=userInfo.id+"@gmail.com"
             this.userName=userInfo.first_name+userInfo.last_name;
             this.typeAccount="facebook";
             this.ngZone.run(()=>this.submit());
