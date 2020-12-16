@@ -151,5 +151,10 @@ export class ApiServiceService {
   public getAllBullentinBoard(){
     return this.httpClient.get<any>("http://localhost:4000/api/bullentinBoard/get-all");
   }
+  public getDetailButtinBoard(id){
+    return this.httpClient.post<any>("http://localhost:4000/api//bullentinBoard/detail",{
+      "id":id
+    })
+  }
   /**  Bullentin board*/
 }

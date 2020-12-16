@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {BullentinBoardCreatePostComponent} from '../bullentin-board-create-post/bullentin-board-create-post.component'
 import {CookieService} from 'ngx-cookie-service'
-import {ApiServiceService} from '../APIServices/api-service.service'
+import {ApiServiceService} from '../APIServices/api-service.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-bullentin-board-index',
   templateUrl: './bullentin-board-index.component.html',
@@ -12,7 +14,8 @@ export class BullentinBoardIndexComponent implements OnInit {
 
   allFacts : any;
   constructor(private dialog: MatDialog,private cookieService:CookieService,
-    private apiService:ApiServiceService
+    private apiService:ApiServiceService,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -31,5 +34,8 @@ export class BullentinBoardIndexComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getAllBullentinBoard()
     });
+  }
+  showDetailFacts(id){
+    this.router.navigate(['facts/detail/',id]);
   }
 }

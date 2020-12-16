@@ -13,12 +13,14 @@ export class BullentinBoardCreatePostComponent implements OnInit {
   images:[]
   title:String=null;
   factCreate:facts;
+  userName:string;
   constructor(private apiService: ApiServiceService,
     private cookieService:CookieService,
     private toast:ToastrService,
     public dialogRef: MatDialogRef<BullentinBoardCreatePostComponent>) { }
 
   ngOnInit(): void {
+    this.userName=this.cookieService.get('userName')
     this.factCreate={
       imgUrl: '',
       title:'',
