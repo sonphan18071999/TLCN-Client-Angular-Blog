@@ -47,10 +47,10 @@ export class BullentinBoardDetailPostComponent implements OnInit {
       if(this.allFacts[i]._id==this.idDetail){
         if(this.allFacts[i-1]._id!=null){
            this.idDetail=this.allFacts[i-1]._id;
-           this.getDetailFacts();
+          return this.getDetailFacts();
         }else{
            this.idDetail;
-           this.getDetailFacts();
+           return this.getDetailFacts();
         }
       }
     }
@@ -63,10 +63,10 @@ export class BullentinBoardDetailPostComponent implements OnInit {
       if(this.allFacts[i]._id==this.idDetail){
         if(this.allFacts[i+1]!=null && this.allFacts[i+1]!=undefined){
            this.idDetail=this.allFacts[i+1]._id;
-           this.getDetailFacts();
+           return this.getDetailFacts();
         }else{
            this.idDetail;
-           this.getDetailFacts();
+           return this.getDetailFacts();
         }
       }
     }

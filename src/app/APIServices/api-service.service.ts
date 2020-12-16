@@ -152,7 +152,7 @@ export class ApiServiceService {
     return this.httpClient.get<any>(this.url+"bullentinBoard/get-all");
   }
   public getDetailButtinBoard(id){
-    return this.httpClient.post<any>(this.url+"bullentinBoard/detail",{
+    return this.httpClient.post<any>( this.url+"bullentinBoard/detail",{
       "id":id
     })
   }
