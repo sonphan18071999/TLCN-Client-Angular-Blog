@@ -4,17 +4,8 @@ flex-wrap: wrap;">
 <div class="related-article" *ngFor="let item of allRelatedArticle">
 <mat-card *ngIf="item"  (click)="showDetailPost(item._id)">
 <img src="{{item.AvatarPost}}" width="100%" height="120px">
-<h3 style="overflow: hidden;
-width: 100%;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 2; /* number of lines to show */
--webkit-box-orient: vertical; height: 55px;"><b>{{item.tittle}}</b></h3>
-<p style="overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 3; /* number of lines to show */
--webkit-box-orient: vertical;width: 100%;">{{item.description}}</p>
+<h3 class="title-ralated"><b>{{item.tittle}}</b></h3>
+<p class="description-related">{{item.description}}</p>
 </mat-card>
 </div>
 </div>

@@ -31,7 +31,7 @@
     width: 1005px;
     height: 700px;
     filter: blur(10px);
-    -webkit-filter: blur(30px);
+    -webkit-filter: blur(10px);
     background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,6 +71,7 @@
  }
  .image-content img{
    width: 600px;
+   border-radius: 10px;
   position:absolute; left:35%; top:50%; transform: translate(-50%, -50%)
  }
 
@@ -119,7 +120,7 @@
   text-decoration: none;
 }
 .detail-bullentin-board-container-show-user-and-comment{
-  margin-left: 10px;
+  margin-left: 20px;
   width: 475px;
 }
 .detail-bullentin-board-container-show-user{

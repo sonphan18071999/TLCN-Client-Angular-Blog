@@ -32,6 +32,7 @@ import { DetailsPostRelatedArticleComponent } from './details-post-related-artic
 import { BullentinBoardCreatePostComponent } from './bullentin-board-create-post/bullentin-board-create-post.component';
 import { BullentinBoardDetailPostComponent } from './bullentin-board-detail-post/bullentin-board-detail-post.component';
 import { BullentinBoardIndexComponent } from './bullentin-board-index/bullentin-board-index.component';
+import { BullentinBoardPostCommentsComponent } from './bullentin-board-post-comments/bullentin-board-post-comments.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { BullentinBoardIndexComponent } from './bullentin-board-index/bullentin-
     DetailsPostRelatedArticleComponent,
     BullentinBoardCreatePostComponent,
     BullentinBoardDetailPostComponent,
-    BullentinBoardIndexComponent
+    BullentinBoardIndexComponent,
+    BullentinBoardPostCommentsComponent
   ],
   imports: [
     BrowserModule,

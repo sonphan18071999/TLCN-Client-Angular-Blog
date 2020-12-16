@@ -29,13 +29,15 @@
     </div>
     <div class="detail-bullentin-board-container-show-user-and-comment">
         <div class="detail-bullentin-board-container-show-user">
-            <img src="../../assets/images/default-image.jpg" > 
+            <img src="../../assets/images/default-image.jpg" height="90px" > 
             <div class="detail-bullentin-board-container-show-user-info" >
                 <p style="font-size: 20px;"><b *ngIf="InforUser!=null">{{InforUser.name}}</b></p>
-                <p>1 hours ago</p>
-                <p>49 Views</p>
+                <p style="font-size: 13px;"><i>1 hours ago</i></p>
+                <p style="font-size: 13px;"><i>49 Views</i></p>
             </div>
         </div>
+        <p style="margin-left:10px;font-size: 20px; margin-top:10px" *ngIf="InforUser!=null">{{DetailFact.title}} </p>
+
         <hr>
         <div  class="detail-bullentin-board-container-show-like-comment">
             <button mat-button class="button-likes">
@@ -48,6 +50,7 @@
         </div>
         <hr>
         <div class="detail-bullentin-board-container-show-comment">
+            <app-bullentin-board-post-comments></app-bullentin-board-post-comments>
         </div>
         <div>
 

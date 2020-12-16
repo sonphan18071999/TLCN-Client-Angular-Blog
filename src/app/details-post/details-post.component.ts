@@ -79,10 +79,9 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
     this.ngOnInit();
   }
   showDetailPost(id){
-    this.cookieService.set('idArticle',id);
+    this.cookieService.set('idDetailArticle',id);
     this.setStateDetailPost.emit('Detail-Post')
     this.getDetailArticle();
-    
   }
   getDetailArticle(){
     this.ContentInParts=null;
