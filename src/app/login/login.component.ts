@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
           }, (userInfo) => {
  
             // console.log("user information");
-            // console.log(userInfo);
+            console.log(userInfo);
 
             //Lưu email người dùng xuống cookie.
             this._cookieService.set( 'userIdLogged', userInfo.email );
