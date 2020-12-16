@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   countSavedArticle :number=0;
   inforUser:any;
   official_user: Boolean=false;
+  avatarUser:any;
   @Output() setStateUserProfile = new EventEmitter<string>();
   currentUrl:string=null;
   // @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
@@ -51,6 +52,7 @@ export class UserProfileComponent implements OnInit {
     /**Lấy information của người dùng */
     this.apiServiceService.getInforUser(this.id).subscribe(res=>{
       this.inforUser=res.UserInfo;
+      this.avatarUser=this.inforUser.userAvatar
     });
     /**Lấy information của người dùng */
 

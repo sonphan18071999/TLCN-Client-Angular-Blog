@@ -42,8 +42,8 @@ export class BullentinBoardCreatePostComponent implements OnInit {
   submit(){
     this.factCreate.title= this.title;
     this.factCreate.idAuthor= this.cookieService.get('userIdLogged');
-  
-    if(this.factCreate.idAuthor=='' && this.factCreate.idAuthor==null){
+    
+    if(this.factCreate.idAuthor=='' || this.factCreate.idAuthor==null){
       return this.toast.warning("You must login first","Warning");
     }
     else if(this.factCreate.title=='' || this.factCreate.imgUrl=='' ){//Kiểm tra dữ liệu có null không đã

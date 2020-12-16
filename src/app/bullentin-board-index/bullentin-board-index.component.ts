@@ -24,8 +24,11 @@ export class BullentinBoardIndexComponent implements OnInit {
   getAllBullentinBoard(){
     return this.apiService.getAllBullentinBoard().subscribe(ok=>{
       this.allFacts=ok.AllBullentinBoard
+      this.allFacts.reverse();
+
     })
   }
+  
   showDialogCreate(){
     const dialogRef = this.dialog.open(BullentinBoardCreatePostComponent);
 

@@ -42,6 +42,7 @@ export class BullentinBoardDetailPostComponent implements OnInit {
     }
   }
   loadPreviousFacts(){
+    
     //Tìm vị trí id hiện tại. Nếu có thì load cái trước nó
     for(var i=0;i<this.allFacts.length;i++){
       if(this.allFacts[i]._id==this.idDetail){
@@ -74,7 +75,7 @@ export class BullentinBoardDetailPostComponent implements OnInit {
   getAllBullentinBoard(){
     return this.apiService.getAllBullentinBoard().subscribe(ok=>{
       this.allFacts=ok.AllBullentinBoard
-      console.log(this.allFacts)
+      this.allFacts.reverse();
     })
   }
   goBackToIndex(){

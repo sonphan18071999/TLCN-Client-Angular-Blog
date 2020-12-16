@@ -9,11 +9,11 @@
         <!-- Hien thi avatar va follower, following... -->
           <div class="container-body-header"
             data-aos="fade-right" data-aos-duration="1000" >
-              <img src="https://scontent.fhan5-7.fna.fbcdn.net/v/t1.0-1/p320x320/124932561_1689823464532336_4072302693366354423_o.jpg?_nc_cat=108&ccb=2&_nc_sid=7206a8&_nc_ohc=KgtuFpqXdA0AX8HTwGI&_nc_ht=scontent.fhan5-7.fna&tp=6&oh=83e88a8b942fa75068c8ec46347d7976&oe=5FFBED84">  
+              <img *ngIf="avatarUser" src="{{avatarUser}}">  
               <div class="container-body-header-infor">
                 <!--Display name -->
                 <div class="container-body-header-infor-name" >
-                  <p style="font-size: 30px;"><b>{{inforUser.name}}</b></p>
+                  <p style="font-size: 30px;" *ngIf="inforUser"><b>{{inforUser.name}}</b></p>
                   <p>Nooby author</p>
                 </div>
                 <!--Display name -->
@@ -47,7 +47,7 @@
             <mat-card>
               <div class="container-body-right-article">
                 <mat-card *ngIf="allPostedArticle==null">
-                  <mat-card-title>
+                  <mat-card-title *ngIf="inforUser">
                     {{inforUser.name}} haven't post any article yet!
                   </mat-card-title>
                 </mat-card>

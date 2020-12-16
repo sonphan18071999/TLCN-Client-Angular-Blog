@@ -15,7 +15,7 @@ const routes: Routes = [
 {path:'index',component:IndexScreenComponent},
 // {path:'detail-post/:title',component:DetailsPostComponent},
 {path:'create-article',component:CreateArticleComponent},
-// {path:'profile/:id',component:UserProfileComponent},
+{path:'profile/:id',component:UserProfileComponent},
 {path:'register-account',component:RegisterAccountComponent},
 {path:'facts/detail/:id',component:BullentinBoardDetailPostComponent},
 {path:'admin/index',component:AdminCMSComponent},

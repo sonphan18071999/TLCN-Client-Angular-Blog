@@ -17,8 +17,7 @@ export class DetailsPostRelatedArticleComponent implements OnInit {
     })
   }
   showDetailPost(value:string){
-    alert("Hello world"+value)
-    this.stateViewArticle.emit(value)
+    this.stateViewArticle.emit(value)  
   }
   
 }
