@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
     }
     this.apiService.getInforUser(this.idUser).subscribe(ok=>{
       this.avatarUrl=ok.UserInfo.userAvatar
-      console.log(ok)
     })
 
   }
