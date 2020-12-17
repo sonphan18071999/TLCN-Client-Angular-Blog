@@ -109,8 +109,7 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
   }
   getUserInfo(idUser){
   this.apiService.getInforUser(idUser).subscribe((user)=>{
-    // this.infoUserComment=user;
-    console.log("Thong tin moi nguoi dung comment"+user)  
+      // console.log(user);
     })
   }
   changeState(){
