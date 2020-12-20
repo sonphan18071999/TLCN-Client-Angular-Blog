@@ -61,6 +61,7 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
     this.ngOnInit();
   }
   ngOnInit(): void {
+    this.autoReloadCommentRealTime();
     /**Init animate */
     AOS.init();
     /**Init animate */
@@ -150,7 +151,6 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
       this.apiService.postCommentParent(commentParent).subscribe((data)=>{  
         this.getAllComment();
          /**Configure socket io */
-      this.autoReloadCommentRealTime();
       })
       /**Post comment  */
 
@@ -170,7 +170,6 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
       this.apiService.postCommentChild(commentChild).subscribe((data)=>{ 
         this.getAllComment(); 
          /**Configure socket io */
-        this.autoReloadCommentRealTime();
       })
     }
     }
@@ -207,7 +206,6 @@ export class DetailsPostComponent implements OnInit,AfterViewInit, OnChanges {
       /**Post comment */
       this.apiService.postCommentParent(comment).subscribe((data)=>{  
         this.getAllComment();
-        this.autoReloadCommentRealTime();
       })
       /**Post comment */
 
