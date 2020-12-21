@@ -19,7 +19,7 @@ const routes: Routes = [
 {path:'register-account',component:RegisterAccountComponent},
 {path:'facts/detail/:id',component:BullentinBoardDetailPostComponent},
 {path:'admin/index',component:AdminCMSComponent},
-// {path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
+{path:'**',component:IndexScreenComponent},   //Navigate to index page to catch all default route
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import { couldStartTrivia } from 'typescript';
 import {ApiServiceService} from '../APIServices/api-service.service'
@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
   idUser:string;
   avatarUrl:string;
   constructor(private cookieService:CookieService,
-    private apiService:ApiServiceService) { }
-  
+  private apiService:ApiServiceService) { }
   ngOnInit(): void {
     this.showProfile=false;
     this.idUser=this.cookieService.get('userIdLogged')
@@ -27,7 +26,5 @@ export class HeaderComponent implements OnInit {
     this.apiService.getInforUser(this.idUser).subscribe(ok=>{
       this.avatarUrl=ok.UserInfo.userAvatar
     })
-
   }
-  
 }
