@@ -110,8 +110,21 @@ textarea{
 mat-icon {
     cursor: pointer;
  }
+ .loader{
+     margin-top: 20rem;
+     &__article{
+         padding-bottom:20rem ;
+     }
+ }
  .popular-article{
      display: flex;
+     &__img{
+         width: 80%;
+         &--overflow{
+             width: 500px;
+             margin: auto;
+         }
+     }
  }
  .popular-article h2{
      font-size: 30px;

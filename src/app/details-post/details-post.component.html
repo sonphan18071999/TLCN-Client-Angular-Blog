@@ -61,7 +61,7 @@
       <!--Phần nội dung trong article ở trạng thái edit mode-->
 
       <div *ngIf="editMode" class="article-edit-mode">
-        <img *ngIf="loading==true" src="../../assets/images/loading.gif" width="100%">
+        <nz-spin *ngIf="loading==true" nzTip="Loading..."></nz-spin>
         <p style="color: red;"> <b><i>[Edit mode]: In this mode, you can easily insert, remove content or image of your
               article</i> </b></p>
         <div *ngIf="loading==false">

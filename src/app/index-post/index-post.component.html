@@ -1,7 +1,5 @@
+<nz-spin class="loader" *ngIf="!popularArticle" nzTip="Loading..."></nz-spin>
 
-<div *ngIf="popularArticle==null">
-    <img src="../../assets/images/loading.gif" width="1480px" height="600px">
-</div>
 <div class="container" *ngIf="popularArticle!=null">
     
     <!-- Post article part -->
@@ -22,7 +20,9 @@
             </mat-card>
             <mat-card  data-aos="fade-right" data-aos-duration="1000" class="popular-article-mat-card">
                 <div  class="popular-article" >
-                    <img src="{{popularArticle.Article.AvatarPost}}" height="250px"  (click)="showDetailPost(popularArticle.Article._id,popularArticle.Article.tittle)" width="450px">
+                    <div class="popular-article__img">
+                        <img class="popular-article__img--overflow" src="{{popularArticle.Article.AvatarPost}}" (click)="showDetailPost(popularArticle.Article._id,popularArticle.Article.tittle)" >
+                    </div>
                     <div class="popular-article-right">
                         <h2 class="title-article" (click)="showDetailPost(popularArticle.Article._id,popularArticle.Article.tittle)" >{{popularArticle.Article.tittle}}</h2>
                         <p class="desciption" >{{popularArticle.Article.description}}
@@ -61,8 +61,8 @@
             </mat-card>
 
         </div>
-        <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin-left: 200px;" *ngIf="allArticle==null">
-       
+        <nz-spin class="loader__article" *ngIf="allArticle==null" nzTip="Loading..."></nz-spin>
+
         <div class="paginator">
             <div class="group-button-paging">
                 <button mat-raised-button (click)="previousPage()">Previous</button>

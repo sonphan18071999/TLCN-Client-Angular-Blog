@@ -11,18 +11,19 @@ import { Location } from '@angular/common';
   styleUrls: ['./index-screen.component.scss']
 })
 export class IndexScreenComponent implements OnInit {
-  side="over";
+  avatarUrl: string;
+  currentComponent:string;
+  side = "over";
   idUserLogin:any;
   userName:String;
   showProfile:boolean;
   searchContent:string;
   idUser:string;
-  avatarUrl:string;
+
   constructor(private cookieService:CookieService,
     private router: Router, private toast:ToastrService,
     private apiService:ApiServiceService,
     private location:Location) { }
-  currentComponent:string;
   ngOnInit(): void {
     this.idUserLogin=this.cookieService.get("userIdLogged")
     this.currentComponent="Index-Post-InProcess";
@@ -48,8 +49,5 @@ export class IndexScreenComponent implements OnInit {
       this.router.navigateByUrl('/create-article');
     }
   }
-  viewProfile(idUser){
-    this.currentComponent='User-Profile';
-    this.location.go("/profile/"+idUser)
-  }
+
 }
