@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {BullentinBoardCreatePostComponent} from '../bullentin-board-create-post/bullentin-board-create-post.component'
 import {CookieService} from 'ngx-cookie-service'
-import {ApiServiceService} from '../APIServices/api-service.service';
+import {ApiServiceService} from '../../APIServices/api-service.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiServiceService} from '../APIServices/api-service.service'
+import {ApiServiceService} from '../../APIServices/api-service.service'
 import {CookieService} from 'ngx-cookie-service'
 import {ToastrService } from 'ngx-toastr';
-import {MatDialogModule,MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-bullentin-board-create-post',

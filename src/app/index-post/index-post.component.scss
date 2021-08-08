@@ -180,9 +180,10 @@ mat-icon {
 .tiny-article h2:hover{
     cursor: pointer;
 }
-.group-button-paging{
-    position: relative;
-    margin-left: 960px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+.paginator{
+    position: absolute;
+    right: 0;   
+    padding-right: 1rem;
+    padding-bottom: 2rem;    
 }

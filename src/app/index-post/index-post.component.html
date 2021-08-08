@@ -62,10 +62,13 @@
 
         </div>
         <img src="../../assets/images/loadingArticle.gif" style="width: 800px;margin-left: 200px;" *ngIf="allArticle==null">
-        <div class="group-button-paging">
-            <button mat-raised-button (click)="previousPage()">Previous</button>
-            <button mat-raised-button>{{page}}</button>
-            <button mat-raised-button (click)="nextPage()">Next</button>
+       
+        <div class="paginator">
+            <div class="group-button-paging">
+                <button mat-raised-button (click)="previousPage()">Previous</button>
+                <button mat-raised-button>{{page}}</button>
+                <button mat-raised-button (click)="nextPage()">Next</button>
+            </div> 
         </div>
         </div>
     </div>   

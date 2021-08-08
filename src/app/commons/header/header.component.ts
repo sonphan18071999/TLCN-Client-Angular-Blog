@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {CookieService} from 'ngx-cookie-service';
-import { couldStartTrivia } from 'typescript';
-import {ApiServiceService} from '../APIServices/api-service.service'
+import { CookieService } from 'ngx-cookie-service';
+import { Location } from '@angular/common';
+
+import {ApiServiceService} from '../../APIServices/api-service.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,9 +13,12 @@ export class HeaderComponent implements OnInit {
   showProfile:boolean;
   searchContent:string;
   idUser:string;
-  avatarUrl:string;
+  avatarUrl: string;
+  currentComponent: string;
+
   constructor(private cookieService:CookieService,
-  private apiService:ApiServiceService) { }
+    private apiService: ApiServiceService,
+    private location:Location) { }
   ngOnInit(): void {
     this.showProfile=false;
     this.idUser=this.cookieService.get('userIdLogged')
@@ -26,5 +30,10 @@ export class HeaderComponent implements OnInit {
     this.apiService.getInforUser(this.idUser).subscribe(ok=>{
       this.avatarUrl=ok.UserInfo.userAvatar
     })
+  }
+
+  viewProfile(idUser){
+    this.currentComponent='User-Profile';
+    this.location.go("/profile/"+idUser)
   }
 }

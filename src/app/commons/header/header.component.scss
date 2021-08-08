@@ -1,3 +1,4 @@
+
 .container{
   position: relative;
   margin-top: 0px;
@@ -7,10 +8,6 @@
   box-shadow: 5px 3px 5px #888888;
 
 }
-
-
-
-
 .part-three{
     width: 20%;
     display: flex;
@@ -28,4 +25,9 @@
 }
 .mat-icon:hover{
   cursor: pointer;
+}
+
+::ng-deep .ant-card-body{
+  padding-top: 1rem;
+  padding-bottom: 0;
 }

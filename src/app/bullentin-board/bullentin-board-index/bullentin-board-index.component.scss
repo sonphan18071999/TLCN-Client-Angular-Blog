@@ -1,15 +1,15 @@
-.container{
-    max-width:1166px ;
-    margin-left: 158px;
-    margin-top: 50px;
+.bulletin__board-container{
     overflow-x: scroll;
-
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    width: 93rem;
 }
 .item-daily-bullentin-board{
     width: 100px;
     height: 150px;
     min-width: 90px;
-    background: url(../../assets/images/blur_daily_bullenboard.jpg);
+    background: url(../../../assets/images/blur_daily_bullenboard.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     margin-right: 10px;
@@ -48,14 +48,13 @@
     font-size: 17px;
     color: white;
 }
-.all-item-daily-bullentin-board{
-    white-space:pre;
-    display: flex;
-    width: 1166px;
+.bulletin-board{
+    display: flex;    
+    width: 100%;
 }
-.all-item-daily-bullentin-board:hover{
+.bulletin-board:hover{
     cursor: pointer;
 }
-.all-item-daily-bullentin-board label:hover{
+.bulletin-board label:hover{
     cursor: pointer;
 }
