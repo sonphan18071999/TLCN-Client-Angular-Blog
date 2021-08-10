@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router  } from '@angular/router'
-import { ApiServiceService} from '../../APIServices/api-service.service'
+import { ApiServiceService} from '../../../APIServices/api-service.service'
 @Component({
   selector: 'app-bullentin-board-detail-post',
   templateUrl: './bullentin-board-detail-post.component.html',

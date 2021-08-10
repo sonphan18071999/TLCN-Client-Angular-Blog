@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiServiceService} from '../APIServices/api-service.service'
+import { ApiServiceService } from '../../APIServices/api-service.service'
+
 @Component({
   selector: 'app-register-account',
   templateUrl: './register-account.component.html',
@@ -48,9 +49,6 @@ export class RegisterAccountComponent implements OnInit {
         this.agreeTerm=true;
         break;
     }
-    
-
-
   }
   SubmitUser(){
    

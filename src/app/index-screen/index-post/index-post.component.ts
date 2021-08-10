@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {PopUpPostContentComponent} from '../pop-up-post-content/pop-up-post-content.component';
+import {PopUpPostContentComponent} from './pop-up-post-content/pop-up-post-content.component';
 import { Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
 import {CookieService} from 'ngx-cookie-service';
 import AOS from 'aos';
-import {Location} from '@angular/common'
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-index-post',
   templateUrl: './index-post.component.html',

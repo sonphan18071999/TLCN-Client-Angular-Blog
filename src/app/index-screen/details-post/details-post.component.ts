@@ -1,15 +1,17 @@
 import { Component, OnInit, Inject, Output, EventEmitter, Input ,AfterViewInit,OnChanges } from '@angular/core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ApiServiceService} from '../APIServices/api-service.service'
-import { CookieService } from 'ngx-cookie-service';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
-import {SocketioService } from'./socketio.service'
 import AOS from 'aos';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
-import {ReportArticleComponent} from '../report-article/report-article.component'
+import { MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+
+import { ApiServiceService } from '../../APIServices/api-service.service'
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import { SocketioService } from'./socketio.service'
+import { ReportArticleComponent} from '../../report-article/report-article.component'
+
 @Component({
   selector: 'app-details-post',
   templateUrl: './details-post.component.html',

@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, ViewChild,OnInit} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {ApiServiceService} from '../APIServices/api-service.service'
-import {CookieService } from 'ngx-cookie-service'
+import { Component, ViewChild,OnInit} from '@angular/core';
+import { MatPaginator} from '@angular/material/paginator';
+import { ApiServiceService} from '../APIServices/api-service.service'
+import { CookieService } from 'ngx-cookie-service'
 import AOS from 'aos'
 @Component({
   selector: 'app-admin-all-articles',

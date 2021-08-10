@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="post-content-header">
+    <img
+      class="post-content-header-image"
+      src="../../../../assets/images/landscape.jpg"
+    />
+    <h4>
+      Hello, <u><b>Phan Sơn</b></u>
+    </h4>
+  </div>
+  <hr />
+  <h3 *ngIf="openPartTwo == false" style="font-size: 30px">
+    <b>Share your interest</b>
+  </h3>
+  <hr *ngIf="openPartTwo == false" />
+  <button
+    *ngIf="openPartTwo == false"
+    class="post-content-content-button"
+    mat-raised-button
+    (click)="addMorePostBody()"
+  >
+    <mat-icon style="font-size: 20px">playlist_add</mat-icon> Add more part
+  </button>
+  <br *ngIf="openPartTwo == false" />
+  <br *ngIf="openPartTwo == false" />
+  <div class="post-content-body" *ngIf="openPartTwo == false">
+    <div *ngFor="let postBody of postBodies; index as i">
+      <div class="post-content-content">
+        <ckeditor
+          type="text"
+          [editor]="Editor"
+          ngModel
+          [config]="{
+            toolbar: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'numberedList',
+              'blockQuote'
+            ]
+          }"
+        ></ckeditor>
+        <br />
+        <input
+          type="file"
+          multiple
+          class="choose"
+          (change)="onselect($event, i)"
+        />
+        <button
+          mat-raised-button
+          *ngIf="urls != null"
+          (click)="removeAllImage(i)"
+          color="accent"
+          style="margin-left: 305px"
+        >
+          <mat-icon style="font-size: 22px">remove_circle</mat-icon>Remove all
+        </button>
+        <br />
+        <br />
+        <img *ngFor="let url of postBody.urls" [src]="url" height="200px" />
+      </div>
+    </div>
+  </div>
+  <h3 *ngIf="openPartTwo == true" style="font-size: 30px">
+    <b>Finish step</b>
+  </h3>
+  <hr *ngIf="openPartTwo == true" />
+  <br *ngIf="openPartTwo == true" />
+  <br *ngIf="openPartTwo == true" />
+  <div class="post-content-body" *ngIf="openPartTwo == true">
+    <label>Title for article:</label>
+    <input type="text" class="input-for-title-article" />
+    <br />
+    <br />
+    <input type="file" class="choose" (change)="onselectImageShowUp($event)" />
+    <br />
+    <img [src]="url" height="500px" width="800px" />
+  </div>
+  <br />
+  <button
+    mat-raised-button
+    (click)="switchPart2()"
+    style="margin-right: 20px; margin-left: 70%"
+  >
+    Next<mat-icon style="font-size: 23px">keyboard_arrow_right</mat-icon>
+  </button>
+  <button mat-raised-button (click)="switchPart2()">
+    <mat-icon style="font-size: 23px">keyboard_arrow_left</mat-icon> Previous
+  </button>
+
+  <br />
+  <br />
+  <button
+    color="primary"
+    *ngIf="openPartTwo == true"
+    mat-raised-button
+    style="width: 240px; margin-left: 70%"
+  >
+    <mat-icon style="font-size: 23px">save</mat-icon>Upload
+  </button>
+  <br *ngIf="openPartTwo == true" />
+  <br *ngIf="openPartTwo == true" />
+</div>
