@@ -3,8 +3,13 @@
   margin: auto;
   width: 100%;
   background-attachment: fixed;
-  height: 350px;
 }
+
+.skeleton {
+  width: 79%;
+  margin-left: 11%;
+}
+
 .post-content-image {
   width: 35%;
   margin-right: 2%;
@@ -62,10 +67,18 @@ textarea {
 .card-content {
   position: relative;
   display: flex;
-  width: 15%;
   width: 80%;
   margin-left: 10%;
   margin-top: 20px;
+  .popular-card-content {
+    width: 100%;
+    .skeleton__popular-article {
+      width: 100%;
+    }
+    .skeleton__daily-article {
+      width: 100%;
+    }
+  }
 }
 .post-content-button-container button {
   width: 80%;

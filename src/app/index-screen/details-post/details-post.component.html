@@ -1,6 +1,9 @@
-<div *ngIf="ContentInParts == null">
-  <img src="../../../assets/images/loading.gif" width="1480px" height="600px" />
-</div>
+<nz-spin
+  class="loader"
+  *ngIf="ContentInParts == null"
+  nzTip="Loading..."
+></nz-spin>
+
 <div class="container" *ngIf="ContentInParts != null">
   <div class="detail-content-post">
     <mat-card
@@ -8,8 +11,6 @@
       data-aos-duration="1500"
       class="mat-card-article"
     >
-      <!-- Phan header article -->
-      <!--Button Edit bai viet. Danh cho author cua bai viet-->
       <button
         mat-icon-button
         *ngIf="showConfigureArticleButton"
@@ -28,19 +29,9 @@
           <span>Delete article</span>
         </button>
       </mat-menu>
-      <!--Button Edit bai viet. Danh cho author cua bai viet-->
       <h1>
         <b>{{ mainTitle }}</b>
       </h1>
-      <!-- <div *ngIf="editMode" style="width: 815px;margin-bottom: 20px;">
-            <label><i style="color: red;">Edit your own title</i></label>
-            <ckeditor type="text" [editor]="Editor" tagName="textarea"
-            [config]="{ toolbar:['bold', 'italic', 'blockQuote']}"
-            data={{mainTitle}}
-            ></ckeditor>
-           
-          </div> -->
-
       <div style="display: flex">
         <img
           src="{{ infoAuthor.userAvatar }}"
@@ -55,9 +46,6 @@
             >
             <p>Master Teller Story</p>
           </div>
-          <!-- <button mat-stroked-button style=" margin-left: 20px;height: 60px; width: 20px; border-radius: 50%; border-color: blue;" (click)="FollowAuthor()">
-                  <mat-icon>done</mat-icon>
-              </button> -->
         </div>
 
         <!-- Luu bai viet -->
@@ -70,10 +58,7 @@
           <mat-icon>report_problem</mat-icon> Report
         </button>
       </div>
-      <!-- Phan header article -->
       <hr />
-      <!--Phần nội dung trong article ở trạng thái edit mode-->
-
       <div *ngIf="editMode" class="article-edit-mode">
         <nz-spin *ngIf="loading == true" nzTip="Loading..."></nz-spin>
         <p style="color: red">
@@ -89,7 +74,6 @@
             *ngFor="let content of ContentInParts; let i = index"
             class="container-article-detail"
           >
-            <!--Button remove Part Article-->
             <button
               mat-raised-button
               color="accent"
@@ -98,7 +82,6 @@
             >
               <mat-icon>remove</mat-icon>Remove
             </button>
-            <!--Button remove Part Article-->
             <ckeditor
               type="text"
               [ngModelOptions]="{ standalone: true }"
@@ -155,9 +138,7 @@
           </button>
         </div>
       </div>
-      <!--Phần nội dung trong article ở trạng thái edit mode-->
 
-      <!-- Phan noi dung trong article ở trạng thái view mode -->
       <div *ngIf="editMode == false">
         <div
           *ngFor="let content of ContentInParts"
@@ -347,7 +328,7 @@
             <mat-card style="width: 100%">
               <div style="display: flex">
                 <p style="font-size: 15px; color: gray"><b>Obama</b></p>
-                <p style="margin-left: 15px; color: gray ;">
+                <p style="margin-left: 15px; color: gray">
                   <i>Dai bang con</i>
                 </p>
               </div>

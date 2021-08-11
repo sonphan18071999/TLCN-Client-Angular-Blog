@@ -24,37 +24,27 @@ export class UserProfileComponent implements OnInit {
   currentUrl:string=null;
   // @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private apiServiceService:ApiServiceService,
     private cookieService:CookieService,
     private location:Location) {
     this.showArticleNumber=4;
    }
-  ngOnInit(): void {
-    /**Khoi tao animate */
+  async ngOnInit(): Promise<void> {
     AOS.init();
-    /**Khoi tao animate */
-    /**Lay id cua nguoi dung */
-    this.currentUrl = window.location.href.toString();
-    this.id=this.currentUrl.substr(this.currentUrl.length-24)
-    /**Lay id cua nguoi dung */
-    // Lấy những bài viết đã đăng của người dùng
-    this.apiServiceService.getAllArticlePostedByUser(this.id).subscribe(res => {
+    await this.route.params.subscribe(params => {
+      this.id = params['id'];
+    })
+
+    await this.apiServiceService.getAllArticlePostedByUser(this.id).subscribe(res => {
      this.allPostedArticle=res.article;
     })
 
-    //Clear idArticle
-    this.cookieService.delete('idDetailArticle','/');
-    this.cookieService.delete('idDetailArticle','/profile');
-
-
-    /**Lấy information của người dùng */
-    this.apiServiceService.getInforUser(this.id).subscribe(res=>{
+    await this.apiServiceService.getInforUser(this.id).subscribe(res=>{
       this.inforUser=res.UserInfo;
       this.avatarUser=this.inforUser.userAvatar
     });
-    /**Lấy information của người dùng */
 
 
     /**Kiểm tra xem người dùng thật hay là guest*/
@@ -64,7 +54,7 @@ export class UserProfileComponent implements OnInit {
     /**Kiểm tra xem người dùng thật hay là guest*/
 
     /**Set state User profile */
-    this.funcSetStateUserProfile("User-Profile");
+    // this.funcSetStateUserProfile("User-Profile");
     /**Set state User profile */
   }
   showMoreArticle(){

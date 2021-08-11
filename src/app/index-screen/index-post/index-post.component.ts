@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopUpPostContentComponent} from './pop-up-post-content/pop-up-post-content.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {IndexPostService} from'./index-post.service'
 import {CookieService} from 'ngx-cookie-service';
 import AOS from 'aos';
@@ -15,21 +15,27 @@ import { Location } from '@angular/common';
 
 })
 export class IndexPostComponent implements OnInit {
-  selectedFile:any;
-  imagePath:any;
+  author: any;
   allArticle:any;
-  popularArticle:any;
-  page:any;
+  imagePath:any;
+  listLoaderItem=[1,2,3]
+  nzSpaceSize = "middle";
+  selectedFile: any;
   showPostArticle:boolean=false;
-  author:any;
+  popularArticle: any;
+  page: any;
+  
   constructor(public dialog: MatDialog,
     private router: Router,
     public indexPostService:IndexPostService,
     private _cookieService:CookieService,
-    private location:Location) { 
+    private location: Location,
+    private route: ActivatedRoute,
+) {
     }
 
   @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
+  
   ngOnInit(): void {
     AOS.init();
     this.page=0;
@@ -39,6 +45,7 @@ export class IndexPostComponent implements OnInit {
     }
     this.funcSetStateIndexPost("Index-Post-InProcess")
   }
+
   getDataPaging(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
       this.allArticle=data;
@@ -79,14 +86,17 @@ export class IndexPostComponent implements OnInit {
         }
     }
   }
+
   showDetailPost(id,title){
     this._cookieService.set( 'idDetailArticle', id ); // To Set Cookie
-    // this.router.set(['/detail-post',title]);
+    this.router.navigate(['/detail', { id: id }]);
     this.funcSetStateIndexPost("Detail-Post")
   }
+
   openDialog() {
     this.dialog.open(PopUpPostContentComponent)
   }
+
   CreateNewArticle(){
     this.router.navigate(['create-article']);
   }
@@ -105,29 +115,24 @@ export class IndexPostComponent implements OnInit {
     this.imagePath = files;
     // reader.readAsDataURL(files[0]);
   }
+
   postImage(){
     var a ={
       photo:URL.createObjectURL(this.imagePath[0])
     }
-    // this.indexPostService.postImageToServer(a).subscribe(
-    //   res=>{
-    //   },
-    //   err=>{
-    //     console.log("Send image not successfully"+err);
-    //   }
-    // )
     var reader = new FileReader();
     reader.readAsDataURL(this.imagePath[0]); 
     reader.onloadend = function() {
         var base64data = reader.result;                
     }
-    // console.log(JSON.stringify(a))
   }
+
   nextPage(){
     this.page+=1;
     this.allArticle=null;
     this.getDataPaging();
   }
+
   previousPage(){
     if(this.page-1==-1){
       this.page=0;
@@ -138,9 +143,11 @@ export class IndexPostComponent implements OnInit {
       this.getDataPaging();
     }
   }
+
   funcSetStateIndexPost(value: string) {
     this.setStateIndexPost.emit(value);
   }
+
   viewAuthorProfile(author:string){
     this.location.go("/profile/"+author)
     this.funcSetStateIndexPost("User-Profile")

@@ -1,6 +1,4 @@
-<nz-spin class="loader" *ngIf="!popularArticle" nzTip="Loading..."></nz-spin>
-
-<div class="container" *ngIf="popularArticle != null">
+<div class="container">
   <div
     class="post-content-button-container"
     *ngIf="showPostArticle"
@@ -26,42 +24,46 @@
       </button>
     </div>
   </div>
-  <!-- Post article part -->
   <br />
   <div class="card-content">
     <div class="popular-card-content">
-      <mat-card>
-        <mat-card-subtitle style="text-align: center"
-          ><b>The best daily article</b></mat-card-subtitle
-        >
+      <mat-card *ngIf="popularArticle">
+        <mat-card-subtitle style="text-align: center">
+          <b>The best daily article</b>
+        </mat-card-subtitle>
       </mat-card>
+
+      <div class="skeleton__popular-article" *ngIf="!popularArticle">
+        <nz-skeleton-element
+          nzType="image"
+          [nzActive]="true"
+        ></nz-skeleton-element>
+        <nz-skeleton
+          [nzParagraph]="{ rows: 4 }"
+          [nzActive]="true"
+        ></nz-skeleton>
+      </div>
+
       <mat-card
         data-aos="fade-right"
         data-aos-duration="1000"
         class="popular-article-mat-card"
+        *ngIf="popularArticle"
       >
         <div class="popular-article">
           <div class="popular-article__img">
             <img
               class="popular-article__img--overflow"
               src="{{ popularArticle.Article.AvatarPost }}"
-              (click)="
-                showDetailPost(
-                  popularArticle.Article._id,
-                  popularArticle.Article.tittle
-                )
-              "
+              [routerLink]="['/detail', popularArticle.Article._id]"
+              routerLinkActive="router-link-active"
             />
           </div>
           <div class="popular-article-right">
             <h2
               class="title-article"
-              (click)="
-                showDetailPost(
-                  popularArticle.Article._id,
-                  popularArticle.Article.tittle
-                )
-              "
+              [routerLink]="['/detail', popularArticle.Article._id]"
+              routerLinkActive="router-link-active"
             >
               {{ popularArticle.Article.tittle }}
             </h2>
@@ -70,37 +72,36 @@
             <br />
             <h4>
               Author:
-              <a (click)="viewAuthorProfile(popularArticle.Article.idUser)">{{
-                popularArticle.userName
-              }}</a>
+              <a (click)="viewAuthorProfile(popularArticle.Article.idUser)">
+                {{ popularArticle.userName }}
+              </a>
             </h4>
-            <label
-              ><i>{{ popularArticle.Article.postedOn }}</i></label
-            >
+            <label>
+              <i> {{ popularArticle.Article.postedOn }} </i>
+            </label>
           </div>
         </div>
       </mat-card>
-      <mat-card style="text-align: center">
-        <mat-card-subtitle
-          ><b>All popular article of the day</b></mat-card-subtitle
-        >
+      <mat-card style="text-align: center" *ngIf="popularArticle">
+        <mat-card-subtitle>
+          <b>All popular article of the day</b>
+        </mat-card-subtitle>
       </mat-card>
-      <div class="article-below-popular">
+
+      <div class="article-below-popular" *ngIf="popularArticle">
         <mat-card class="tiny-article" *ngFor="let article of allArticle">
           <img
             src="{{ article.Article.AvatarPost }}"
             width="340px"
             height="217px"
-            (click)="
-              showDetailPost(article.Article._id, article.Article.tittle)
-            "
+            [routerLink]="['/detail', article.Article._id]"
+            routerLinkActive="router-link-active"
           />
           <div class="tiny-article-right">
             <h2
               class="title-article"
-              (click)="
-                showDetailPost(article.Article._id, article.Article.tittle)
-              "
+              [routerLink]="['/detail', article.Article._id]"
+              routerLinkActive="router-link-active"
             >
               {{ article.Article.tittle }}
             </h2>
@@ -123,18 +124,17 @@
                 <mat-icon style="font-size: 14px">remove_red_eye</mat-icon>
                 <label>14.000</label>
               </div>
-              <!-- <button mat-raised-button style="margin-left: 143px;background-color: #007bff; color: white;" (click)="showDetailPost(1)" >Read more...</button> -->
             </div>
           </div>
         </mat-card>
       </div>
-      <nz-spin
-        class="loader__article"
-        *ngIf="allArticle == null"
-        nzTip="Loading..."
-      ></nz-spin>
 
-      <div class="paginator">
+      <app-loader-article
+        *ngIf="!allArticle && popularArticle"
+        [display]="currentItem"
+      ></app-loader-article>
+
+      <div class="paginator" *ngIf="popularArticle">
         <div class="group-button-paging">
           <button mat-raised-button (click)="previousPage()">Previous</button>
           <button mat-raised-button>{{ page }}</button>

@@ -32,8 +32,14 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  redirectLogin() {
+    window.location.href = "/index";
+  }
+
   viewProfile(idUser){
     this.currentComponent='User-Profile';
     this.location.go("/profile/"+idUser)
   }
+
+  
 }
