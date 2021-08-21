@@ -56,11 +56,8 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
   constructor(
     private apiService: ApiServiceService,
     private cookieService: CookieService,
-    private socketService: SocketioService,
-    private router: Router,
     public dialog: MatDialog,
     private toastr: ToastrService,
-    private location: Location,
     private route: ActivatedRoute
   ) { }
   
@@ -73,14 +70,12 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     AOS.init();
     /**Init animate */
     this.getDetailArticle(); //Read data of article
-    this.getAllComment();
     /**Check saved article */
     this.apiService
       .checkArticle(this.cookieService.get('userIdLogged'), this.idArticle)
       .subscribe(
         (ok) => {
           this.showBookMark = true;
-          this.autoReloadCommentRealTime();
         },
         (er) => {
           this.showBookMark = false;
@@ -108,7 +103,6 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     });
 
     await this.apiService.getArticleById(this.idArticle).subscribe((res) => {
-      console.log("🚀 ~ file: details-post.component.ts ~ line 111 ~ DetailsPostComponent ~ awaitthis.apiService.getArticleById ~ this.idArticle", this.idArticle)
       this.article = res;
       this.article = this.article.Aricle;
       this.mainTitle = this.article.tittle;
@@ -118,14 +112,7 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
-  getAllComment() {
-    /**Get article by comment */
-    this.apiService.getAllComment(this.idArticle).subscribe((allComment) => {
-      this.allComment = allComment;
-      // console.log(JSON.stringify(this.allComment))
-    });
-    /**Get article by comment */
-  }
+
 
   getUserInfo(idUser) {
     this.apiService.getInforUser(idUser).subscribe((user) => {
@@ -141,118 +128,9 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  changeStateLike(index) {
-    if (this.stateLike == index) {
-      this.stateLike == -100;
-    } else {
-      this.stateLike = index;
-    }
-  }
-
   saveEditor({ editor }: ChangeEvent) {
     const data = editor.getData();
     this.commentContent = data;
-  }
-
-  sendComment() {
-    if (this.cookieService.get('userIdLogged') == '') {
-      this.toastr.warning('You are not logged in yet!!', 'Message');
-    } else {
-      if (this.commentContent == null) {
-        this.toastr.warning("Input can't be null", 'Message');
-      } else {
-        if (this.idParentComment == null) {
-          //Khong reply comment
-          let commentParent = {
-            content: this.commentContent,
-            idUser: this.cookieService.get('userIdLogged'),
-            idArticle: this.idArticle,
-            nameUser: this.cookieService.get('userName'),
-          };
-          /**Post comment  */
-          this.apiService.postCommentParent(commentParent).subscribe((data) => {
-            this.getAllComment();
-            /**Configure socket io */
-            this.autoReloadCommentRealTime();
-          });
-          /**Post comment  */
-
-          /**Post announcement */
-
-          /**Post announcement */
-        } else {
-          let commentChild = {
-            idParent: this.idParentComment,
-            childComment: {
-              contentChild: this.commentContent,
-              idUserChild: this.cookieService.get('userIdLogged'),
-              nameUserChild: this.cookieService.get('userName'),
-            },
-          };
-          this.apiService.postCommentChild(commentChild).subscribe((data) => {
-            this.getAllComment();
-            /**Configure socket io */
-            this.autoReloadCommentRealTime();
-          });
-        }
-      }
-    }
-  }
-
-  autoReloadCommentRealTime() {
-    this.socketService.emit('broadcast', 'typing user');
-    this.socketService.listen('update state comment').subscribe((data) => {
-      if (data) {
-        this.getAllComment();
-      }
-    });
-  }
-
-  showAnswer(idComment) {
-    this.idParentComment = idComment;
-  }
-
-  cancelComment() {
-    this.idParentComment = null;
-  }
-
-  sendFirstComment() {
-    if (this.commentContent == null) {
-      this.toastr.warning('Input cant be empty', 'Message');
-    } else if (this.cookieService.get('userIdLogged') == '') {
-      this.router.navigateByUrl('/login');
-    } else {
-      var comment = {
-        content: this.commentContent,
-        idUser: this.cookieService.get('userIdLogged'),
-        idArticle: this.idArticle,
-        nameUser: this.cookieService.get('userName'),
-      };
-
-      /**Post comment */
-      this.apiService.postCommentParent(comment).subscribe((data) => {
-        this.getAllComment();
-        this.autoReloadCommentRealTime();
-      });
-      /**Post comment */
-
-      /**Post Announcement */
-      this.apiService
-        .createAnnouncement(
-          this.cookieService.get('userIdLogged'),
-          'đã comment vào bài viết',
-          'Comment',
-          this.idArticle
-        )
-        .subscribe((data) => {
-          if (data.announcement != null) {
-            console.log('Cant save announcement');
-          } else {
-            console.log('Save annoucement successfully');
-          }
-        });
-      /**Post Announcement */
-    }
   }
 
   SaveArticle() {
@@ -357,9 +235,5 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     this.setStateDetailPost.emit(value);
   }
 
-  viewUserProfile(item: string) {
-    this.location.go('/profile/' + item);
-    this.funcSetStateDetail('User-Profile');
-  }
 }
 

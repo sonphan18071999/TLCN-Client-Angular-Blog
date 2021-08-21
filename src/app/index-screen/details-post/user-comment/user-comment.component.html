@@ -1,0 +1,183 @@
+<mat-card class="mat-card-comment">
+  <div class="edit1" *ngIf="allComment != null">
+    <h2>Comment:</h2>
+    <div *ngIf="allComment.Comment.length != 0">
+      <div *ngFor="let comment of allComment.Comment; let i = index">
+        <div style="display: block">
+          <!-- Avatar va phan comment cha -->
+          <div style="display: flex">
+            <div>
+              <img
+                src="../../assets/images/avatar_example_comment.png"
+                width="40px"
+                height="40px"
+                style="border-radius: 50%"
+              />
+            </div>
+            <mat-card style="width: 100%">
+              <div style="display: flex">
+                <!-- Hien thi ten user -->
+                <a
+                  (click)="viewUserProfile(comment.idUser)"
+                  class="display-comment-user"
+                >
+                  <p [innerHtml]="comment.nameUser"></p>
+                </a>
+                <!-- Hien thi ten user -->
+                <p style="margin-left: 15px"><i>Master Teller Story</i></p>
+              </div>
+              <p [innerHtml]="comment.content"></p>
+              <hr />
+              <button mat-button (click)="changeStateLike(i)">
+                <mat-icon color="primary" style="font-size: 13px"
+                  >favorite</mat-icon
+                >
+                <span class="tooltiptext" style="font-size: 10px">Like</span>
+                <!-- <mat-icon *ngIf="stateLike!=i" color="warn"style="font-size: 13px;">favorite</mat-icon>
+                      <span *ngIf="stateLike!=i" class="tooltiptext"style="font-size: 10px;">Dislike</span> -->
+              </button>
+              <button mat-button (click)="showAnswer(comment._id)">
+                <mat-icon
+                  *ngIf="stateAnswer == true"
+                  color="primary"
+                  style="font-size: 13px"
+                  >comment</mat-icon
+                >
+                <span
+                  *ngIf="stateAnswer == true"
+                  class="tooltiptext"
+                  style="font-size: 10px"
+                  >Answer</span
+                >
+              </button>
+              <div></div>
+            </mat-card>
+          </div>
+          <!-- Avatar va phan comment cha -->
+          <!-- Phan comment child -->
+          <div *ngFor="let childComment of comment.childComment; index as a">
+            <div
+              style="
+                width: 871px;
+                margin-left: 40px;
+                display: flex;
+                padding: 10px;
+              "
+            >
+              <img
+                src="../../assets/images/avatar_example_comment.png"
+                width="40px"
+                height="40px"
+                style="border-radius: 50%"
+              />
+              <mat-card style="width: 100%">
+                <div>
+                  <div style="display: flex">
+                    <!-- Hien thi ten user child -->
+                    <a
+                      (click)="viewUserProfile(childComment.idUserChild)"
+                      class="display-comment-user"
+                    >
+                      <p [innerHtml]="childComment.nameUserChild"></p>
+                    </a>
+                    <!-- Hien thi ten user child -->
+                    <p style="margin-left: 15px"><i>Replier</i></p>
+                  </div>
+                  <p [innerHtml]="childComment.contentChild"></p>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+          <!-- Phan comment child -->
+        </div>
+        <br />
+      </div>
+      <!-- Phan submit comment khi da ton tai comment truoc do  -->
+      <div>
+        <div style="display: flex" *ngIf="idParentComment">
+          <p style="padding: 10px">You're replying comment</p>
+          <button
+            (click)="cancelComment()"
+            mat-mini-fab
+            color="accent"
+            class="cancel-button-comment"
+          >
+            <mat-icon style="font-size: 23px">cancel_presentation</mat-icon>
+          </button>
+          <p style="padding: 10px" class="cancel-comment-hide">Cancel reply</p>
+        </div>
+        <div>
+          <br />
+          <ckeditor
+            id="ckeditor"
+            [editor]="Editor"
+            [config]="{
+              toolbar: [
+                'heading',
+                '|',
+                'bold',
+                'italic',
+                'bulletedList',
+                'numberedList',
+                'blockQuote'
+              ]
+            }"
+            (change)="saveEditor($event)"
+          ></ckeditor>
+        </div>
+        <br />
+        <button mat-raised-button color="primary" (click)="sendComment()">
+          <mat-icon>send</mat-icon>Send Comment
+        </button>
+      </div>
+    </div>
+    <!-- Phan submit comment khi da ton tai comment truoc do  -->
+
+    <!-- Phan comment hien thi neu khong co comment nao khac  -->
+    <div *ngIf="allComment.Comment.length == 0">
+      <!-- Vi du ve cach hien thi comment  -->
+      <div style="display: flex; margin-bottom: 10px">
+        <img
+          src="../../assets/images/avatar_example_comment.png"
+          width="40px"
+          height="40px"
+          style="
+            border-radius: 50%;
+            border-width: 1px;
+            border-style: solid;
+            border-color: black;
+          "
+        />
+        <mat-card style="width: 100%">
+          <div style="display: flex">
+            <p style="font-size: 15px; color: gray"><b>Obama</b></p>
+            <p style="margin-left: 15px; color: gray">
+              <i>Dai bang con</i>
+            </p>
+          </div>
+          <p style="color: gray">Be the first member comment on this.</p>
+        </mat-card>
+      </div>
+      <!-- Vi du ve cach hien thi comment  -->
+      <ckeditor
+        [editor]="Editor"
+        [config]="{
+          toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'bulletedList',
+            'numberedList',
+            'blockQuote'
+          ]
+        }"
+        (change)="saveEditor($event)"
+      ></ckeditor>
+      <button mat-raised-button color="primary" (click)="sendFirstComment()">
+        <mat-icon>send</mat-icon>Send Comment
+      </button>
+    </div>
+    <!-- Phan comment hien thi neu khong co comment nao khac  -->
+  </div>
+</mat-card>

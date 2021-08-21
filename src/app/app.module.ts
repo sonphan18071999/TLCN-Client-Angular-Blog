@@ -33,6 +33,7 @@ import { ReportArticleComponent } from './report-article/report-article.componen
 import { SearchArticleComponent } from './commons/search-article/search-article.component';
 import { WaitingApprovalArticleComponent } from './waiting-approval-article/waiting-approval-article.component';
 import { LoaderArticleComponent } from './commons/loader/loader-article/loader-article.component';
+import { UserCommentComponent } from './index-screen/details-post/user-comment/user-comment.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LoaderArticleComponent } from './commons/loader/loader-article/loader-a
     BullentinBoardDetailPostComponent,
     BullentinBoardIndexComponent,
     BullentinBoardPostCommentsComponent,
-    LoaderArticleComponent
+    LoaderArticleComponent,
+    UserCommentComponent
   ],
   imports: [
     BrowserModule,

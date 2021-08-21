@@ -1,142 +1,146 @@
-.detail-bullentin-board-container{
-    width:1480px;
-    display: flex;
-    
+.detail-bullentin-board-container {
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  background-color: gray;
 }
 
-.Button-Exit {background-image: linear-gradient(to right, #614385 0%, #516395  51%, #614385  100%)}
 .Button-Exit {
-    margin-top: 15px;
-    margin-left: 3px;
-   padding: 5px 20px;
-   text-align: center;
-   transition: 0.5s;
-   background-size: 200% auto;
-   color: white;            
-   border-radius: 10px;
-   display: block;
-   height: 45px;
-   position: absolute;
+  background-image: linear-gradient(
+    to right,
+    #614385 0%,
+    #516395 51%,
+    #614385 100%
+  );
+}
+.Button-Exit {
+  margin-top: 15px;
+  margin-left: 3px;
+  padding: 5px 20px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  height: 45px;
+  position: absolute;
   top: 5%;
   left: 5%;
- }
+}
 
- .Button-Exit:hover {
-   background-position: right center; /* change the direction of the change here */
-   text-decoration: none;
- }
+.Button-Exit:hover {
+  background-position: right center; /* change the direction of the change here */
+  text-decoration: none;
+}
 
 .show-image-header {
-    display: block;
-    width: 1005px;
-    height: 700px;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
-    background-position: center;
+  display: block;
+  width: 80%;
+  height: auto;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
 }
 
 .Buton-Pause {
-  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%)
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
 }
-.Buton-Pause {
-    margin-top: 15px;
-   margin-left: 815px;
-   padding: 5px 20px;
-   text-align: center;
-   transition: 0.5s;
-   background-size: 200% auto;
-   color: white;            
-   border-radius: 10px;
-   display: block;
-   height: 45px;
-   position: absolute;
-   top: 5%;
-   left: 5%;
- }
 
- .Buton-Pause:hover {
-   background-position: right center; /* change the direction of the change here */
-   color: #fff;
-   text-decoration: none;
- }
+.Buton-Pause:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
 
-.image-content{
-  width: 700px;
+.image-content {
+  width: 50rem;
+  height: 55rem;
+  margin: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
- }
- .image-content img{
-   width: 600px;
-   border-radius: 10px;
-  position:absolute; left:35%; top:50%; transform: translate(-50%, -50%)
- }
+  background-color: black;
+  overflow: hidden;
+  border-radius: 1rem;
+  max-width: 100%;
 
- 
- 
+  img {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
 
-.detail-bullentin-board-footer{
+.detail-bullentin-board-footer {
   display: flex;
 }
-.button-go-to-previous{
-  position: absolute;
-  left: 5%;
-  top: 45%;
-  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%);
-  padding: 5px 20px;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;            
-  border-radius: 10px;
-  display: block;
-  height: 45px;
+
+.detai__bullentin-board {
+  display: flex;
+  width: 60%;
+  margin: auto;
 }
-.button-go-to-previous:hover{
-  background-position: right center; /* change the direction of the change here */
-   color: #fff;
-   text-decoration: none;
+
+.button-go-to-previous {
+  width: 1rem;
+  height: 4rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
 }
-.button-go-to-next{
-  position: absolute;
-  left: 60%;
-  top: 45%;
-  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%);
-  padding: 5px 20px;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;            
-  border-radius: 10px;
-  display: block;
-  height: 45px;
-}
-.button-go-to-next:hover{
+
+.button-go-to-previous:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
 }
-.detail-bullentin-board-container-show-user-and-comment{
+.button-go-to-next {
+  width: 1rem;
+  height: 4rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+}
+.button-go-to-next:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.detail-bullentin-board-container-show-user-and-comment {
   margin-left: 20px;
   width: 475px;
 }
-.detail-bullentin-board-container-show-user{
+.detail-bullentin-board-container-show-user {
   margin-top: 20px;
   display: flex;
   width: 475px;
 }
-.detail-bullentin-board-container-show-user img{
+.detail-bullentin-board-container-show-user img {
   border-radius: 50%;
   width: 100px;
 }
-.detail-bullentin-board-container-show-user-info{
+.detail-bullentin-board-container-show-user-info {
   margin-left: 20px;
 }
-.detail-bullentin-board-container-show-like-comment{
-display: flex;
+.detail-bullentin-board-container-show-like-comment {
+  display: flex;
 }
-
-

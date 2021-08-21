@@ -5,20 +5,6 @@
       src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       width="300px"
     />
-    <div class="group-button-menu">
-      <button mat-button (click)="gotoPostArticlePage()">
-        <mat-icon>keyboard_arrow_right</mat-icon>
-        Post Article
-      </button>
-      <p>
-        <button mat-button>
-          <mat-icon>keyboard_arrow_right</mat-icon> All Hashtag
-        </button>
-        <button mat-button>
-          <mat-icon>keyboard_arrow_right</mat-icon> Discorevy
-        </button>
-      </p>
-    </div>
   </mat-drawer>
   <!-- Content index screen -->
   <mat-drawer-content>
@@ -37,11 +23,6 @@
         *ngIf="this.currentComponent == 'Index-Post-InProcess'"
         (setStateIndexPost)="getStateComponent($event)"
       ></app-index-post>
-
-      <!-- <app-user-profile
-        *ngIf="this.currentComponent == 'User-Profile'"
-        (setStateUserProfile)="getStateComponent($event)"
-      ></app-user-profile> -->
     </div>
     <button
       mat-button

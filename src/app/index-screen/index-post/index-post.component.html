@@ -91,13 +91,12 @@
       <div class="article-below-popular" *ngIf="popularArticle">
         <mat-card class="tiny-article" *ngFor="let article of allArticle">
           <img
+            class="tiny-article__img"
             src="{{ article.Article.AvatarPost }}"
-            width="340px"
-            height="217px"
             [routerLink]="['/detail', article.Article._id]"
             routerLinkActive="router-link-active"
           />
-          <div class="tiny-article-right">
+          <div class="tiny-article__content">
             <h2
               class="title-article"
               [routerLink]="['/detail', article.Article._id]"
@@ -105,26 +104,18 @@
             >
               {{ article.Article.tittle }}
             </h2>
-            <div class="title-article-p">
-              <p class="desciption">{{ article.Article.description }}</p>
-            </div>
+            <p class="description--max-line">
+              {{ article.Article.description }}
+            </p>
             <h4>
               Author:
-              <a (click)="viewAuthorProfile(article.Article.idUser)">{{
-                article.Author
-              }}</a>
+              <a (click)="viewAuthorProfile(article.Article.idUser)">
+                {{ article.Author }}
+              </a>
             </h4>
             <label>
-              <i>{{ article.Article.postedOn }}</i></label
-            >
-            <br />
-            <br />
-            <div style="display: flex">
-              <div style="margin-top: 8px">
-                <mat-icon style="font-size: 14px">remove_red_eye</mat-icon>
-                <label>14.000</label>
-              </div>
-            </div>
+              <i>{{ article.Article.postedOn }}</i>
+            </label>
           </div>
         </mat-card>
       </div>
@@ -134,13 +125,19 @@
         [display]="currentItem"
       ></app-loader-article>
 
-      <div class="paginator" *ngIf="popularArticle">
-        <div class="group-button-paging">
-          <button mat-raised-button (click)="previousPage()">Previous</button>
-          <button mat-raised-button>{{ page }}</button>
-          <button mat-raised-button (click)="nextPage()">Next</button>
+      <mat-toolbar>
+        <p *ngIf="popularArticle">
+          <i> Developed by: Son Phan - <b>MEAN stack</b> </i>
+        </p>
+        <span class="spacer"></span>
+        <div class="paginator" *ngIf="popularArticle">
+          <div class="group-button-paging">
+            <button mat-raised-button (click)="previousPage()">Previous</button>
+            <button mat-raised-button>{{ page }}</button>
+            <button mat-raised-button (click)="nextPage()">Next</button>
+          </div>
         </div>
-      </div>
+      </mat-toolbar>
     </div>
   </div>
 </div>

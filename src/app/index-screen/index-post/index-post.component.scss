@@ -78,6 +78,45 @@ textarea {
     .skeleton__daily-article {
       width: 100%;
     }
+
+    .article-below-popular {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 1rem;
+      .tiny-article {
+        width: 100%;
+        height: auto;
+
+        &__img {
+          width: 100%;
+          height: auto;
+        }
+
+        &__content {
+          width: 100%;
+          height: auto;
+          .description--max-line {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+          }
+        }
+        & img:hover {
+          cursor: pointer;
+        }
+        & h2:hover {
+          cursor: pointer;
+        }
+      }
+
+      .tiny-article:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+    }
   }
 }
 .post-content-button-container button {
@@ -130,7 +169,7 @@ mat-icon {
   &__img {
     width: 80%;
     &--overflow {
-      width: 500px;
+      width: 100%;
       margin: auto;
     }
   }
@@ -151,9 +190,7 @@ mat-icon {
 .popular-article-right a:hover {
   cursor: pointer;
 }
-.tiny-article:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+
 .popular-article-mat-card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -169,17 +206,14 @@ mat-icon {
 .popular-article h2:hover {
   cursor: pointer;
 }
-.article-below-popular {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 .article-below-popular mat-card {
   flex: 1 1 5%;
   width: 25%;
   max-height: 530px;
 }
 
-.desciption {
+.description {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -196,16 +230,14 @@ mat-icon {
   -webkit-box-orient: vertical;
   min-height: 63px;
 }
-.tiny-article img:hover {
-  cursor: pointer;
-}
-.tiny-article h2:hover {
-  cursor: pointer;
-}
 
-.paginator {
-  position: absolute;
-  right: 0;
-  padding-right: 1rem;
-  padding-bottom: 2rem;
+::ng-deep .mat-toolbar {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+.spacer {
+  flex: 1 auto;
 }

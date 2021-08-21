@@ -9,7 +9,7 @@
   height: 100%;
 }
 .container {
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 .mat-card-article {
@@ -21,15 +21,12 @@
 .mat-card-hashtag {
   width: 100%;
 }
-.container .button-configure-article {
-  margin-left: 820px;
-  position: fixed;
-  margin-top: 5px;
-}
+
 .article-edit-mode :host ::ng-deep .ck-editor__editable_inline {
   min-height: 250px;
   max-height: 550px;
 }
+
 .title-article :host ::ng-deep .ck-editor__editable_inline {
   min-height: 250px;
   width: 400px;
@@ -40,18 +37,22 @@ mat-drawer-content {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .button-toggle-side-menu {
   margin-top: 10px;
   position: absolute;
 }
+
 .drawer-content-showup {
   width: 20%;
   margin: auto;
 }
+
 ul li {
   list-style-type: none;
   height: 40px;
 }
+
 ul li a {
   text-decoration: none;
   color: rgb(2, 0, 138);
@@ -62,6 +63,7 @@ ul li a {
 .app-index-post {
   width: 100%;
 }
+
 .app-header {
   width: 100%;
   position: relative;
@@ -74,6 +76,7 @@ mat-drawer-content .container {
   width: 100%;
   height: 350px;
 }
+
 .detail-content-post {
   width: 60%;
   margin-top: 100px;
@@ -100,18 +103,6 @@ mat-drawer-content .container {
   max-height: 540px;
 }
 
-.btn-group-edit-mode {
-  margin-left: 659px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.btn-group-edit-mode button {
-  margin-left: 10px;
-}
-.container-article-detail button {
-  margin-left: 784px;
-  margin-top: 10px;
-}
 .choose-file {
   position: absolute;
   margin-left: 290px;
@@ -153,7 +144,7 @@ mat-drawer-content .container {
 }
 .btn-insert-content {
   width: 200px;
-  margin-left: 331px;
+  margin: auto !important;
   padding: 5px;
   margin-top: 20px;
 }
@@ -168,4 +159,12 @@ mat-drawer-content .container {
 
 .loader {
   height: 20rem;
+}
+
+.spacer {
+  flex: 1 auto;
+}
+
+::ng-deep .mat-toolbar {
+  background-color: white !important;
 }

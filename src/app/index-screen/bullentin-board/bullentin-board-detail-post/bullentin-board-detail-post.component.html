@@ -1,32 +1,5 @@
 <div class="detail-bullentin-board-container">
-  <div class="detail-bullentin-board-container-show-image">
-    <!-- Show button thoát và button pause time -->
-    <div class="show-image-header">
-      <img
-        *ngIf="DetailFact != null"
-        [src]="DetailFact.imgUrl"
-        width="130%"
-        height="100%"
-      />
-    </div>
-    <div style="display: flex">
-      <button mat-raised-button class="Button-Exit" (click)="goBackToIndex()">
-        Exit
-      </button>
-      <button mat-raised-button (click)="changeStatePlay()" class="Buton-Pause">
-        <mat-icon *ngIf="Play_Facts">pause</mat-icon>
-        <mat-icon *ngIf="!Play_Facts">play_arrow</mat-icon>
-      </button>
-    </div>
-    <!-- Show button thoát và button pause time -->
-  </div>
-  <!-- Show main image and 2 next back button -->
-  <div class="image-content">
-    <img *ngIf="DetailFact != null" [src]="DetailFact.imgUrl" />
-  </div>
-  <!-- Show main image and 2 next back button -->
-
-  <div>
+  <div class="detai__bullentin-board">
     <button
       mat-raised-button
       class="button-go-to-previous"
@@ -34,6 +7,11 @@
     >
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
+
+    <div class="image-content">
+      <img *ngIf="DetailFact != null" [src]="DetailFact.imgUrl" />
+    </div>
+
     <button
       mat-raised-button
       class="button-go-to-next"
@@ -41,39 +19,5 @@
     >
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
-  </div>
-  <div class="detail-bullentin-board-container-show-user-and-comment">
-    <div class="detail-bullentin-board-container-show-user">
-      <img src="../../../../assets/images/default-image.jpg" height="90px" />
-      <div class="detail-bullentin-board-container-show-user-info">
-        <p style="font-size: 20px">
-          <b *ngIf="InforUser != null">{{ InforUser.name }}</b>
-        </p>
-        <p style="font-size: 13px"><i>1 hours ago</i></p>
-        <p style="font-size: 13px"><i>49 Views</i></p>
-      </div>
-    </div>
-    <p
-      style="margin-left: 10px; font-size: 20px; margin-top: 10px"
-      *ngIf="InforUser != null"
-    >
-      {{ DetailFact.title }}
-    </p>
-
-    <hr />
-    <div class="detail-bullentin-board-container-show-like-comment">
-      <button mat-button class="button-likes">
-        <mat-icon>favorite</mat-icon>Like
-      </button>
-      <button mat-button class="button-like-comment-action">
-        <mat-icon> comment</mat-icon>
-        Comment
-      </button>
-    </div>
-    <hr />
-    <div class="detail-bullentin-board-container-show-comment">
-      <app-bullentin-board-post-comments></app-bullentin-board-post-comments>
-    </div>
-    <div></div>
   </div>
 </div>
