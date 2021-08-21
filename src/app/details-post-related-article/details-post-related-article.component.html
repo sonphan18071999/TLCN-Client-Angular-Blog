@@ -1,11 +1,20 @@
-<div style="display: flex; width: 962px; flex-wrap: wrap">
-  <div class="related-article" *ngFor="let item of allRelatedArticle">
-    <mat-card *ngIf="item" (click)="showDetailPost(item._id)">
-      <img src="{{ item.AvatarPost }}" width="100%" height="120px" />
-      <h3 class="title-ralated">
+<div class="related__article" *ngIf="allRelatedArticle">
+  <div *ngFor="let item of allRelatedArticle">
+    <mat-card
+      class="related__article-content"
+      *ngIf="item"
+      [routerLink]="['/detail', item._id]"
+      (click)="viewDetailArticle(item._id)"
+    >
+      <img
+        src="{{ item.AvatarPost }}"
+        (click)="viewDetailArticle(item._id)"
+        class="content__img"
+      />
+      <h3 class="content__title">
         <b>{{ item.tittle }}</b>
       </h3>
-      <p class="description-related">{{ item.description }}</p>
+      <p class="content__description">{{ item.description }}</p>
     </mat-card>
   </div>
 </div>

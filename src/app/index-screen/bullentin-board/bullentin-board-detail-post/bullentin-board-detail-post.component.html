@@ -1,22 +1,44 @@
-<div class="detail-bullentin-board-container">
-  <div class="detai__bullentin-board">
+<nz-spin class="loader" *ngIf="InforUser === null" nzTip="Loading..."></nz-spin>
+<div class="container">
+  <div class="stepper">
     <button
-      mat-raised-button
-      class="button-go-to-previous"
+      mat-fab
+      class="button-go-to-previous justify-content-center"
       (click)="loadPreviousFacts()"
     >
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
+  </div>
 
-    <div class="image-content">
-      <img *ngIf="DetailFact != null" [src]="DetailFact.imgUrl" />
+  <div class="bulletin__board">
+    <mat-toolbar>
+      <div class="bulletin__board-author-information">
+        <img class="author__img" [src]="InforUser.userAvatar" />
+        <span style="margin-left: 1rem; color: white">
+          {{ InforUser.name }}
+        </span>
+      </div>
+      <span class="spacer"></span>
+      <button style="color: white" mat-button (click)="backToHomepage()">
+        Exit
+      </button>
+    </mat-toolbar>
+    <mat-toolbar>
+      <span style="color: white">
+        {{ DetailFact.title }}
+      </span>
+    </mat-toolbar>
+    <div>
+      <img
+        class="bulletin__board-content-img"
+        *ngIf="DetailFact != null"
+        [src]="DetailFact.imgUrl"
+      />
     </div>
+  </div>
 
-    <button
-      mat-raised-button
-      class="button-go-to-next"
-      (click)="loadNextFacts()"
-    >
+  <div class="stepper">
+    <button mat-fab class="button-go-to-next" (click)="loadNextFacts()">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
   </div>
