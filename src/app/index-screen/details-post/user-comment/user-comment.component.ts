@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiServiceService } from 'src/app/APIServices/api-service.service';
 import { SocketioService } from '../socketio.service';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-user-comment',
@@ -15,11 +16,13 @@ import { SocketioService } from '../socketio.service';
 export class UserCommentComponent implements OnInit {
 
   @Input() idArticle = '';
+  public Editor = ClassicEditor;
 
   allComment: any;
   idParentComment: any;
   commentContent: string;
   stateLike: any;
+  editorData: any;
 
   constructor(private apiService: ApiServiceService,
     private cookieService: CookieService,

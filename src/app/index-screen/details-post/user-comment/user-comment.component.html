@@ -126,7 +126,12 @@
           ></ckeditor>
         </div>
         <br />
-        <button mat-raised-button color="primary" (click)="sendComment()">
+        <button
+          class="button__send-comment"
+          mat-raised-button
+          color="primary"
+          (click)="sendComment()"
+        >
           <mat-icon>send</mat-icon>Send Comment
         </button>
       </div>
@@ -174,7 +179,12 @@
         }"
         (change)="saveEditor($event)"
       ></ckeditor>
-      <button mat-raised-button color="primary" (click)="sendFirstComment()">
+      <button
+        class="button__send-comment"
+        mat-raised-button
+        color="primary"
+        (click)="sendFirstComment()"
+      >
         <mat-icon>send</mat-icon>Send Comment
       </button>
     </div>

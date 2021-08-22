@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Location } from '@angular/common';
 
 import {ApiServiceService} from '../../APIServices/api-service.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private cookieService:CookieService,
     private apiService: ApiServiceService,
-    private location:Location) { }
+    private location: Location,
+  private router:Router) { }
   ngOnInit(): void {
     this.showProfile=false;
     this.idUser=this.cookieService.get('userIdLogged')
@@ -38,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   viewProfile(idUser){
     this.currentComponent='User-Profile';
-    this.location.go("/profile/"+idUser)
+    this.router.navigate(['/profile', idUser]);
   }
 
   
