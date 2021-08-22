@@ -1,0 +1,78 @@
+<div class="container-dashboard" data-aos="zoom-in">
+  <div class="three-mini-upper-dashboard">
+    <p style="margin-left: 50px; font-size: 20px; margin-top: 25px">
+      <b>Dashboard</b>
+    </p>
+    <label style="margin-left: 50px">Version 1.0</label>
+    <!-- Hiển thị 4 mat-card lớn -->
+    <div style="display: flex">
+      <mat-card class="Dashboard-All-Article">
+        <div>
+          <img
+            src="../../../assets/images/admin-all-article.jpg"
+            style="border-radius: 5px"
+            width="100px"
+            height="100px"
+          />
+        </div>
+        <div style="padding: 10px">
+          <h2>All Article</h2>
+          <p>315</p>
+        </div>
+      </mat-card>
+      <mat-card class="Dashboard-Viewer">
+        <div>
+          <img
+            src="../../../assets/images/admin-viewer.jpg"
+            style="border-radius: 5px"
+            width="100px"
+            height="100px"
+          />
+        </div>
+        <div style="padding: 10px">
+          <h2>Viewers</h2>
+          <p>5,000</p>
+        </div>
+      </mat-card>
+      <mat-card class="Dashboard-Vist-Today">
+        <div>
+          <img
+            src="../../../assets/images/admin-visitor.jpg"
+            style="border-radius: 5px"
+            width="100px"
+            height="100px"
+          />
+        </div>
+        <div style="padding: 10px">
+          <h2>Visitor</h2>
+          <p>2 000</p>
+        </div>
+      </mat-card>
+      <mat-card class="Dashboard-New-User-Register">
+        <div>
+          <img
+            src="../../../assets/images/admin-user.jpg"
+            style="border-radius: 5px"
+            width="100px"
+            height="100px"
+          />
+        </div>
+        <div style="padding: 10px">
+          <h2>New User</h2>
+          <p>100</p>
+        </div>
+      </mat-card>
+    </div>
+    <!-- Hiển thị 4 mat-card lớn -->
+  </div>
+  <div class="body-dashboard">
+    <!-- Hiển thị table chứa chartJs đường -->
+    <mat-card class="Line-Graph-ChartJS">
+      <app-admin-line-graph-chart-js></app-admin-line-graph-chart-js>
+    </mat-card>
+    <mat-card class="Circle-ChartJs">
+      <app-admin-circle-graph-chart-js></app-admin-circle-graph-chart-js>
+    </mat-card>
+    <!-- Hiển thị table chứa chartJs đường -->
+  </div>
+</div>

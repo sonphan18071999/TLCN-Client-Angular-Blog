@@ -1,6 +1,6 @@
 import { Component, ViewChild,OnInit} from '@angular/core';
 import { MatPaginator} from '@angular/material/paginator';
-import { ApiServiceService} from '../APIServices/api-service.service'
+import { ApiServiceService} from '../../APIServices/api-service.service'
 import { CookieService } from 'ngx-cookie-service'
 import AOS from 'aos'
 @Component({

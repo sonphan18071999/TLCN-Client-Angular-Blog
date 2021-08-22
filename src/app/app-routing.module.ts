@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminCMSComponent} from './admin-cms/admin-cms.component';
+import { AdminCMSComponent} from './admin/admin-cms/admin-cms.component';
 import { BullentinBoardDetailPostComponent } from './index-screen/bullentin-board/bullentin-board-detail-post/bullentin-board-detail-post.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { DetailsPostComponent } from './index-screen/details-post/details-post.component';

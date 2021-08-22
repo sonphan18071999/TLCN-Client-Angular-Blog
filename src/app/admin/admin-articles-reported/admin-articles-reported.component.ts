@@ -1,9 +1,9 @@
 import { Component, ViewChild,OnInit,Output,EventEmitter} from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { AdminDialogOptionComponent} from '../admin-dialog-option/admin-dialog-option.component'
-import { ApiServiceService} from '../APIServices/api-service.service'
+import { ApiServiceService} from '../../APIServices/api-service.service'
 import { CookieService} from 'ngx-cookie-service';
-import { DialogBanArticleComponent} from '../dialog-ban-article/dialog-ban-article.component'
+import { DialogBanArticleComponent} from '../../dialog-ban-article/dialog-ban-article.component'
 import { ToastrService } from 'ngx-toastr';
 import AOS from 'aos';
 @Component({
