@@ -148,9 +148,8 @@ export class IndexPostComponent implements OnInit {
     this.setStateIndexPost.emit(value);
   }
 
-  viewAuthorProfile(author:string){
-    this.location.go("/profile/"+author)
-    this.funcSetStateIndexPost("User-Profile")
+  viewUserProfile(id:string) :void{
+    this.router.navigate(['/profile/', id]);
   }
 }
 

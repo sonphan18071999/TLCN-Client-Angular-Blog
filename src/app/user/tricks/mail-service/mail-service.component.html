@@ -1,0 +1,14 @@
+<mat-card>
+  <ckeditor
+    [editor]="Editor"
+    [data]="dragAndDropModal"
+    [(ngModel)]="dragAndDropModal"
+    [config]="{ toolbar: ['heading', '|', 'bold', 'italic'] }"
+  ></ckeditor>
+</mat-card>
+
+<button (click)="addImage()">Thêm cái image</button>
+
+<button (click)="addVideo()">Thêm cái video</button>
+
+<img src="https://www.facebook.com/son.phan.16100/" />

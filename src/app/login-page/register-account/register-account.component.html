@@ -1,86 +1,105 @@
-<div class="container">
-    <h4 style="color: white;" >Register</h4>
+<div class="register__container">
+  <mat-card class="register__container--white-background">
+    <div>
+      <h2 class="register__container-title">Register Account</h2>
+      <form [formGroup]="form">
+        <mat-grid-list cols="2" rowHeight="60px">
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input
+                matInput
+                placeholder="First name"
+                formControlName="firstName"
+              />
+              <mat-error *ngIf="isFieldValid('firstName')">
+                <i>Please input first name</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input
+                matInput
+                placeholder="Last name"
+                formControlName="lastName"
+              />
+              <mat-error *ngIf="isFieldValid('lastName')">
+                <i>Please input last name</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input matInput placeholder="Email" formControlName="email" />
+              <mat-error *ngIf="isFieldValid('email')">
+                <i>Please input email</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
 
-    <div class="container-form">
-        <!-- Dien thong tin ben trong form -->
-        <div class="register-form">
-            
-            <!-- Noi dung form ben trai -->
-            <div class="left-register-form">
-                <table>
-                <tr>
-                    <td>
-                        <mat-form-field class="register-input-half" >
-                            <input matInput placeholder="First name" (input)="UpdateData($event.target.value,1)" >
-                        </mat-form-field>
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input matInput placeholder="Phone" formControlName="phone" />
+              <mat-error *ngIf="isFieldValid('phone')">
+                <i>Please input phone</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
 
-                        <mat-form-field class="register-input-half">
-                            <input matInput placeholder="Last name" (input)="UpdateData($event.target.value,2)">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="register-input-half">
-                            <input type="email"  matInput placeholder="Email" (input)="UpdateData($event.target.value,3)">
-                        </mat-form-field>
-                        <mat-form-field class="register-input-half">
-                            <input type="number" matInput placeholder="Phone" (input)="UpdateData($event.target.value,4)">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="register-input-half">
-                            <input type="password"   matInput placeholder="Password" (input)="UpdateData($event.target.value,5)">
-                        </mat-form-field>
-                        <mat-form-field class="register-input-half">
-                            <input type="password" matInput placeholder="Confirm Password"(input)="UpdateData($event.target.value,6)">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="register-input">
-                            <textarea type="number"  rows="5" matInput placeholder="Address" (input)="UpdateData($event.target.value,7)"></textarea>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" placeholder="AgreeTerm" (input)="UpdateData($event.target.value,8)">
-                        <label for="AgreeTerm">I Agree To The Term & Conditions</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <button style="margin-top: 10px;" mat-raised-button (click)="SubmitUser()">Register <mat-icon>arrow_right_alt</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-                </table>
-            </div>
-            <!-- Noi dung form ben trai -->
-            <div class="middle-register-form">
-                <p>.</p>
-            </div>
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input
+                type="password"
+                matInput
+                placeholder="Password"
+                formControlName="password"
+              />
+              <mat-error *ngIf="isFieldValid('password')">
+                <i>Please input phone</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
 
-            <!-- Noi dung ben phai -->
-            <div class="right-register-form">
-                <p style="font-size: 30px;margin-top: 40px;font-family:  'Arial Narrow Bold', sans-serif;">
-                    Already Register?
-                </p>
-                <p>
-                    Then what do you waiting for? Press on the button below to login.
-                    Then what do you waiting for? Press on the button below to login
-                    Then what do you waiting for? Press on the button below to login
-                    Then what do you waiting for? Press on the button below to login
-                    Then what do you waiting for? Press on the button below to login
-                </p>
-                <button  [routerLink]="'/login'" mat-raised-button>Login  <mat-icon>arrow_right_alt</mat-icon></button>
-            </div>
-            <!-- Noi dung ben phai -->
-        </div>
-        <!-- Dien thong tin ben trong form -->
+          <mat-grid-tile>
+            <mat-form-field class="register__container-input">
+              <input
+                type="password"
+                matInput
+                placeholder="Confirm password"
+                formControlName="passwordConfirm"
+              />
+              <mat-error *ngIf="isFieldValid('passwordConfirm')">
+                <i>Please input password confirm correctly</i>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="12">
+          <mat-grid-tile [colspan]="12">
+            <mat-form-field class="register__container-input">
+              <input matInput placeholder="Address" formControlName="address" />
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="12">
+            <mat-checkbox
+              class="register__container-input"
+              formControlName="isAgreeTerm"
+            >
+              Agree with the term and conditions
+            </mat-checkbox>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="12" class="register__container-input">
+            <span class="spacer"></span>
+            <button type="submit" mat-raised-button (click)="onSubmit()">
+              Submit
+            </button>
+            <button type="reset" mat-button><u>Reset</u></button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
     </div>
+  </mat-card>
 </div>

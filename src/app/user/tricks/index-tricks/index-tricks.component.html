@@ -1,0 +1,26 @@
+<mat-card class="list__project">
+  <mat-card>
+    <mat-card-title>List of projects: </mat-card-title>
+    <mat-selection-list [multiple]="false">
+      <mat-list-option
+        *ngFor="let item of listProject"
+        [value]="item"
+        (click)="switchComponent(item)"
+      >
+        {{ item }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card>
+</mat-card>
+
+<mat-card class="project__item">
+  <app-image-slide-show
+    *ngIf="projectShown === PROJECT_TITLE"
+  ></app-image-slide-show>
+
+  <app-read-data-excel
+    *ngIf="projectShown === READ_DATA_EXCEL"
+  ></app-read-data-excel>
+
+  <app-mail-service *ngIf="projectShown === MAIL_SERVICE"> </app-mail-service>
+</mat-card>

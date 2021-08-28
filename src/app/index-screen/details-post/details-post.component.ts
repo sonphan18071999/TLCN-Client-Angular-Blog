@@ -58,7 +58,8 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     private cookieService: CookieService,
     public dialog: MatDialog,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
   
   ngAfterViewInit(): void {
@@ -235,5 +236,8 @@ export class DetailsPostComponent implements OnInit, AfterViewInit, OnChanges {
     this.setStateDetailPost.emit(value);
   }
 
+  viewUserProfile(id:string) :void{
+    this.router.navigate(['/profile', id]);
+  }
 }
 

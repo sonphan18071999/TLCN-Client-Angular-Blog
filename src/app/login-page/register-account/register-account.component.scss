@@ -1,56 +1,38 @@
-.container{
-    width: 1480px;
-    height:800px;
-    display: block;
-    background: url('https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-}
-.container-form{
-   width: 1000px;
-   height: 500px;
-   margin: auto;
-   background-color: white;
-   opacity: 80%;
-   border-radius: 10px;
-   border-color: transparent;
-   border-style: solid;
-   border-width: 1px;
-}
-.container h4{
-    margin-top: 100px;
+.register__container {
+  background: url("https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  &--white-background {
+    width: 50%;
+    margin: auto;
+    margin-top: 25vh;
+    height: 53vh;
+  }
+
+  &-title {
     text-align: center;
-    font-size: 30px;
-    font-style: bold;
-}
-.register-form{
-    padding: 50px;
-    width: 1000px;
-    display: flex;
+  }
+
+  &-input {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &-buttons {
+    justify-content: start !important;
+  }
+
+  .spacer {
+    background-color: white !important;
+    flex: 1 1 auto;
+  }
 }
 
-.left-register-form{
-    width: 600px;
-}
-.middle-register-form{
-    width: 3px;
-    height: 400px;
-    background-color: black;
-    margin: 7px;
-}
-.right-register-form{
-    margin-left: 25px;
-    width: 290px;
-}
-.left-register-form table{
-    margin-top: 20px;
-    width: 600px;
-}
-.register-input-half {
-    width: 270px;
-    margin-right: 20px;
-}
-.register-input{
-    width: 560px;
+::ng-deep .mat-grid-tile .mat-figure {
+  padding: 0 !important;
+  margin: 0 !important;
 }

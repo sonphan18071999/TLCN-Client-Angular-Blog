@@ -1,33 +1,49 @@
 <h1 mat-dialog-title>Report this article</h1>
 <div mat-dialog-content>
   <table>
+    <tr></tr>
     <tr>
-      
-    </tr>
-    <tr>
-      <td>Reason for report: </td>
+      <td>Reason for report:</td>
       <td>
-        <mat-checkbox class="example-margin" [(ngModel)]="CFTR">Content conflict the rules</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="CFTR"
+          >Content conflict the rules</mat-checkbox
+        >
       </td>
     </tr>
     <tr>
       <td></td>
-      <td><mat-checkbox class="example-margin" [(ngModel)]="SAA">Spam/Advertise article</mat-checkbox></td>
+      <td>
+        <mat-checkbox class="example-margin" [(ngModel)]="SAA"
+          >Spam/Advertise article</mat-checkbox
+        >
+      </td>
     </tr>
     <tr>
       <td></td>
-      <td><mat-checkbox class="example-margin" [(ngModel)]="BTS">Break the subject</mat-checkbox></td>
+      <td>
+        <mat-checkbox class="example-margin" [(ngModel)]="BTS"
+          >Break the subject</mat-checkbox
+        >
+      </td>
     </tr>
     <tr>
       <td></td>
-      <td><mat-checkbox class="example-margin" [(ngModel)]="BW">Bad words</mat-checkbox></td>
+      <td>
+        <mat-checkbox class="example-margin" [(ngModel)]="BW"
+          >Bad words</mat-checkbox
+        >
+      </td>
     </tr>
     <tr>
       <td></td>
-      <td><mat-checkbox class="example-margin" [(ngModel)]="DLOBM">Deliberately lashing out blog members</mat-checkbox></td>
+      <td>
+        <mat-checkbox class="example-margin" [(ngModel)]="DLOBM"
+          >Deliberately lashing out blog members</mat-checkbox
+        >
+      </td>
     </tr>
     <tr>
-      <td style="position: absolute">Other reasons: </td>
+      <td style="position: absolute">Other reasons:</td>
       <td><textarea [(ngModel)]="TextArea" rows="10" cols="100"></textarea></td>
     </tr>
     <tr>

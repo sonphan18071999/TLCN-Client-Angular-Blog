@@ -3,40 +3,36 @@
   <app-dialog-login-before-create-article></app-dialog-login-before-create-article>
 </div>
 <div class="container" *ngIf="!disableCreateArticle">
-  <mat-horizontal-stepper #stepper *ngIf="isLoaded">
+  <mat-vertical-stepper *ngIf="isLoaded">
     <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your content</ng-template>
+        <hr />
         <div
           class="content-article"
           *ngFor="let content of Article.content; let i = index"
         >
           <div class="Editor-Content" *ngIf="content.partContent !== undefined">
-            <button
-              class="btn-remove-editor"
-              mat-button
-              color="warn"
-              (click)="removeTextEditor(i)"
-            >
-              <mat-icon>remove_circle_outline</mat-icon>
-            </button>
+            <mat-toolbar>
+              <div class="spacer"></div>
+              <button
+                class="btn-remove-editor"
+                mat-button
+                color="warn"
+                (click)="removeTextEditor(i)"
+              >
+                <mat-icon>remove_circle_outline</mat-icon>
+                <span class="button__title">Remove section</span>
+              </button>
+            </mat-toolbar>
+
             <ckeditor
               type="text"
               (change)="saveEditor($event, i)"
               [ngModelOptions]="{ standalone: true }"
               [editor]="Editor"
               tagName="textarea"
-              [config]="{
-                toolbar: [
-                  'heading',
-                  '|',
-                  'bold',
-                  'italic',
-                  'bulletedList',
-                  'numberedList',
-                  'blockQuote'
-                ]
-              }"
+              [config]="editorConfig"
             ></ckeditor>
           </div>
           <br />
@@ -59,15 +55,10 @@
           </div>
           <br />
         </div>
-        <br />
-        <br />
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="addMoreContent()"
-          style="margin-left: 47%"
-        >
-          <mat-icon>add</mat-icon>Content
+        <hr />
+        <button mat-raised-button color="primary" (click)="addMoreContent()">
+          <mat-icon>add</mat-icon>
+          <span class="btn__title">Add section</span>
         </button>
       </form>
     </mat-step>
@@ -137,8 +128,8 @@
         <mat-icon>check_circle_outline</mat-icon>Submit article
       </button>
     </mat-step>
-  </mat-horizontal-stepper>
+  </mat-vertical-stepper>
   <div *ngIf="!isLoaded">
-    <img src="../../assets/images/loading.gif" width="100%" />
+    <img src="../../../assets/images/loading.gif" width="100%" />
   </div>
 </div>

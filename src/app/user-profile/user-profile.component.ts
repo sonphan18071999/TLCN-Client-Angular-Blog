@@ -62,8 +62,7 @@ export class UserProfileComponent implements OnInit {
   }
   showDetailPost(id,title){
     this.cookieService.set( 'idDetailArticle', id ); 
-    this.location.go("/detail-post/"+title);
-    this.funcSetStateUserProfile("Detail-Post");
+    this.router.navigate(["/detail/"+id])
   }
 
   showSavedArticle(){
@@ -72,7 +71,5 @@ export class UserProfileComponent implements OnInit {
       this.allSavedArticle =res.SavedArticle
     })
   }
-  funcSetStateUserProfile(value:string){
-    this.setStateUserProfile.emit(value)
-  }
+
 }
