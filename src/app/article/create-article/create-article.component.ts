@@ -1,15 +1,16 @@
-import {Component, OnInit,Inject  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import{Article} from './article';
+import { Component, OnInit,Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Article } from './article';
+import ClassEditor from "@ckeditor/ckeditor5-build-classic";
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
-import {CreateArticleService }from './create-article.service'
-import {CookieService} from 'ngx-cookie-service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { CreateArticleService }from './create-article.service'
+import { CookieService } from 'ngx-cookie-service';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { DOCUMENT } from '@angular/common';
-import { ToastrService} from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr'
+
 @Component({
   selector: 'app-create-article',
   templateUrl: './create-article.component.html',
@@ -25,7 +26,7 @@ export class CreateArticleComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   Article = new Article();
-  public Editor = ClassicEditor;
+  public Editor = ClassEditor;
   localUrl: any[];
   MainImage: string;
   isLoaded: boolean = true;

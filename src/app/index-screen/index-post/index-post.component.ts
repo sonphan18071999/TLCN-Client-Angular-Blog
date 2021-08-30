@@ -36,29 +36,38 @@ export class IndexPostComponent implements OnInit {
 
   @Output() setStateIndexPost = new EventEmitter<string>();  //Event tra ve loading item
   
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     AOS.init();
-    this.page=0;
-    this.getDataPaging();
+    this.page = 0;
+    await this.getAuthorInfo();
+    await this.getPopularArticle();
+    await this.getNormalArticle();
     if(this._cookieService.get("userIdLogged")!=''){
       this.showPostArticle=true;
     }
     this.funcSetStateIndexPost("Index-Post-InProcess")
   }
 
-  getDataPaging(){
-    return this.indexPostService.getAllArticle(this.page).subscribe((data: any[])=>{
-      this.allArticle=data;
-      this.author=this.allArticle.Author
-
-      this.popularArticle = this.allArticle.PopularArticle;
-      this.convertTimeToString(this.popularArticle);
-      this.allArticle=this.allArticle.Article;  // Lấy tất cả những bài viết
-       //Tiến hình đổi giờ mặc định sang string.
-       this.convertTimeToString(this.allArticle);
+  async getAuthorInfo() {
+    return this.indexPostService.getAllArticle(this.page).subscribe((data: any) => {
+      this.author = data.Author;
     })
   }
 
+  async getNormalArticle(){
+    return this.indexPostService.getAllArticle(this.page).subscribe((data: any) => {
+      console.log(this.popularArticle)
+      this.allArticle= data.Article.filter(item => item.Article._id!==this.popularArticle.Article._id)
+      this.convertTimeToString(this.allArticle);
+    })
+  }
+
+  async getPopularArticle() {
+    return this.indexPostService.getAllArticle(this.page).subscribe((data: any) => {
+      this.popularArticle = data.PopularArticle;
+      this.convertTimeToString(this.popularArticle);
+    })
+  }
   convertTimeToString(data){
     //Đổi thành đã đăng cách đây mấy giờ
     var currentDate = new Date();
@@ -130,7 +139,7 @@ export class IndexPostComponent implements OnInit {
   nextPage(){
     this.page+=1;
     this.allArticle=null;
-    this.getDataPaging();
+    this.getNormalArticle();
   }
 
   previousPage(){
@@ -140,7 +149,7 @@ export class IndexPostComponent implements OnInit {
     else{
       this.allArticle=null;
       this.page-=1;
-      this.getDataPaging();
+      this.getNormalArticle();
     }
   }
 
