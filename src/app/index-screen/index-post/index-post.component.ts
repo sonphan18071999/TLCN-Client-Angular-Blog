@@ -56,8 +56,7 @@ export class IndexPostComponent implements OnInit {
 
   async getNormalArticle(){
     return this.indexPostService.getAllArticle(this.page).subscribe((data: any) => {
-      console.log(this.popularArticle)
-      this.allArticle= data.Article.filter(item => item.Article._id!==this.popularArticle.Article._id)
+      this.allArticle = data.Article;
       this.convertTimeToString(this.allArticle);
     })
   }
