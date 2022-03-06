@@ -26,22 +26,41 @@
   .bulletin__board {
     width: 30%;
     margin: auto;
-    height: 96%;
+    height: 100%;
     padding-bottom: 1rem;
     border-radius: 1rem;
+    background-color: aliceblue;
+
     &-author-information {
       width: 100%;
+      margin-left: 1rem;
+      display: flex;
+      margin-top: 1rem;
+      &-detail {
+        display: block;
+        margin-left: 1rem;
+      }
+
       .author__img {
-        width: 3rem;
+        width: 4rem;
         min-width: 2rem;
         height: auto;
         border-radius: 50%;
       }
     }
 
-    &-content-img {
-      margin-top: 2rem;
-      width: 100%;
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80%;
+      &-img {
+        max-height: 100%;
+        object-fit: cover;
+        top: 0;
+        width: 100%;
+        position: relative;
+      }
     }
   }
 }

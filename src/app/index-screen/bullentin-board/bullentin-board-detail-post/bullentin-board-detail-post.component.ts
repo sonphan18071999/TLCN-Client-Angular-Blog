@@ -24,6 +24,7 @@ export class BullentinBoardDetailPostComponent implements OnInit {
     await this.getIdDetailFact();
     await this.getDetailFacts();
     await this.getAllBullentinBoard();
+    console.log(this.InforUser)
   }
   
   getIdDetailFact(){

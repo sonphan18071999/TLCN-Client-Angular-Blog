@@ -11,24 +11,19 @@
   </div>
 
   <div class="bulletin__board">
-    <mat-toolbar>
-      <div class="bulletin__board-author-information">
-        <img class="author__img" [src]="InforUser.userAvatar" />
-        <span style="margin-left: 1rem; color: white">
-          {{ InforUser.name }}
-        </span>
+    <div class="bulletin__board-author-information">
+      <img class="author__img" [src]="InforUser.userAvatar" />
+      <div class="bulletin__board-author-information-detail">
+        <p style="font-size: 19px">
+          <b> {{ InforUser.name }}</b>
+        </p>
+        <p>
+          {{ DetailFact.title }}
+        </p>
       </div>
-      <span class="spacer"></span>
-      <button style="color: white" mat-button (click)="backToHomepage()">
-        Exit
-      </button>
-    </mat-toolbar>
-    <mat-toolbar>
-      <span style="color: white">
-        {{ DetailFact.title }}
-      </span>
-    </mat-toolbar>
-    <div>
+    </div>
+
+    <div class="bulletin__board-content">
       <img
         class="bulletin__board-content-img"
         *ngIf="DetailFact != null"
